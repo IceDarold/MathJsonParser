@@ -64,7 +64,7 @@ async def process_task(
             total_latency += latency
             total_tokens = usage.get('total_tokens', usage.get('input_tokens', 0) + usage.get('output_tokens', 0))
 
-            logger.log_llm_call(task_id, len(prompt), len(raw_response), usage, latency)
+            logger.log_llm_call(task_id, prompt, raw_response, usage, latency)
 
             valid, parsed_data, errors = validator.validate(raw_response)
 

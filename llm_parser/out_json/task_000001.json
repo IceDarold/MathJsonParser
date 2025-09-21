@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "id": "task_000001",
+    "lang": "ru",
+    "gold_answer": "[4.482]",
+    "source": "csv",
+    "notes": ""
+  },
+  "task_type": "auto",
+  "expr_format": "latex",
+  "assumptions": {
+    "reals_default": true
+  },
+  "constants": {},
+  "symbols": [
+    {
+      "name": "x",
+      "domain": "R"
+    }
+  ],
+  "definitions": {
+    "functions": [],
+    "sequences": [],
+    "matrices": [],
+    "distributions": [],
+    "geometry": []
+  },
+  "transforms": [],
+  "conditions": [],
+  "targets": [
+    {
+      "type": "limit",
+      "expr": "\\left(\\frac{\\cos x}{\\cos 2x}\\right)^{1/x^2}",
+      "var": "x",
+      "to": "0"
+    }
+  ],
+  "output": {
+    "mode": "decimal",
+    "round_to": 3,
+    "simplify": true,
+    "rationalize": false
+  },
+  "validation": {
+    "tolerance_abs": 1e-09,
+    "check_domain_violations": true
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "id": "task_000002",
+    "lang": "ru",
+    "gold_answer": "[2.000]",
+    "source": "csv",
+    "notes": ""
+  },
+  "task_type": "auto",
+  "expr_format": "latex",
+  "assumptions": {
+    "reals_default": true
+  },
+  "constants": {},
+  "symbols": [
+    {
+      "name": "x",
+      "domain": "R"
+    }
+  ],
+  "definitions": {
+    "functions": [],
+    "sequences": [],
+    "matrices": [],
+    "distributions": [],
+    "geometry": []
+  },
+  "transforms": [],
+  "conditions": [],
+  "targets": [
+    {
+      "type": "limit",
+      "expr": "x (\\ln(1 + x/2) - \\ln(x/2))",
+      "var": "x",
+      "to": "+\\infty"
+    }
+  ],
+  "output": {
+    "mode": "decimal",
+    "round_to": 3,
+    "simplify": true,
+    "rationalize": false
+  },
+  "validation": {
+    "tolerance_abs": 1e-09,
+    "check_domain_violations": true
+  }
+}

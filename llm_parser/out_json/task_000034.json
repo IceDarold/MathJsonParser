@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "id": "task_000034",
+    "lang": "ru",
+    "gold_answer": "[0.200]",
+    "source": "csv",
+    "notes": ""
+  },
+  "task_type": "auto",
+  "expr_format": "sympy",
+  "assumptions": {
+    "reals_default": true
+  },
+  "constants": {},
+  "symbols": [
+    {
+      "name": "x",
+      "domain": "R"
+    },
+    {
+      "name": "n",
+      "domain": "N"
+    }
+  ],
+  "definitions": {
+    "functions": [],
+    "sequences": [],
+    "matrices": [],
+    "distributions": [],
+    "geometry": []
+  },
+  "transforms": [],
+  "conditions": [],
+  "targets": [
+    {
+      "type": "inequalities",
+      "inequalities": [
+        "x^2 > 4"
+      ]
+    }
+  ],
+  "output": {
+    "mode": "decimal",
+    "round_to": 3,
+    "simplify": true,
+    "rationalize": false
+  },
+  "validation": {
+    "tolerance_abs": 1e-09,
+    "check_domain_violations": true
+  }
+}

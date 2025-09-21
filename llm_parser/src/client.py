@@ -13,8 +13,10 @@ class LLMClient(ABC):
 
     def __init__(self, config: Dict[str, Any]):
         self.config = config
+        # Fix rate limiter - ensure max_rate is at least 1
+        rate_limit = max(1, config.get('rate_limit_rps', 2))
         self.limiter = aiolimiter.AsyncLimiter(
-            max_rate=config.get('rate_limit_rps', 2),
+            max_rate=rate_limit,
             time_period=1
         )
 
@@ -93,16 +95,18 @@ class AnthropicClient(LLMClient):
 
 
 class LocalClient(LLMClient):
-    """Local OpenAI-compatible API client."""
+    """Local OpenAI-compatible API client with reasoning model support."""
 
     def __init__(self, config: Dict[str, Any]):
         super().__init__(config)
         self.base_url = config.get('base_url', 'http://localhost:8000/v1')
         self.session = None
+        # Extended timeout for reasoning models
+        self.timeout = aiohttp.ClientTimeout(total=300)  # 5 minutes
 
     async def _get_session(self):
         if self.session is None:
-            self.session = aiohttp.ClientSession()
+            self.session = aiohttp.ClientSession(timeout=self.timeout)
         return self.session
 
     async def generate_json(self, prompt: str, retry_hint: Optional[str] = None) -> Tuple[str, Dict[str, Any], float]:
@@ -119,30 +123,87 @@ class LocalClient(LLMClient):
                 "max_tokens": self.config.get('max_tokens', 1500),
                 "temperature": self.config.get('temperature', 0.2),
                 "top_p": self.config.get('top_p', 0.9),
-                "response_format": {"type": "json_object"} if self.config.get('json_mode', True) else None
+                "stream": False
             }
+            
+            # Only add response_format for non-reasoning models
+            if self.config.get('json_mode', False) and 'r1' not in self.config.get('model', '').lower():
+                payload["response_format"] = {"type": "json_object"}
 
-            async with session.post(f"{self.base_url}/chat/completions", json=payload) as resp:
-                result = await resp.json()
-                latency = time.time() - start_time
-                print(f"DEBUG: API response: {result}")  # Debug log
-                if 'choices' in result and result['choices']:
+            try:
+                async with session.post(f"{self.base_url}/chat/completions", json=payload) as resp:
+                    if resp.status != 200:
+                        error_text = await resp.text()
+                        raise Exception(f"HTTP {resp.status}: {error_text}")
+                    
+                    result = await resp.json()
+                    latency = time.time() - start_time
+                    
+                    # Better error handling
+                    if 'error' in result:
+                        raise Exception(f"API Error: {result['error']}")
+                    
+                    if 'choices' not in result or not result['choices']:
+                        raise Exception(f"No choices in response: {result}")
+                    
                     raw_response = result['choices'][0]['message']['content']
-                else:
-                    # Handle cases where response doesn't have choices (e.g., error or different format)
-                    raw_response = str(result)
-
-                # For reasoning models like DeepSeek R1, extract JSON after </think>
-                if '</think>' in raw_response:
-                    parts = raw_response.split('</think>')
-                    if len(parts) > 1:
-                        raw_response = parts[1].strip()
-                        # Find the first { to start JSON
-                        json_start = raw_response.find('{')
-                        if json_start != -1:
-                            raw_response = raw_response[json_start:]
-                usage = result.get('usage', {})
-                return raw_response, usage, latency
+                    
+                    # Enhanced reasoning model parsing
+                    if '<think>' in raw_response:
+                        if '</think>' in raw_response:
+                            # Complete reasoning - extract JSON after </think>
+                            parts = raw_response.split('</think>')
+                            if len(parts) > 1:
+                                json_part = parts[1].strip()
+                                # Find JSON boundaries
+                                json_start = json_part.find('{')
+                                if json_start != -1:
+                                    # Find matching closing brace
+                                    brace_count = 0
+                                    json_end = json_start
+                                    for i, char in enumerate(json_part[json_start:], json_start):
+                                        if char == '{':
+                                            brace_count += 1
+                                        elif char == '}':
+                                            brace_count -= 1
+                                            if brace_count == 0:
+                                                json_end = i + 1
+                                                break
+                                    raw_response = json_part[json_start:json_end]
+                        else:
+                            # Incomplete reasoning - response was cut off
+                            # Try to find JSON in the response anyway
+                            json_start = raw_response.find('{')
+                            if json_start != -1:
+                                # Find the last complete JSON object
+                                brace_count = 0
+                                json_end = len(raw_response)
+                                for i, char in enumerate(raw_response[json_start:], json_start):
+                                    if char == '{':
+                                        brace_count += 1
+                                    elif char == '}':
+                                        brace_count -= 1
+                                        if brace_count == 0:
+                                            json_end = i + 1
+                                            break
+                                if brace_count == 0:  # Found complete JSON
+                                    raw_response = raw_response[json_start:json_end]
+                                else:
+                                    # No complete JSON found, increase max_tokens and retry
+                                    raise Exception("Response was cut off during reasoning - increase max_tokens")
+                    
+                    usage = result.get('usage', {
+                        'prompt_tokens': 0,
+                        'completion_tokens': 0,
+                        'total_tokens': 0
+                    })
+                    
+                    return raw_response, usage, latency
+                    
+            except asyncio.TimeoutError:
+                raise Exception("Request timeout - model may be taking too long to respond")
+            except Exception as e:
+                raise Exception(f"Request failed: {str(e)}")
 
     async def close(self):
         if self.session:

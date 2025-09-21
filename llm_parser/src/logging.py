@@ -40,13 +40,20 @@ class StructuredLogger:
             "task_text": task_text[:100]  # Truncate for brevity
         })
 
-    def log_llm_call(self, task_id: str, prompt_length: int, response_length: int, usage: Dict[str, Any], latency: float):
+    def log_llm_call(self, task_id: str, prompt: str, response: str, usage: Dict[str, Any], latency: float):
         """Log LLM call details."""
+        # Truncate for readability if too long
+        max_length = 1000
+        truncated_prompt = prompt[:max_length] + ("..." if len(prompt) > max_length else "")
+        truncated_response = response[:max_length] + ("..." if len(response) > max_length else "")
+
         self.logger.info("LLM call completed", extra={
             "task_id": task_id,
             "event": "llm_call",
-            "prompt_length": prompt_length,
-            "response_length": response_length,
+            "prompt": truncated_prompt,
+            "response": truncated_response,
+            "prompt_length": len(prompt),
+            "response_length": len(response),
             "usage": usage,
             "latency": latency
         })

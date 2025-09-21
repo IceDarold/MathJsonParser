@@ -1,0 +1,63 @@
+{
+  "meta": {
+    "id": "task_000038",
+    "lang": "ru",
+    "gold_answer": "[0.6651]",
+    "source": "csv",
+    "notes": ""
+  },
+  "task_type": "auto",
+  "expr_format": "sympy",
+  "assumptions": {
+    "reals_default": true
+  },
+  "constants": {},
+  "symbols": [
+    {
+      "name": "x",
+      "domain": "R"
+    },
+    {
+      "name": "n",
+      "domain": "N"
+    }
+  ],
+  "definitions": {
+    "functions": [],
+    "sequences": [],
+    "matrices": [],
+    "distributions": [],
+    "geometry": []
+  },
+  "transforms": [],
+  "conditions": [],
+  "targets": [
+    {
+      "type": "integral_def",
+      "expr": "\\int_{0}^{1} (6 - x)^{n} dx",
+      "var": "x",
+      "limits": [
+        "0",
+        "1"
+      ],
+      "name": "I"
+    },
+    {
+      "type": "sum",
+      "term": "\\left(\\frac{1}{2}\\right)^n",
+      "idx": "n",
+      "start": "0",
+      "end": "\\infty"
+    }
+  ],
+  "output": {
+    "mode": "decimal",
+    "round_to": 3,
+    "simplify": true,
+    "rationalize": false
+  },
+  "validation": {
+    "tolerance_abs": 1e-09,
+    "check_domain_violations": true
+  }
+}

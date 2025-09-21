@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "id": "task_000026",
+    "lang": "ru",
+    "gold_answer": "[1]",
+    "source": "csv",
+    "notes": ""
+  },
+  "task_type": "auto",
+  "expr_format": "sympy",
+  "assumptions": {
+    "reals_default": true
+  },
+  "constants": {},
+  "symbols": [
+    {
+      "name": "x",
+      "domain": "R"
+    },
+    {
+      "name": "y",
+      "domain": "R"
+    }
+  ],
+  "definitions": {
+    "functions": [],
+    "sequences": [],
+    "matrices": [],
+    "distributions": [],
+    "geometry": []
+  },
+  "transforms": [],
+  "conditions": [],
+  "targets": [
+    {
+      "type": "integral_def",
+      "expr": "integrate(x^2, y) - integrate(sin(y), y)",
+      "var": "x",
+      "limits": [
+        "0",
+        "1"
+      ],
+      "name": "I"
+    }
+  ],
+  "output": {
+    "mode": "decimal",
+    "round_to": 3,
+    "simplify": true,
+    "rationalize": false
+  },
+  "validation": {
+    "tolerance_abs": 1e-09,
+    "check_domain_violations": true
+  }
+}

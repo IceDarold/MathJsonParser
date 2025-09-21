@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "id": "task_000024",
+    "lang": "ru",
+    "gold_answer": "[0.524]",
+    "source": "csv",
+    "notes": ""
+  },
+  "task_type": "auto",
+  "expr_format": "latex",
+  "assumptions": {
+    "reals_default": true
+  },
+  "constants": {},
+  "symbols": [
+    {
+      "name": "x",
+      "domain": "R"
+    }
+  ],
+  "definitions": {
+    "functions": [],
+    "sequences": [],
+    "matrices": [],
+    "distributions": [],
+    "geometry": []
+  },
+  "transforms": [],
+  "conditions": [],
+  "targets": [
+    {
+      "type": "integral_def",
+      "expr": "x",
+      "var": "x",
+      "limits": [
+        "1/\\sqrt{3}",
+        "\\sqrt{3}"
+      ],
+      "name": "I"
+    }
+  ],
+  "output": {
+    "mode": "decimal",
+    "round_to": 3,
+    "simplify": true,
+    "rationalize": false
+  },
+  "validation": {
+    "tolerance_abs": 1e-09,
+    "check_domain_violations": true
+  }
+}
