@@ -125,7 +125,22 @@ class LocalClient(LLMClient):
             async with session.post(f"{self.base_url}/chat/completions", json=payload) as resp:
                 result = await resp.json()
                 latency = time.time() - start_time
-                raw_response = result['choices'][0]['message']['content']
+                print(f"DEBUG: API response: {result}")  # Debug log
+                if 'choices' in result and result['choices']:
+                    raw_response = result['choices'][0]['message']['content']
+                else:
+                    # Handle cases where response doesn't have choices (e.g., error or different format)
+                    raw_response = str(result)
+
+                # For reasoning models like DeepSeek R1, extract JSON after </think>
+                if '</think>' in raw_response:
+                    parts = raw_response.split('</think>')
+                    if len(parts) > 1:
+                        raw_response = parts[1].strip()
+                        # Find the first { to start JSON
+                        json_start = raw_response.find('{')
+                        if json_start != -1:
+                            raw_response = raw_response[json_start:]
                 usage = result.get('usage', {})
                 return raw_response, usage, latency
 

@@ -1,0 +1,11 @@
+{
+  "total_tasks": 200,
+  "valid_rate": 0.0,
+  "avg_retries_per_task": 2.0,
+  "avg_tokens_per_task": 0.0,
+  "avg_latency": 0.0,
+  "median_latency": 0.0,
+  "error_distribution": {
+    "LLM call failed: 'choices'": 200
+  }
+}

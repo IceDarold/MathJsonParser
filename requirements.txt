@@ -1,4 +1,12 @@
-sympy
-pydantic
+aiohttp
+aiolimiter
+anthropic
 antlr4-python3-runtime==4.11
+jsonschema
+openai
+pandas
+pydantic
+python-json-logger
+pyyaml
 pytest
+sympy

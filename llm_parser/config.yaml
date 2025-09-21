@@ -1,11 +1,12 @@
-provider: openai
-model: gpt-4
-json_mode: true
+provider: local
+model: deepseek-r1-distill-qwen-7b
+base_url: http://localhost:1234/v1
+json_mode: false
 use_grammar: true
 max_tokens: 1500
 temperature: 0.2
 top_p: 0.9
-concurrency: 8
+concurrency: 1
 rate_limit_rps: 2.0
 retries: 2
 retry_hint_template: prompts/retry_hint.txt

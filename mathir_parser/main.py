@@ -286,7 +286,9 @@ def exec_sum(rt: Runtime, t: TargetSum) -> Tuple[str, sp.Expr]:
 
     # Parse with local_dict including the index
     if '\\' in t.term:
-        term_template = to_sympy_expr(t.term)
+        # Simple LaTeX to infix conversion
+        infix = t.term.replace('\\frac{', '(').replace('}{', ')/(').replace('}', ')').replace('^', '**')
+        term_template = sp.parse_expr(infix, local_dict={t.idx: rt.context[t.idx]})
     else:
         local_dict = {t.idx: rt.context[t.idx]}
         for k, v in rt.context.items():
