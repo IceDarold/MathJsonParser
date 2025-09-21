@@ -1,0 +1,11 @@
+{
+  "expr_format": "latex",
+  "targets": [
+    {
+      "type": "integral_def",
+      "expr": "x^2",
+      "var": "x",
+      "limits": ["0", "1"]
+    }
+  ]
+}

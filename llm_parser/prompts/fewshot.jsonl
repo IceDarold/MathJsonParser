@@ -1,0 +1,6 @@
+{"expr_format":"latex","symbols":[{"name":"x","domain":"R"}],"targets":[{"type":"integral_def","expr":"x^2","var":"x","limits":["0","1"],"name":"I"}]}
+{"expr_format":"latex","symbols":[{"name":"x","domain":"R"}],"targets":[{"type":"limit","expr":"\\frac{\\sin x}{x}","var":"x","to":"0"}]}
+{"expr_format":"latex","symbols":[{"name":"n","domain":"N"}],"targets":[{"type":"sum","term":"\\left(\\frac{1}{2}\\right)^n","idx":"n","start":"0","end":"\\infty"}]}
+{"expr_format":"latex","symbols":[{"name":"x","domain":"R"},{"name":"y","domain":"R"}],"targets":[{"type":"solve_for","unknowns":["x","y"],"equations":["x + y = 6","x - y = 2"]}]}
+{"expr_format":"latex","symbols":[{"name":"x","domain":"R"}],"targets":[{"type":"inequalities","inequalities":["x^2 > 4"]}]}
+{"expr_format":"latex","symbols":[{"name":"x","domain":"R"},{"name":"y","domain":"R"}],"definitions":{"matrices":[{"name":"A","rows":2,"cols":2,"data":[["1","2"],["3","4"]]},{"name":"B","rows":2,"cols":1,"data":[["5"],["11"]]}]},"targets":[{"type":"solve_for_matrix","unknown":"X"}]}

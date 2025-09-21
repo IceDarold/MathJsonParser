@@ -1,0 +1,255 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/mathir.schema.json",
+  "type": "object",
+  "required": ["expr_format", "targets"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "lang": {"type": "string"},
+        "notes": {"type": "string"},
+        "gold_answer": {"type": "string"},
+        "source": {"type": "string"}
+      },
+      "additionalProperties": true
+    },
+    "task_type": {
+      "enum": ["auto", "integral", "limit", "sum", "algebra", "matrix", "probability", "geometry", "optimize"]
+    },
+    "expr_format": {
+      "enum": ["latex", "sympy", "infix"]
+    },
+    "assumptions": {
+      "type": "object",
+      "properties": {
+        "reals_default": {"type": "boolean"},
+        "positivity": {"type": "object", "additionalProperties": {"type": "string"}}
+      },
+      "additionalProperties": true
+    },
+    "constants": {
+      "type": "object",
+      "additionalProperties": {"type": "string"}
+    },
+    "symbols": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "domain"],
+        "properties": {
+          "name": {"type": "string"},
+          "domain": {"enum": ["R", "R+", "Z", "N", "N+", "C"]}
+        }
+      }
+    },
+    "definitions": {
+      "type": "object",
+      "properties": {
+        "functions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "args", "expr"],
+            "properties": {
+              "name": {"type": "string"},
+              "args": {"type": "array", "items": {"type": "string"}},
+              "expr": {"type": "string"}
+            }
+          }
+        },
+        "sequences": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "args", "expr"],
+            "properties": {
+              "name": {"type": "string"},
+              "args": {"type": "array", "items": {"type": "string"}},
+              "expr": {"type": "string"}
+            }
+          }
+        },
+        "matrices": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "rows", "cols", "data"],
+            "properties": {
+              "name": {"type": "string"},
+              "rows": {"type": "integer"},
+              "cols": {"type": "integer"},
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {"type": "string"}
+                }
+              }
+            }
+          }
+        },
+        "distributions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "kind", "params"],
+            "properties": {
+              "name": {"type": "string"},
+              "kind": {"enum": ["bernoulli", "binomial", "geometric", "poisson", "hypergeom"]},
+              "params": {"type": "object", "additionalProperties": {"type": "string"}}
+            }
+          }
+        },
+        "geometry": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "kind"],
+            "properties": {
+              "id": {"type": "string"},
+              "kind": {"enum": ["line", "circle", "parabola", "ellipse", "polyline"]},
+              "equation": {"type": "string"},
+              "params": {"type": "object", "additionalProperties": true}
+            }
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "transforms": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["target", "type"],
+        "properties": {
+          "target": {"type": "string"},
+          "type": {"enum": ["rotation", "translation", "scaling", "substitution"]},
+          "angle_deg": {"type": "number"},
+          "center": {"type": "array", "items": {"type": "number"}},
+          "vector": {"type": "array", "items": {"type": "number"}},
+          "factor": {"type": "number"},
+          "subs": {"type": "object", "additionalProperties": {"type": "string"}}
+        },
+        "additionalProperties": true
+      }
+    },
+    "conditions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type"],
+        "properties": {
+          "type": {"type": "string"},
+          "expr": {"type": "string"},
+          "object": {"type": "string"},
+          "point": {"type": "array", "items": {"type": "number"}},
+          "value": {"type": "integer"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "targets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": ["type", "expr", "var", "limits"],
+            "properties": {
+              "type": {"const": "integral_def"},
+              "expr": {"type": "string"},
+              "var": {"type": "string"},
+              "limits": {"type": "array", "items": {"oneOf": [{"type": "string"}, {"type": "number"}]}},
+              "name": {"type": "string"}
+            }
+          },
+          {
+            "type": "object",
+            "required": ["type", "expr", "var", "to"],
+            "properties": {
+              "type": {"const": "limit"},
+              "expr": {"type": "string"},
+              "var": {"type": "string"},
+              "to": {"type": "string"}
+            }
+          },
+          {
+            "type": "object",
+            "required": ["type", "term", "idx", "start", "end"],
+            "properties": {
+              "type": {"const": "sum"},
+              "term": {"type": "string"},
+              "idx": {"type": "string"},
+              "start": {"type": "string"},
+              "end": {"type": "string"}
+            }
+          },
+          {
+            "type": "object",
+            "required": ["type", "unknowns", "equations"],
+            "properties": {
+              "type": {"const": "solve_for"},
+              "unknowns": {"type": "array", "items": {"type": "string"}},
+              "equations": {"type": "array", "items": {"type": "string"}}
+            }
+          },
+          {
+            "type": "object",
+            "required": ["type", "inequalities"],
+            "properties": {
+              "type": {"const": "inequalities"},
+              "inequalities": {"type": "array", "items": {"type": "string"}}
+            }
+          },
+          {
+            "type": "object",
+            "required": ["type", "unknown"],
+            "properties": {
+              "type": {"const": "solve_for_matrix"},
+              "unknown": {"type": "string"}
+            }
+          },
+          {
+            "type": "object",
+            "required": ["type", "event_expr"],
+            "properties": {
+              "type": {"const": "probability"},
+              "event_expr": {"type": "string"}
+            }
+          },
+          {
+            "type": "object",
+            "required": ["type", "name", "expr"],
+            "properties": {
+              "type": {"const": "value"},
+              "name": {"type": "string"},
+              "expr": {"type": "string"}
+            }
+          }
+        ]
+      }
+    },
+    "output": {
+      "type": "object",
+      "properties": {
+        "mode": {"enum": ["exact", "decimal"]},
+        "round_to": {"type": "integer"},
+        "simplify": {"type": "boolean"},
+        "rationalize": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    },
+    "validation": {
+      "type": "object",
+      "properties": {
+        "tolerance_abs": {"type": "number"},
+        "check_domain_violations": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

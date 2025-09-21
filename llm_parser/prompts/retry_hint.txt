@@ -1,0 +1,4 @@
+Your previous JSON was invalid against the MathIR-JSON schema.
+Issues:
+{{ERROR_LIST}}
+Return ONLY corrected JSON. Do not change unrelated fields.
