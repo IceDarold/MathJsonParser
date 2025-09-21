@@ -1,0 +1,18 @@
+{
+  "expr_format": "latex",
+  "symbols": [
+    { "name": "x", "domain": "R" },
+    { "name": "y", "domain": "R" }
+  ],
+  "targets": [
+    {
+      "type": "solve_for",
+      "unknowns": ["x", "y"],
+      "equations": [
+        "x + y = 6",
+        "x - y = 2"
+      ]
+    }
+  ],
+  "output": { "mode": "exact" }
+}

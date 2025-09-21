@@ -1,0 +1,36 @@
+{
+  "expr_format": "latex",
+  "symbols": [
+    { "name": "x", "domain": "R" },
+    { "name": "y", "domain": "R" }
+  ],
+  "definitions": {
+    "matrices": [
+      {
+        "name": "A",
+        "rows": 2,
+        "cols": 2,
+        "data": [["1", "2"], ["3", "4"]]
+      },
+      {
+        "name": "B",
+        "rows": 2,
+        "cols": 2,
+        "data": [["5", "6"], ["7", "8"]]
+      }
+    ]
+  },
+  "conditions": [
+    {
+      "type": "matrix_equation",
+      "expr": "A*X = B"
+    }
+  ],
+  "targets": [
+    {
+      "type": "solve_for_matrix",
+      "unknown": "X"
+    }
+  ],
+  "output": { "mode": "exact" }
+}

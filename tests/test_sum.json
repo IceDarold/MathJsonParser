@@ -1,0 +1,21 @@
+{
+  "expr_format": "latex",
+  "symbols": [
+    {
+      "name": "n",
+      "domain": "N"
+    }
+  ],
+  "targets": [
+    {
+      "type": "sum",
+      "term": "(\\frac{1}{2})^n",
+      "idx": "n",
+      "start": "0",
+      "end": "10"
+    }
+  ],
+  "output": {
+    "mode": "exact"
+  }
+}

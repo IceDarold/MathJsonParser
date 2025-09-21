@@ -1,0 +1,20 @@
+{
+  "expr_format": "latex",
+  "symbols": [
+    {
+      "name": "x",
+      "domain": "R"
+    }
+  ],
+  "targets": [
+    {
+      "type": "limit",
+      "expr": "\\frac{\\sin(x)}{x}",
+      "var": "x",
+      "to": "0"
+    }
+  ],
+  "output": {
+    "mode": "exact"
+  }
+}

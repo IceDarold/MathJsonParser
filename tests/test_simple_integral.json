@@ -1,0 +1,15 @@
+{
+  "expr_format":"latex",
+  "symbols":[{"name":"x","domain":"R"}],
+  "targets":[
+    {
+      "type":"integral_def",
+      "expr":"x^2+1",
+      "var":"x",
+      "limits":[0, "1"],
+      "name":"I"
+    },
+    {"type":"value","name":"answer","expr":"I"}
+  ],
+  "output":{"mode":"decimal","round_to":3,"simplify":true}
+}

@@ -1,0 +1,15 @@
+{
+  "expr_format": "latex",
+  "symbols": [
+    { "name": "x", "domain": "R" }
+  ],
+  "targets": [
+    {
+      "type": "inequalities",
+      "inequalities": [
+        "x^2 > 4"
+      ]
+    }
+  ],
+  "output": { "mode": "exact" }
+}
