@@ -142,13 +142,13 @@ class MathIR(BaseModel):
 @dataclass
 class Runtime:
     symtab: Dict[str, sp.Symbol]
-    funcs: Dict[str, sp.Lambda]
-    sequences: Dict[str, sp.Lambda]
+    funcs: Dict[sp.Function, sp.Lambda]
+    sequences: Dict[sp.Function, sp.Lambda]
     matrices: Dict[str, sp.Matrix]
     distributions: Dict[str, Any]
     geometry: Dict[str, Any]
     # Master context for parsing
-    context: Dict[str, Any]
+    context: Dict[Any, Any]
 
 # === Builders ===
 DOMAIN_MAP = {
@@ -164,7 +164,18 @@ def build_runtime(ir: MathIR) -> Runtime:
     symtab: Dict[str, sp.Symbol] = {}
     for s in ir.symbols:
         # Simplified domain handling for now
-        symtab[s.name] = sp.Symbol(s.name, real=True)
+        if s.domain == 'R':
+            symtab[s.name] = sp.Symbol(s.name, real=True)
+        elif s.domain == 'Z':
+            symtab[s.name] = sp.Symbol(s.name, integer=True)
+        elif s.domain == 'N':
+            symtab[s.name] = sp.Symbol(s.name, integer=True, nonnegative=True)
+        elif s.domain == 'N+':
+            symtab[s.name] = sp.Symbol(s.name, integer=True, positive=True)
+        elif s.domain == 'C':
+            symtab[s.name] = sp.Symbol(s.name, complex=True)
+        else:
+            symtab[s.name] = sp.Symbol(s.name, real=True)  # default to real
     
     # Build master context for parsing
     context: Dict[str, Any] = {**symtab}
@@ -172,32 +183,35 @@ def build_runtime(ir: MathIR) -> Runtime:
     context['e'] = sp.E
     context['i'] = sp.I
 
-    funcs: Dict[str, sp.Lambda] = {}
+    funcs: Dict[sp.Function, sp.Lambda] = {}
     for f_def in ir.definitions.functions:
+        func_symbol = sp.Function(f_def.name)
         args = [sp.Symbol(a) for a in f_def.args]
         # For function definitions, the context is only the function's own arguments
         func_arg_context = {a.name: a for a in args}
         expr_template = to_sympy_expr(f_def.expr)
-        expr = expr_template.subs({sp.Symbol(k): v for k, v in func_arg_context.items()})
-        funcs[f_def.name] = sp.Lambda(tuple(args), expr)
+        expr = expr_template.subs(func_arg_context)
+        funcs[func_symbol] = sp.Lambda(tuple(args), expr)
 
-    sequences: Dict[str, sp.Lambda] = {}
+    sequences: Dict[sp.Function, sp.Lambda] = {}
     for s_def in ir.definitions.sequences:
+        seq_symbol = sp.Function(s_def.name)
         args = [sp.Symbol(a) for a in s_def.args]
         # Similar for sequences
         seq_arg_context = {a.name: a for a in args}
         expr_template = to_sympy_expr(s_def.expr)
-        expr = expr_template.subs({sp.Symbol(k): v for k, v in seq_arg_context.items()})
-        sequences[s_def.name] = sp.Lambda(tuple(args), expr)
+        expr = expr_template.subs(seq_arg_context)
+        sequences[seq_symbol] = sp.Lambda(tuple(args), expr)
         
     matrices: Dict[str, sp.Matrix] = {}
     for m in ir.definitions.matrices:
         # Matrix elements are parsed with the main context
-        mat = sp.Matrix([[to_sympy_expr(v).subs({sp.Symbol(k): v for k, v in context.items()}) for v in row] for row in m.data])
+        mat = sp.Matrix([[to_sympy_expr(v).subs(context) for v in row] for row in m.data])
         matrices[m.name] = mat
 
     # Add newly defined items to context
-    context.update(funcs)
+    context.update(funcs.items())
+    context.update(sequences.items())
     context.update(matrices)
 
     return Runtime(symtab, funcs, sequences, matrices, {}, {}, context)
@@ -214,10 +228,8 @@ def exec_integral(rt: Runtime, t: TargetIntegral) -> Tuple[str, sp.Expr]:
     expr_template = to_sympy_expr(t.expr)
 
     # 2. Create the substitution dictionary from the runtime context
-    # We must map the generic symbols from parsing to the real context symbols
-    # e.g. {Symbol('x'): context['x'], Symbol('pi'): context['pi']}
-    subs_dict = {sp.Symbol(k): v for k, v in rt.context.items()}
-    
+    subs_dict = rt.context.copy()
+
     # 3. Substitute the context into the templates
     a = a_template.subs(subs_dict)
     b = b_template.subs(subs_dict)
@@ -229,32 +241,42 @@ def exec_integral(rt: Runtime, t: TargetIntegral) -> Tuple[str, sp.Expr]:
 
 def exec_value(rt: Runtime, t: TargetValue, store: Dict[str, sp.Expr]) -> Tuple[str, sp.Expr]:
     # For value, the context must also include the intermediate results from the store
-    value_context = {**rt.context, **store}
-    expr_template = to_sympy_expr(t.expr)
-    
-    # Create substitution dict from symbols and stored values
-    subs_dict = {sp.Symbol(k): v for k, v in value_context.items()}
-    
-    expr = expr_template.subs(subs_dict)
+    if '\\' in t.expr:
+        expr_template = to_sympy_expr(t.expr)
+        subs_dict = {k: v for k, v in {**rt.context, **store}.items()}
+        expr = expr_template.subs(subs_dict).doit()
+    else:
+        local_dict = {}
+        for k, v in rt.context.items():
+            if isinstance(k, str):
+                local_dict[k] = v
+            elif hasattr(k, 'name'):
+                local_dict[k.name] = v
+        for k in store:
+            if k not in local_dict:
+                local_dict[k] = sp.Symbol(k)
+        expr_template = sp.parse_expr(t.expr, local_dict=local_dict)
+        expr = expr_template.subs(store).doit()
     return (t.name, expr)
 
 def exec_limit(rt: Runtime, t: TargetLimit) -> Tuple[str, sp.Expr]:
     limit_var = sp.Symbol(t.var, real=True)
-    subs_dict = {sp.Symbol(k): v for k, v in rt.context.items()}
+    subs_dict = rt.context.copy()
 
     expr_template = to_sympy_expr(t.expr)
     expr = expr_template.subs(subs_dict)
 
-    to_template = to_sympy_expr(t.to)
-    to = to_template.subs(subs_dict)
-
-    if str(to) == 'oo':
+    if t.to == "oo":
         to = sp.oo
-    elif str(to) == '-oo':
+    elif t.to == "-oo":
         to = -sp.oo
+    else:
+        to_template = to_sympy_expr(t.to)
+        to = to_template.subs(subs_dict)
 
     val = sp.limit(expr, limit_var, to)
-    return ('limit', val.doit())
+    simplified = sp.simplify(val.doit())
+    return ('limit', simplified)
 
 def exec_sum(rt: Runtime, t: TargetSum) -> Tuple[str, sp.Expr]:
     import uuid
@@ -262,18 +284,26 @@ def exec_sum(rt: Runtime, t: TargetSum) -> Tuple[str, sp.Expr]:
     unique_idx_name = f"idx_{uuid.uuid4().hex[:8]}"
     idx_var = sp.Symbol(unique_idx_name, integer=True)
 
-    # Substitute the user's index name (e.g., 'n') with our unique one
-    term_template = to_sympy_expr(t.term)
+    # Parse with local_dict including the index
+    if '\\' in t.term:
+        term_template = to_sympy_expr(t.term)
+    else:
+        local_dict = {t.idx: rt.context[t.idx]}
+        for k, v in rt.context.items():
+            if isinstance(k, str):
+                local_dict[k] = v
+            elif hasattr(k, 'name'):
+                local_dict[k.name] = v
+        term_template = sp.parse_expr(t.term, local_dict=local_dict)
     # This replaces 'n' with 'idx_...'
-    term_for_sum = term_template.subs({sp.Symbol(t.idx): idx_var})
+    term_for_sum = term_template.subs({rt.context[t.idx]: idx_var})
 
     # Now substitute the rest of the context
-    subs_dict = {sp.Symbol(k): v for k, v in rt.context.items() if k != t.idx}
-    term = term_for_sum.subs(subs_dict)
-    
-    start = to_sympy_expr(t.start).subs(subs_dict)
-    end = to_sympy_expr(t.end).subs(subs_dict)
-    
+    subs_dict = {k: v for k, v in rt.context.items() if k != t.idx}
+    term = term_for_sum.subs(subs_dict).doit()
+
+    start = sp.Integer(t.start)
+    end = sp.Integer(t.end)
     if str(end) == 'oo':
         end = sp.oo
 
@@ -283,8 +313,8 @@ def exec_sum(rt: Runtime, t: TargetSum) -> Tuple[str, sp.Expr]:
 
 def exec_solve(rt: Runtime, t: TargetSolve) -> Tuple[str, Any]:
     unknowns = [rt.context[u] for u in t.unknowns if u in rt.context]
-    subs_dict = {sp.Symbol(k): v for k, v in rt.context.items()}
-    
+    subs_dict = rt.context.copy()
+
     eqs = []
     for eq_str in t.equations:
         if '=' in eq_str:
@@ -296,12 +326,21 @@ def exec_solve(rt: Runtime, t: TargetSolve) -> Tuple[str, Any]:
             # Implicit equation, expr = 0
             expr = to_sympy_expr(eq_str).subs(subs_dict)
             eqs.append(sp.Eq(expr, 0))
-            
+
     solution = sp.solve(eqs, unknowns)
+    if isinstance(solution, dict):
+        solution = [solution]
+    elif isinstance(solution, list):
+        if solution and isinstance(solution[0], dict):
+            # Already list of dicts
+            pass
+        else:
+            # List of tuples (for multiple unknowns) or values (for single)
+            solution = [dict(zip(unknowns, val if isinstance(val, tuple) else (val,))) for val in solution]
     return ('solve', solution)
 
 def exec_ineq(rt: Runtime, t: TargetIneq) -> Tuple[str, Any]:
-    subs_dict = {sp.Symbol(k): v for k, v in rt.context.items()}
+    subs_dict = rt.context.copy()
 
     # Assuming a single variable for now, as reduce_inequalities is tricky with multiple
     all_symbols = set()
@@ -434,6 +473,9 @@ def run_mathir(ir: MathIR) -> Dict[str, Any]:
                     logging.warning(f"Could not convert expression '{v}' to a decimal value.")
         
         results[k] = v
+
+    # Debug logging
+    logging.debug(f"Raw results: {results}")
 
     return results
 
