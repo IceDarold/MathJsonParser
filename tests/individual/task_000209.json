@@ -1,0 +1,33 @@
+{
+  "task_id": "task_000209",
+  "task": "Вычисли $ \\displaystyle \\lim_{x \\rightarrow \\infty}(x^2-1)/(2x^2-x-1)$. Ответ запиши в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R+\"}],\n  \"targets\": [\n    {\"type\": \"limit\", \"expr\": \"(x^2-1)/(2x^2-x-1)\", \"var\": \"x\", \"to\": \"oo\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 11.528239011764526,
+  "timestamp": "2025-09-22T12:40:59.543881",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R+"
+      }
+    ],
+    "targets": [
+      {
+        "type": "limit",
+        "expr": "(x^2-1)/(2x^2-x-1)",
+        "var": "x",
+        "to": "oo"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

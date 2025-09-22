@@ -1,0 +1,39 @@
+{
+  "task_id": "task_000143",
+  "task": "Вычисли $ \\displaystyle \\lim_{x \\rightarrow +\\infty} ((1+x)/(2+x))^{(1-\\sqrt{x})/(1-x)}$. Ответ запиши в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"limit\",\n  \"targets\": [\n    {\n      \"type\": \"limit\",\n      \"expr\": \"(1+x)/(2+x)\",\n      \"var\": \"x\",\n      \"to\": \"+\\\\infty\"\n    },\n    {\n      \"type\": \"limit\",\n      \"expr\": \"(1-\\\\sqrt{x})/(1-x)\",\n      \"var\": \"x\",\n      \"to\": \"+\\\\infty\"\n    },\n    {\n      \"type\": \"value\",\n      \"name\": \"answer\",\n      \"expr\": \"\\\\exp\\\\left(\\\\lim_{x \\\\to +\\\\infty} \\\\frac{(1-\\\\sqrt{x})}{(1-x)} \\\\ln\\\\left(\\\\frac{1+x}{2+x}\\\\right)\\\\right)\"\n    }\n  ],\n  \"output\": {\n    \"mode\": \"decimal\",\n    \"round_to\": 3\n  },\n  \"meta\": {\n    \"lang\": \"ru\",\n    \"notes\": \"\"\n  }\n}",
+  "latency": 20.94441056251526,
+  "timestamp": "2025-09-22T12:25:24.055832",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "limit",
+    "targets": [
+      {
+        "type": "limit",
+        "expr": "(1+x)/(2+x)",
+        "var": "x",
+        "to": "+\\infty"
+      },
+      {
+        "type": "limit",
+        "expr": "(1-\\sqrt{x})/(1-x)",
+        "var": "x",
+        "to": "+\\infty"
+      },
+      {
+        "type": "value",
+        "name": "answer",
+        "expr": "\\exp\\left(\\lim_{x \\to +\\infty} \\frac{(1-\\sqrt{x})}{(1-x)} \\ln\\left(\\frac{1+x}{2+x}\\right)\\right)"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

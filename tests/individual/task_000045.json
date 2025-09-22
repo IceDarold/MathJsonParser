@@ -1,0 +1,34 @@
+{
+  "task_id": "task_000045",
+  "task": "Вычисли $ \\displaystyle \\lim_{n \\rightarrow \\infty} ((-2)^n+3^n)/((-2)^{n+1}+3^{n+1}$. Ответ запиши в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"limit\",\n  \"symbols\": [{\"name\": \"n\", \"domain\": \"N+\"}],\n  \"targets\": [\n    {\n      \"type\": \"limit\",\n      \"expr\": \"((-2)^n + 3^n) / ((-2)^(n+1) + 3^(n+1))\",\n      \"var\": \"n\",\n      \"to\": \"oo\"\n    }\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 14.028477191925049,
+  "timestamp": "2025-09-22T12:02:18.550016",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "limit",
+    "symbols": [
+      {
+        "name": "n",
+        "domain": "N+"
+      }
+    ],
+    "targets": [
+      {
+        "type": "limit",
+        "expr": "((-2)^n + 3^n) / ((-2)^(n+1) + 3^(n+1))",
+        "var": "n",
+        "to": "oo"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

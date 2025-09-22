@@ -1,0 +1,63 @@
+{
+  "task_id": "task_000019",
+  "task": "Кусочно-линейная периодическая функция определена как: $f(x)=$ \\begin{cases} x, \\text{если } x\\in [-1;1)\\\\ 2-x, \\text{если } x \\in [1;3) \\end{cases} и $f(x+4) = f(x) $ для всех действительных $ x. $ График $f(x) $ имеет пилообразную форму. Парабола $ x =34y^2 $ пересекает график $f(x) $ в конечном числе точек. Сумма $ y-$координат этих точек пересечения может быть выражена в виде $ \\dfrac{a+b\\sqrt{c}}{d}, $ где $a,b,c,d - $ положительные целые числа, $a,b,d $ взаимно просты, а $ c $ не делится на квадрат любого просто числа. Найди $ a+b+c+d.$Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"algebra\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}, {\"name\": \"y\", \"domain\": \"R\"}],\n  \"definitions\": {\n    \"functions\": [\n      {\"name\": \"f\", \"args\": [\"x\"], \"expr\": \"\\\\begin{cases} x, & \\\\text{if } x \\\\in [-1,1) \\\\\\\\ 2-x, & \\\\text{if } x \\\\in [1,3) \\\\end{cases}\"}\n    ]\n  },\n  \"conditions\": [\n    {\"type\": \"equation\", \"expr\": \"x = 34y^2\"}\n  ],\n  \"targets\": [\n    {\n      \"type\": \"solve_for\",\n      \"unknowns\": [\"y\"],\n      \"equations\": [\"34y^2 = x\"]\n    },\n    {\n      \"type\": \"value\",\n      \"name\": \"answer\",\n      \"expr\": \"\\\\frac{a + b\\\\sqrt{c}}{d}\"\n    }\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 25.10654091835022,
+  "timestamp": "2025-09-22T11:56:25.040419",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "algebra",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R"
+      },
+      {
+        "name": "y",
+        "domain": "R"
+      }
+    ],
+    "definitions": {
+      "functions": [
+        {
+          "name": "f",
+          "args": [
+            "x"
+          ],
+          "expr": "\\begin{cases} x, & \\text{if } x \\in [-1,1) \\\\ 2-x, & \\text{if } x \\in [1,3) \\end{cases}"
+        }
+      ]
+    },
+    "conditions": [
+      {
+        "type": "equation",
+        "expr": "x = 34y^2"
+      }
+    ],
+    "targets": [
+      {
+        "type": "solve_for",
+        "unknowns": [
+          "y"
+        ],
+        "equations": [
+          "34y^2 = x"
+        ]
+      },
+      {
+        "type": "value",
+        "name": "answer",
+        "expr": "\\frac{a + b\\sqrt{c}}{d}"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

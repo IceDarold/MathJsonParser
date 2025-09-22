@@ -1,0 +1,37 @@
+{
+  "task_id": "task_000298",
+  "task": "Вычисли $ \\displaystyle \\int_1^4 (1+\\sqrt{x})^3/\\sqrt{x} dx$. Ответ запиши в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R+\"}],\n  \"targets\": [\n    {\"type\": \"integral_def\", \"expr\": \"(1+\\\\sqrt{x})^3/\\\\sqrt{x}\", \"var\": \"x\", \"limits\": [1, 4], \"name\": \"I\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 12.228098154067993,
+  "timestamp": "2025-09-22T13:02:03.860404",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R+"
+      }
+    ],
+    "targets": [
+      {
+        "type": "integral_def",
+        "expr": "(1+\\sqrt{x})^3/\\sqrt{x}",
+        "var": "x",
+        "limits": [
+          1,
+          4
+        ],
+        "name": "I"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "task_id": "task_000098",
+  "task": "Вычисли $ \\displaystyle \\lim_{x \\rightarrow10}(x^4-3x+2)/(x^5-4x+3)$. Ответ запиши в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"limit\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}],\n  \"targets\": [\n    {\n      \"type\": \"limit\",\n      \"expr\": \"(x^4 - 3x + 2) / (x^5 - 4x + 3)\",\n      \"var\": \"x\",\n      \"to\": \"10\"\n    }\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 13.736328601837158,
+  "timestamp": "2025-09-22T12:14:50.181016",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "limit",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R"
+      }
+    ],
+    "targets": [
+      {
+        "type": "limit",
+        "expr": "(x^4 - 3x + 2) / (x^5 - 4x + 3)",
+        "var": "x",
+        "to": "10"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

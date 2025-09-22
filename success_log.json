@@ -1,0 +1,668 @@
+[
+  {
+    "timestamp": "2025-09-22T13:14:51.687702+00:00",
+    "task_id": "single_task",
+    "input_data": {
+      "expr_format": "latex",
+      "targets": [
+        {
+          "type": "value",
+          "name": "answer",
+          "expr": "6 \\cdot 7 \\cdot \\cos(120^\\circ)"
+        }
+      ],
+      "output": {
+        "mode": "decimal",
+        "round_to": 3
+      },
+      "meta": {
+        "lang": "ru",
+        "notes": "Р’С‹С‡РёСЃР»РµРЅРёРµ СЃРєР°Р»СЏСЂРЅРѕРіРѕ РїСЂРѕРёР·РІРµРґРµРЅРёСЏ РІРµРєС‚РѕСЂРѕРІ."
+      }
+    },
+    "final_output": {
+      "answer": "-21.0000000000000"
+    },
+    "actions": [
+      "Validated MathIR data",
+      "Built runtime context",
+      "Executed all targets"
+    ]
+  },
+  {
+    "timestamp": "2025-09-22T14:44:29.401733+00:00",
+    "task_id": "perf_simple_computation",
+    "input_data": {
+      "expr_format": "latex",
+      "symbols": [
+        {
+          "name": "x",
+          "domain": "R"
+        }
+      ],
+      "targets": [
+        {
+          "type": "value",
+          "name": "result",
+          "expr": "2 + 3"
+        }
+      ],
+      "output": {
+        "mode": "exact"
+      }
+    },
+    "final_output": {
+      "result": "5",
+      "_performance": {
+        "execution_time": 0.0021140575408935547,
+        "target_count": 1,
+        "complexity": "simple_computation"
+      }
+    },
+    "actions": [
+      "Started computation",
+      "Validated MathIR structure",
+      "Built runtime context in 0.001s",
+      "Executed targets in 0.002s",
+      "Total execution time: 0.002s"
+    ]
+  },
+  {
+    "timestamp": "2025-09-22T14:44:29.415625+00:00",
+    "task_id": "perf_integral_computation",
+    "input_data": {
+      "expr_format": "latex",
+      "symbols": [
+        {
+          "name": "x",
+          "domain": "R"
+        }
+      ],
+      "targets": [
+        {
+          "type": "integral_def",
+          "expr": "x^3",
+          "var": "x",
+          "limits": [
+            0,
+            2
+          ],
+          "name": "result"
+        }
+      ],
+      "output": {
+        "mode": "decimal",
+        "round_to": 6
+      }
+    },
+    "final_output": {
+      "result": "4.00000000000000",
+      "_performance": {
+        "execution_time": 0.01190328598022461,
+        "target_count": 1,
+        "complexity": "integral_computation"
+      }
+    },
+    "actions": [
+      "Started computation",
+      "Validated MathIR structure",
+      "Built runtime context in 0.003s",
+      "Executed targets in 0.009s",
+      "Total execution time: 0.012s"
+    ]
+  },
+  {
+    "timestamp": "2025-09-22T14:44:29.459624+00:00",
+    "task_id": "perf_limit_computation",
+    "input_data": {
+      "expr_format": "latex",
+      "symbols": [
+        {
+          "name": "x",
+          "domain": "R"
+        }
+      ],
+      "targets": [
+        {
+          "type": "limit",
+          "expr": "\\frac{\\sin(x)}{x}",
+          "var": "x",
+          "to": "0"
+        }
+      ],
+      "output": {
+        "mode": "exact"
+      }
+    },
+    "final_output": {
+      "limit": "1",
+      "_performance": {
+        "execution_time": 0.008005380630493164,
+        "target_count": 1,
+        "complexity": "limit_computation"
+      }
+    },
+    "actions": [
+      "Started computation",
+      "Validated MathIR structure",
+      "Built runtime context in 0.002s",
+      "Executed targets in 0.006s",
+      "Total execution time: 0.008s"
+    ]
+  },
+  {
+    "timestamp": "2025-09-22T14:44:29.706288+00:00",
+    "task_id": "accuracy_exact_integral",
+    "input_data": {
+      "expr_format": "latex",
+      "symbols": [
+        {
+          "name": "x",
+          "domain": "R"
+        }
+      ],
+      "targets": [
+        {
+          "type": "integral_def",
+          "expr": "x^2",
+          "var": "x",
+          "limits": [
+            0,
+            1
+          ],
+          "name": "result"
+        }
+      ],
+      "output": {
+        "mode": "exact"
+      }
+    },
+    "final_output": {
+      "result": "1/3",
+      "_accuracy": {
+        "expected_value": "1/3",
+        "actual_value": "1/3",
+        "accuracy_status": "exact",
+        "numerical_error": 0,
+        "tolerance": 0
+      }
+    },
+    "actions": [
+      "Started computation",
+      "Executed mathematical operation",
+      "Accuracy check: exact",
+      "Numerical error: 0",
+      "Completed accuracy validation"
+    ]
+  },
+  {
+    "timestamp": "2025-09-22T14:44:29.754857+00:00",
+    "task_id": "accuracy_decimal_integral",
+    "input_data": {
+      "expr_format": "latex",
+      "symbols": [
+        {
+          "name": "x",
+          "domain": "R"
+        }
+      ],
+      "targets": [
+        {
+          "type": "integral_def",
+          "expr": "x^2",
+          "var": "x",
+          "limits": [
+            0,
+            1
+          ],
+          "name": "result"
+        }
+      ],
+      "output": {
+        "mode": "decimal",
+        "round_to": 6
+      }
+    },
+    "final_output": {
+      "result": "0.333333",
+      "_accuracy": {
+        "expected_value": "0.3333333333333333",
+        "actual_value": "0.333333",
+        "accuracy_status": "within_tolerance",
+        "numerical_error": 3.178914387835796e-07,
+        "tolerance": 1e-06
+      }
+    },
+    "actions": [
+      "Started computation",
+      "Executed mathematical operation",
+      "Accuracy check: within_tolerance",
+      "Numerical error: 3.178914387835796e-07",
+      "Completed accuracy validation"
+    ]
+  },
+  {
+    "timestamp": "2025-09-22T17:18:37.207780+00:00",
+    "task_id": "perf_simple_computation",
+    "input_data": {
+      "expr_format": "latex",
+      "symbols": [
+        {
+          "name": "x",
+          "domain": "R"
+        }
+      ],
+      "targets": [
+        {
+          "type": "value",
+          "name": "result",
+          "expr": "2 + 3"
+        }
+      ],
+      "output": {
+        "mode": "exact"
+      }
+    },
+    "final_output": {
+      "result": "5",
+      "_performance": {
+        "execution_time": 0.003001689910888672,
+        "target_count": 1,
+        "complexity": "simple_computation"
+      }
+    },
+    "actions": [
+      "Started computation",
+      "Validated MathIR structure",
+      "Built runtime context in 0.001s",
+      "Executed targets in 0.002s",
+      "Total execution time: 0.003s"
+    ]
+  },
+  {
+    "timestamp": "2025-09-22T17:18:37.240779+00:00",
+    "task_id": "perf_integral_computation",
+    "input_data": {
+      "expr_format": "latex",
+      "symbols": [
+        {
+          "name": "x",
+          "domain": "R"
+        }
+      ],
+      "targets": [
+        {
+          "type": "integral_def",
+          "expr": "x^3",
+          "var": "x",
+          "limits": [
+            0,
+            2
+          ],
+          "name": "result"
+        }
+      ],
+      "output": {
+        "mode": "decimal",
+        "round_to": 6
+      }
+    },
+    "final_output": {
+      "result": "4.00000000000000",
+      "_performance": {
+        "execution_time": 0.005997180938720703,
+        "target_count": 1,
+        "complexity": "integral_computation"
+      }
+    },
+    "actions": [
+      "Started computation",
+      "Validated MathIR structure",
+      "Built runtime context in 0.001s",
+      "Executed targets in 0.004s",
+      "Total execution time: 0.006s"
+    ]
+  },
+  {
+    "timestamp": "2025-09-22T17:18:37.268786+00:00",
+    "task_id": "perf_limit_computation",
+    "input_data": {
+      "expr_format": "latex",
+      "symbols": [
+        {
+          "name": "x",
+          "domain": "R"
+        }
+      ],
+      "targets": [
+        {
+          "type": "limit",
+          "expr": "\\frac{\\sin(x)}{x}",
+          "var": "x",
+          "to": "0"
+        }
+      ],
+      "output": {
+        "mode": "exact"
+      }
+    },
+    "final_output": {
+      "limit": "1",
+      "_performance": {
+        "execution_time": 0.002010822296142578,
+        "target_count": 1,
+        "complexity": "limit_computation"
+      }
+    },
+    "actions": [
+      "Started computation",
+      "Validated MathIR structure",
+      "Built runtime context in 0.001s",
+      "Executed targets in 0.002s",
+      "Total execution time: 0.002s"
+    ]
+  },
+  {
+    "timestamp": "2025-09-22T17:18:37.312803+00:00",
+    "task_id": "accuracy_exact_integral",
+    "input_data": {
+      "expr_format": "latex",
+      "symbols": [
+        {
+          "name": "x",
+          "domain": "R"
+        }
+      ],
+      "targets": [
+        {
+          "type": "integral_def",
+          "expr": "x^2",
+          "var": "x",
+          "limits": [
+            0,
+            1
+          ],
+          "name": "result"
+        }
+      ],
+      "output": {
+        "mode": "exact"
+      }
+    },
+    "final_output": {
+      "result": "1/3",
+      "_accuracy": {
+        "expected_value": "1/3",
+        "actual_value": "1/3",
+        "accuracy_status": "exact",
+        "numerical_error": 0,
+        "tolerance": 0
+      }
+    },
+    "actions": [
+      "Started computation",
+      "Executed mathematical operation",
+      "Accuracy check: exact",
+      "Numerical error: 0",
+      "Completed accuracy validation"
+    ]
+  },
+  {
+    "timestamp": "2025-09-22T17:18:37.345773+00:00",
+    "task_id": "accuracy_decimal_integral",
+    "input_data": {
+      "expr_format": "latex",
+      "symbols": [
+        {
+          "name": "x",
+          "domain": "R"
+        }
+      ],
+      "targets": [
+        {
+          "type": "integral_def",
+          "expr": "x^2",
+          "var": "x",
+          "limits": [
+            0,
+            1
+          ],
+          "name": "result"
+        }
+      ],
+      "output": {
+        "mode": "decimal",
+        "round_to": 6
+      }
+    },
+    "final_output": {
+      "result": "0.333333",
+      "_accuracy": {
+        "expected_value": "0.3333333333333333",
+        "actual_value": "0.333333",
+        "accuracy_status": "within_tolerance",
+        "numerical_error": 3.178914387835796e-07,
+        "tolerance": 1e-06
+      }
+    },
+    "actions": [
+      "Started computation",
+      "Executed mathematical operation",
+      "Accuracy check: within_tolerance",
+      "Numerical error: 3.178914387835796e-07",
+      "Completed accuracy validation"
+    ]
+  },
+  {
+    "timestamp": "2025-09-22T17:35:56.228498+00:00",
+    "task_id": "perf_simple_computation",
+    "input_data": {
+      "expr_format": "latex",
+      "symbols": [
+        {
+          "name": "x",
+          "domain": "R"
+        }
+      ],
+      "targets": [
+        {
+          "type": "value",
+          "name": "result",
+          "expr": "2 + 3"
+        }
+      ],
+      "output": {
+        "mode": "exact"
+      }
+    },
+    "final_output": {
+      "result": "5",
+      "_performance": {
+        "execution_time": 0.0030045509338378906,
+        "target_count": 1,
+        "complexity": "simple_computation"
+      }
+    },
+    "actions": [
+      "Started computation",
+      "Validated MathIR structure",
+      "Built runtime context in 0.001s",
+      "Executed targets in 0.002s",
+      "Total execution time: 0.003s"
+    ]
+  },
+  {
+    "timestamp": "2025-09-22T17:35:56.264487+00:00",
+    "task_id": "perf_integral_computation",
+    "input_data": {
+      "expr_format": "latex",
+      "symbols": [
+        {
+          "name": "x",
+          "domain": "R"
+        }
+      ],
+      "targets": [
+        {
+          "type": "integral_def",
+          "expr": "x^3",
+          "var": "x",
+          "limits": [
+            0,
+            2
+          ],
+          "name": "result"
+        }
+      ],
+      "output": {
+        "mode": "decimal",
+        "round_to": 6
+      }
+    },
+    "final_output": {
+      "result": "4.000000",
+      "_performance": {
+        "execution_time": 0.02199411392211914,
+        "target_count": 1,
+        "complexity": "integral_computation"
+      }
+    },
+    "actions": [
+      "Started computation",
+      "Validated MathIR structure",
+      "Built runtime context in 0.005s",
+      "Executed targets in 0.016s",
+      "Total execution time: 0.022s"
+    ]
+  },
+  {
+    "timestamp": "2025-09-22T17:35:56.330167+00:00",
+    "task_id": "perf_limit_computation",
+    "input_data": {
+      "expr_format": "latex",
+      "symbols": [
+        {
+          "name": "x",
+          "domain": "R"
+        }
+      ],
+      "targets": [
+        {
+          "type": "limit",
+          "expr": "\\frac{\\sin(x)}{x}",
+          "var": "x",
+          "to": "0"
+        }
+      ],
+      "output": {
+        "mode": "exact"
+      }
+    },
+    "final_output": {
+      "limit": "1",
+      "_performance": {
+        "execution_time": 0.006003379821777344,
+        "target_count": 1,
+        "complexity": "limit_computation"
+      }
+    },
+    "actions": [
+      "Started computation",
+      "Validated MathIR structure",
+      "Built runtime context in 0.002s",
+      "Executed targets in 0.005s",
+      "Total execution time: 0.006s"
+    ]
+  },
+  {
+    "timestamp": "2025-09-22T17:35:56.463762+00:00",
+    "task_id": "accuracy_exact_integral",
+    "input_data": {
+      "expr_format": "latex",
+      "symbols": [
+        {
+          "name": "x",
+          "domain": "R"
+        }
+      ],
+      "targets": [
+        {
+          "type": "integral_def",
+          "expr": "x^2",
+          "var": "x",
+          "limits": [
+            0,
+            1
+          ],
+          "name": "result"
+        }
+      ],
+      "output": {
+        "mode": "exact"
+      }
+    },
+    "final_output": {
+      "result": "1/3",
+      "_accuracy": {
+        "expected_value": "1/3",
+        "actual_value": "1/3",
+        "accuracy_status": "exact",
+        "numerical_error": 0,
+        "tolerance": 0
+      }
+    },
+    "actions": [
+      "Started computation",
+      "Executed mathematical operation",
+      "Accuracy check: exact",
+      "Numerical error: 0",
+      "Completed accuracy validation"
+    ]
+  },
+  {
+    "timestamp": "2025-09-22T17:35:56.529767+00:00",
+    "task_id": "accuracy_decimal_integral",
+    "input_data": {
+      "expr_format": "latex",
+      "symbols": [
+        {
+          "name": "x",
+          "domain": "R"
+        }
+      ],
+      "targets": [
+        {
+          "type": "integral_def",
+          "expr": "x^2",
+          "var": "x",
+          "limits": [
+            0,
+            1
+          ],
+          "name": "result"
+        }
+      ],
+      "output": {
+        "mode": "decimal",
+        "round_to": 6
+      }
+    },
+    "final_output": {
+      "result": "0.333333",
+      "_accuracy": {
+        "expected_value": "0.3333333333333333",
+        "actual_value": "0.333333",
+        "accuracy_status": "within_tolerance",
+        "numerical_error": 3.3333333332441484e-07,
+        "tolerance": 1e-06
+      }
+    },
+    "actions": [
+      "Started computation",
+      "Executed mathematical operation",
+      "Accuracy check: within_tolerance",
+      "Numerical error: 3.3333333332441484e-07",
+      "Completed accuracy validation"
+    ]
+  }
+]

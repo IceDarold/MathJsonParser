@@ -1,0 +1,34 @@
+{
+  "task_id": "task_000291",
+  "task": "Вычисли $ \\displaystyle \\lim_{x \\rightarrow 1}(1-x)\\operatorname{tg}(\\pi x/2)$. Ответ запиши в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"limit\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}],\n  \"targets\": [\n    {\n      \"type\": \"limit\",\n      \"expr\": \"(1-x)\\\\tan(\\\\frac{\\\\pi x}{2})\",\n      \"var\": \"x\",\n      \"to\": \"1\"\n    }\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 12.964644193649292,
+  "timestamp": "2025-09-22T13:00:37.031886",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "limit",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R"
+      }
+    ],
+    "targets": [
+      {
+        "type": "limit",
+        "expr": "(1-x)\\tan(\\frac{\\pi x}{2})",
+        "var": "x",
+        "to": "1"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

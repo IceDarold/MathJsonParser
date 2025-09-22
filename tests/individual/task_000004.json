@@ -1,0 +1,49 @@
+{
+  "task_id": "task_000004",
+  "task": "Два охотника стреляют по волку (вероятности попадания 0.7 и 0.8). Найти вероятность хотя бы одного попадания по одному выстрелу. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"definitions\": {\n    \"distributions\": [\n      {\"name\": \"H1\", \"kind\": \"bernoulli\", \"params\": {\"p\": \"0.7\"}},\n      {\"name\": \"H2\", \"kind\": \"bernoulli\", \"params\": {\"p\": \"0.8\"}}\n    ]\n  },\n  \"targets\": [\n    {\"type\": \"probability\", \"event_expr\": \"!H1 & !H2\", \"name\": \"P_no_hits\"},\n    {\"type\": \"value\", \"name\": \"answer\", \"expr\": \"1 - P_no_hits\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 16.891252517700195,
+  "timestamp": "2025-09-22T11:52:49.561374",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "definitions": {
+      "distributions": [
+        {
+          "name": "H1",
+          "kind": "bernoulli",
+          "params": {
+            "p": "0.7"
+          }
+        },
+        {
+          "name": "H2",
+          "kind": "bernoulli",
+          "params": {
+            "p": "0.8"
+          }
+        }
+      ]
+    },
+    "targets": [
+      {
+        "type": "probability",
+        "event_expr": "!H1 & !H2",
+        "name": "P_no_hits"
+      },
+      {
+        "type": "value",
+        "name": "answer",
+        "expr": "1 - P_no_hits"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

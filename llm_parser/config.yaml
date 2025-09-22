@@ -13,7 +13,7 @@ retry_hint_template: prompts/retry_hint.txt
 system_prompt: prompts/system.txt
 fewshot_path: prompts/fewshot.jsonl
 schema_path: schema/mathir.schema.json
-input_csv: tasks.csv
+input_csv: test_private.csv
 output_dir: out_json
 log_level: DEBUG
 seed: 17

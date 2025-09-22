@@ -1,0 +1,38 @@
+{
+  "task_id": "task_000219",
+  "task": "Брошено три монеты. Найти вероятность, что выпало не больше двух «гербов». Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"probability\",\n  \"definitions\": {\n    \"distributions\": [\n      {\"name\": \"H1\", \"kind\": \"binomial\", \"params\": {\"n\": \"3\", \"p\": \"0.5\"}}\n    ]\n  },\n  \"targets\": [\n    {\"type\": \"probability\", \"event_expr\": \"!H1 | H1 & !H1_2 | H1 & !H1_3 | H1 & !H1_2 & !H1_3\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 15.565803527832031,
+  "timestamp": "2025-09-22T12:43:18.664194",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "probability",
+    "definitions": {
+      "distributions": [
+        {
+          "name": "H1",
+          "kind": "binomial",
+          "params": {
+            "n": "3",
+            "p": "0.5"
+          }
+        }
+      ]
+    },
+    "targets": [
+      {
+        "type": "probability",
+        "event_expr": "!H1 | H1 & !H1_2 | H1 & !H1_3 | H1 & !H1_2 & !H1_3"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "task_id": "task_000243",
+  "task": "Решите уравнение $x^3 - [x] = 3$. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}],\n  \"targets\": [\n    {\"type\": \"solve_for\", \"unknowns\": [\"x\"], \"equations\": [\"x^3 - [x] = 3\"]}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 11.046860218048096,
+  "timestamp": "2025-09-22T12:48:57.236546",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R"
+      }
+    ],
+    "targets": [
+      {
+        "type": "solve_for",
+        "unknowns": [
+          "x"
+        ],
+        "equations": [
+          "x^3 - [x] = 3"
+        ]
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

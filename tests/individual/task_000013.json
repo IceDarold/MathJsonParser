@@ -1,0 +1,28 @@
+{
+  "task_id": "task_000013",
+  "task": "Вычисли $ \\displaystyle \\lim_{x \\rightarrow +\\infty}\\sqrt[3]{x^3+3x^2}-\\sqrt{x^2-2x}$. Ответ запиши в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"limit\",\n  \"targets\": [\n    {\n      \"type\": \"limit\",\n      \"expr\": \"\\\\sqrt[3]{x^3+3x^2}-\\\\sqrt{x^2-2x}\",\n      \"var\": \"x\",\n      \"to\": \"+\\\\infty\"\n    }\n  ],\n  \"output\": {\n    \"mode\": \"decimal\",\n    \"round_to\": 3\n  },\n  \"meta\": {\n    \"lang\": \"ru\",\n    \"notes\": \"\"\n  }\n}",
+  "latency": 13.202299356460571,
+  "timestamp": "2025-09-22T11:54:54.307288",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "limit",
+    "targets": [
+      {
+        "type": "limit",
+        "expr": "\\sqrt[3]{x^3+3x^2}-\\sqrt{x^2-2x}",
+        "var": "x",
+        "to": "+\\infty"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

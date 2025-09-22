@@ -1,0 +1,40 @@
+{
+  "task_id": "task_000344",
+  "task": "Задано правило, которое каждой паре чисел $x, y$ ставит в соответствие некоторое число $x*y$, причём для любых $x, y, z$ выполняются тождества: 1) $x*x = 0$, 2) $x*y(x*z) = (x*y)*2 + z$. Найдите $1993*1932$. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}, {\"name\": \"y\", \"domain\": \"R\"}, {\"name\": \"z\", \"domain\": \"R\"}],\n  \"targets\": [\n    {\n      \"type\": \"value\",\n      \"name\": \"answer\",\n      \"expr\": \"1993*1932\"\n    }\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 13.178411960601807,
+  "timestamp": "2025-09-22T13:12:51.298048",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R"
+      },
+      {
+        "name": "y",
+        "domain": "R"
+      },
+      {
+        "name": "z",
+        "domain": "R"
+      }
+    ],
+    "targets": [
+      {
+        "type": "value",
+        "name": "answer",
+        "expr": "1993*1932"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

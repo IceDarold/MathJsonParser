@@ -1,0 +1,43 @@
+{
+  "task_id": "task_000067",
+  "task": "Вычисли $ \\displaystyle \\lim_{x \\rightarrow \\infty} ((x^2-1)/(x^2+1))^{(x-1)/(x+1)} $. Ответ запиши в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"limit\",\n  \"targets\": [\n    {\n      \"type\": \"limit\",\n      \"expr\": \"(x^2-1)/(x^2+1)\",\n      \"var\": \"x\",\n      \"to\": \"oo\"\n    }\n  ],\n  \"transforms\": [\n    {\n      \"target\": \"expr\",\n      \"type\": \"substitution\",\n      \"subs\": {\"x\": \"1/y\"}\n    }\n  ],\n  \"conditions\": [\n    {\n      \"type\": \"inequality\",\n      \"expr\": \"y > 0\"\n    }\n  ],\n  \"output\": {\n    \"mode\": \"decimal\",\n    \"round_to\": 3\n  },\n  \"meta\": {\n    \"lang\": \"ru\",\n    \"notes\": \"\"\n  }\n}",
+  "latency": 17.61545443534851,
+  "timestamp": "2025-09-22T12:07:20.488632",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "limit",
+    "targets": [
+      {
+        "type": "limit",
+        "expr": "(x^2-1)/(x^2+1)",
+        "var": "x",
+        "to": "oo"
+      }
+    ],
+    "transforms": [
+      {
+        "target": "expr",
+        "type": "substitution",
+        "subs": {
+          "x": "1/y"
+        }
+      }
+    ],
+    "conditions": [
+      {
+        "type": "inequality",
+        "expr": "y > 0"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

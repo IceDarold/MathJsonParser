@@ -1,0 +1,46 @@
+[
+  {
+    "description": "Simple polynomial integral",
+    "mathir": {
+      "expr_format": "latex",
+      "symbols": [{"name": "x", "domain": "R"}],
+      "targets": [{
+        "type": "integral_def",
+        "expr": "x^2",
+        "var": "x",
+        "limits": [0, 1],
+        "name": "result"
+      }],
+      "output": {"mode": "exact"}
+    },
+    "expected_results": {
+      "result": "1/3"
+    },
+    "metadata": {
+      "category": "polynomial",
+      "difficulty": "basic"
+    }
+  },
+  {
+    "description": "Linear function integral",
+    "mathir": {
+      "expr_format": "latex",
+      "symbols": [{"name": "x", "domain": "R"}],
+      "targets": [{
+        "type": "integral_def",
+        "expr": "2*x + 1",
+        "var": "x",
+        "limits": [0, 2],
+        "name": "result"
+      }],
+      "output": {"mode": "exact"}
+    },
+    "expected_results": {
+      "result": "6"
+    },
+    "metadata": {
+      "category": "polynomial",
+      "difficulty": "basic"
+    }
+  }
+]

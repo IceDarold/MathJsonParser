@@ -1,0 +1,59 @@
+{
+  "task_id": "task_000247",
+  "task": "Брошены две игральные кости. Найти вероятность хотя бы одной 1. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"probability\",\n  \"definitions\": {\n    \"distributions\": [\n      {\"name\": \"H1\", \"kind\": \"uniform\", \"params\": {\"min\": 1, \"max\": 6}},\n      {\"name\": \"H2\", \"kind\": \"uniform\", \"params\": {\"min\": 1, \"max\": 6}}\n    ]\n  },\n  \"prob_space\": {\"independence\": [[\"H1\", \"H2\"]]},\n  \"targets\": [\n    {\"type\": \"probability\", \"event_expr\": \"!((H1 != 1) & (H2 != 1))\"},\n    {\"type\": \"value\", \"name\": \"answer\", \"expr\": \"!((H1 != 1) & (H2 != 1))\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 20.221680402755737,
+  "timestamp": "2025-09-22T12:49:56.614590",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "probability",
+    "definitions": {
+      "distributions": [
+        {
+          "name": "H1",
+          "kind": "uniform",
+          "params": {
+            "min": 1,
+            "max": 6
+          }
+        },
+        {
+          "name": "H2",
+          "kind": "uniform",
+          "params": {
+            "min": 1,
+            "max": 6
+          }
+        }
+      ]
+    },
+    "prob_space": {
+      "independence": [
+        [
+          "H1",
+          "H2"
+        ]
+      ]
+    },
+    "targets": [
+      {
+        "type": "probability",
+        "event_expr": "!((H1 != 1) & (H2 != 1))"
+      },
+      {
+        "type": "value",
+        "name": "answer",
+        "expr": "!((H1 != 1) & (H2 != 1))"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

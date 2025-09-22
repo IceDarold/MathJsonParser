@@ -1,0 +1,37 @@
+{
+  "task_id": "task_000027",
+  "task": "Вычислите интеграл: $\\displaystyle \\int_0^\\pi \\left( |\\sin(1999x)| - |\\sin(2000x)| \\right) dx$. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}],\n  \"targets\": [\n    {\"type\": \"integral_def\", \"expr\": \"|\\\\sin(1999x)| - |\\\\sin(2000x)|\", \"var\": \"x\", \"limits\": [0, \"\\\\pi\"], \"name\": \"I\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 13.047335147857666,
+  "timestamp": "2025-09-22T11:58:07.972804",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R"
+      }
+    ],
+    "targets": [
+      {
+        "type": "integral_def",
+        "expr": "|\\sin(1999x)| - |\\sin(2000x)|",
+        "var": "x",
+        "limits": [
+          0,
+          "\\pi"
+        ],
+        "name": "I"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

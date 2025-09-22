@@ -1,0 +1,42 @@
+{
+  "task_id": "task_000218",
+  "task": "Вычисли $ \\displaystyle \\int_1^{\\sqrt{5}} x/\\sqrt{x^2-1} dx$. Ответ запиши в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R+\"}],\n  \"targets\": [\n    {\"type\": \"integral_def\", \"expr\": \"x/\\\\sqrt{x^2-1}\", \"var\": \"x\", \"limits\": [1, \"\\\\sqrt{5}\"], \"name\": \"I\"},\n    {\"type\": \"value\", \"name\": \"answer\", \"expr\": \"I\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 13.831375360488892,
+  "timestamp": "2025-09-22T12:43:03.098017",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R+"
+      }
+    ],
+    "targets": [
+      {
+        "type": "integral_def",
+        "expr": "x/\\sqrt{x^2-1}",
+        "var": "x",
+        "limits": [
+          1,
+          "\\sqrt{5}"
+        ],
+        "name": "I"
+      },
+      {
+        "type": "value",
+        "name": "answer",
+        "expr": "I"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

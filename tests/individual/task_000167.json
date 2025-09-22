@@ -1,0 +1,44 @@
+{
+  "task_id": "task_000167",
+  "task": "Найти вероятность, что четырехзначный номер автомобиля имеет только две одинаковые цифры. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"probability\",\n  \"symbols\": [{\"name\": \"n\", \"domain\": \"N\"}],\n  \"definitions\": {\n    \"distributions\": [\n      {\"name\": \"H\", \"kind\": \"uniform\", \"params\": {\"min\": 1000, \"max\": 9999}}\n    ]\n  },\n  \"targets\": [\n    {\"type\": \"probability\", \"event_expr\": \"!((a != b) and (a != c) and (a != d) and (b != c) and (b != d) and (c != d))\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 17.157822132110596,
+  "timestamp": "2025-09-22T12:30:51.499502",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "probability",
+    "symbols": [
+      {
+        "name": "n",
+        "domain": "N"
+      }
+    ],
+    "definitions": {
+      "distributions": [
+        {
+          "name": "H",
+          "kind": "uniform",
+          "params": {
+            "min": 1000,
+            "max": 9999
+          }
+        }
+      ]
+    },
+    "targets": [
+      {
+        "type": "probability",
+        "event_expr": "!((a != b) and (a != c) and (a != d) and (b != c) and (b != d) and (c != d))"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

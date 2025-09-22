@@ -1,0 +1,47 @@
+{
+  "task_id": "task_000171",
+  "task": "Вычисли $ \\displaystyle \\int_1^2 (x^6+x^3)\\sqrt[3]{x^3+2}dx$.Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}],\n  \"targets\": [\n    {\"type\": \"integral_def\", \"expr\": \"x^6 + x^3\", \"var\": \"x\", \"limits\": [1, 2], \"name\": \"I\"}\n  ],\n  \"transforms\": [\n    {\"target\": \"I\", \"type\": \"substitution\", \"subs\": {\"x\": \"u^(1/3)\"}, \"expr\": \"u\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 15.324632167816162,
+  "timestamp": "2025-09-22T12:31:48.656272",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R"
+      }
+    ],
+    "targets": [
+      {
+        "type": "integral_def",
+        "expr": "x^6 + x^3",
+        "var": "x",
+        "limits": [
+          1,
+          2
+        ],
+        "name": "I"
+      }
+    ],
+    "transforms": [
+      {
+        "target": "I",
+        "type": "substitution",
+        "subs": {
+          "x": "u^(1/3)"
+        },
+        "expr": "u"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "task_id": "task_000095",
+  "task": "Вычислить определитель: \\[ \\begin{vmatrix} -5 & -2 & 2 \\\\ 11 & 3 & -5 \\\\ -3 & -1 & 1 \\\\ \\end{vmatrix} \\] Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"definitions\": {\n    \"matrices\": [\n      {\"name\": \"M\", \"rows\": 3, \"cols\": 3, \"data\": [[\"-5\",\"-2\",\"2\"], [\"11\",\"3\",\"-5\"], [\"-3\",\"-1\",\"1\"]]}\n    ]\n  },\n  \"targets\": [{\"type\": \"matrix_determinant\", \"matrix_name\": \"M\"}],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 13.630451679229736,
+  "timestamp": "2025-09-22T12:14:10.250757",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "definitions": {
+      "matrices": [
+        {
+          "name": "M",
+          "rows": 3,
+          "cols": 3,
+          "data": [
+            [
+              "-5",
+              "-2",
+              "2"
+            ],
+            [
+              "11",
+              "3",
+              "-5"
+            ],
+            [
+              "-3",
+              "-1",
+              "1"
+            ]
+          ]
+        }
+      ]
+    },
+    "targets": [
+      {
+        "type": "matrix_determinant",
+        "matrix_name": "M"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

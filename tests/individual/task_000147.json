@@ -1,0 +1,35 @@
+{
+  "task_id": "task_000147",
+  "task": "Указать такие $N$, начиная с которых можно гарантировать выполнение неравенства $|a_n| < \\varepsilon$ при $a_n = \\frac{1}{n^2 + 7n + 1}$ и $\\varepsilon = 0.01$. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"algebra\",\n  \"symbols\": [{\"name\": \"n\", \"domain\": \"N+\"}],\n  \"targets\": [{\n    \"type\": \"sequence_limit_condition\",\n    \"sequence_expr\": \"1/(n^2 + 7*n + 1)\",\n    \"var\": \"n\",\n    \"inequality\": \"|1/(n^2 + 7*n + 1)| < 0.01\",\n    \"epsilon\": \"0.01\"\n  }],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 15.080205202102661,
+  "timestamp": "2025-09-22T12:26:20.249497",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "algebra",
+    "symbols": [
+      {
+        "name": "n",
+        "domain": "N+"
+      }
+    ],
+    "targets": [
+      {
+        "type": "sequence_limit_condition",
+        "sequence_expr": "1/(n^2 + 7*n + 1)",
+        "var": "n",
+        "inequality": "|1/(n^2 + 7*n + 1)| < 0.01",
+        "epsilon": "0.01"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

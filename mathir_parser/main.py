@@ -4,323 +4,35 @@ from typing import List, Literal, Optional, Dict, Any, Tuple, Union
 from pydantic import BaseModel
 from dataclasses import dataclass
 import sympy as sp
+from sympy.parsing.latex import parse_latex
+from sympy.parsing.sympy_parser import parse_expr
+
+def parse_any(s: str, applied_subs: dict, context: dict):
+    s = s.strip()
+    if '\\' in s or '|' in s or '{' in s:
+        expr = parse_latex(s)
+        # Replace symbols with those from context to match assumptions
+        symbol_subs = {sp.Symbol(k): v for k, v in context.items() if isinstance(k, str)}
+        expr = expr.subs(symbol_subs)
+    else:
+        # Replace ^ with ** for infix expressions to ensure exponentiation
+        s = s.replace('^', '**')
+        # Pass context as local_dict for parse_expr
+        local_dict = {k: v for k, v in context.items() if isinstance(k, str)}
+        expr = parse_expr(s, local_dict=local_dict, transformations='all')
+    # Substitute symbols from context
+    symbol_subs = {sp.Symbol(k): v for k, v in context.items() if isinstance(k, str)}
+    return expr.xreplace(applied_subs).subs(symbol_subs)
 import logging
 import json
 import sys
-import re # Import the regex module
 import datetime
-import os
 import traceback
+import multiprocessing
+import queue
 
 
 # === Helpers: LaTeX → SymPy ===
-def to_sympy_expr(s: str) -> sp.Expr:
-    """Parse a LaTeX string to a SymPy expression with proper LaTeX command handling."""
-    
-    # Step 1: Handle LaTeX commands first (before any character processing)
-    # This prevents the character-by-character processing from destroying LaTeX commands
-    
-    # Handle LaTeX commands with a more robust approach that handles nested braces
-    def extract_braced_content(text, start_pos):
-        """Extract content from braces starting at start_pos, handling nesting"""
-        if start_pos >= len(text) or text[start_pos] != '{':
-            return "", start_pos
-        
-        brace_count = 0
-        i = start_pos
-        while i < len(text):
-            if text[i] == '{':
-                brace_count += 1
-            elif text[i] == '}':
-                brace_count -= 1
-                if brace_count == 0:
-                    return text[start_pos + 1:i], i + 1
-            i += 1
-        return text[start_pos + 1:], len(text)
-    
-    # Handle fractions: \frac{a}{b} -> (a)/(b)
-    def replace_fractions(text):
-        result = ""
-        i = 0
-        while i < len(text):
-            if text[i:i+5] == r'\frac' and i + 5 < len(text) and text[i+5] == '{':
-                # Found \frac{
-                numerator, next_pos = extract_braced_content(text, i + 5)
-                if next_pos < len(text) and text[next_pos] == '{':
-                    denominator, final_pos = extract_braced_content(text, next_pos)
-                    result += f'({numerator})/({denominator})'
-                    i = final_pos
-                else:
-                    result += text[i]
-                    i += 1
-            else:
-                result += text[i]
-                i += 1
-        return result
-    
-    # Handle square roots: \sqrt{expr} -> sqrt(expr)
-    def replace_square_roots(text):
-        result = ""
-        i = 0
-        while i < len(text):
-            if text[i:i+5] == r'\sqrt' and i + 5 < len(text) and text[i+5] == '{':
-                # Found \sqrt{
-                content, next_pos = extract_braced_content(text, i + 5)
-                result += f'sqrt({content})'
-                i = next_pos
-            else:
-                result += text[i]
-                i += 1
-        return result
-    
-    # Apply replacements multiple times to handle nested cases
-    prev_s = ""
-    while prev_s != s:
-        prev_s = s
-        s = replace_fractions(s)
-        s = replace_square_roots(s)
-    
-    # Handle absolute values: |expr| -> Abs(expr)
-    # First handle nested absolute values by counting | characters
-    abs_count = s.count('|')
-    if abs_count >= 2 and abs_count % 2 == 0:
-        # Simple case: replace pairs of | with Abs()
-        parts = s.split('|')
-        if len(parts) >= 3:  # At least |something|
-            result_parts = []
-            i = 0
-            while i < len(parts):
-                if i % 2 == 0:  # Outside absolute value
-                    result_parts.append(parts[i])
-                else:  # Inside absolute value
-                    result_parts.append(f'Abs({parts[i]})')
-                    i += 1  # Skip the closing |
-                i += 1
-            s = ''.join(result_parts)
-    
-    # Handle Greek letters and constants
-    greek_letters = {
-        r'\\pi': 'pi',
-        r'\\alpha': 'alpha',
-        r'\\beta': 'beta',
-        r'\\gamma': 'gamma',
-        r'\\delta': 'delta',
-        r'\\epsilon': 'epsilon',
-        r'\\zeta': 'zeta',
-        r'\\eta': 'eta',
-        r'\\theta': 'theta',
-        r'\\iota': 'iota',
-        r'\\kappa': 'kappa',
-        r'\\lambda': 'lambda',
-        r'\\mu': 'mu',
-        r'\\nu': 'nu',
-        r'\\xi': 'xi',
-        r'\\omicron': 'omicron',
-        r'\\rho': 'rho',
-        r'\\sigma': 'sigma',
-        r'\\tau': 'tau',
-        r'\\upsilon': 'upsilon',
-        r'\\phi': 'phi',
-        r'\\chi': 'chi',
-        r'\\psi': 'psi',
-        r'\\omega': 'omega',
-        r'\\infty': 'oo'
-    }
-    
-    for latex_cmd, sympy_equiv in greek_letters.items():
-        s = re.sub(latex_cmd, sympy_equiv, s)
-    
-    # Handle trigonometric and other functions
-    function_replacements = {
-        r'\\cos': 'cos',
-        r'\\sin': 'sin',
-        r'\\tan': 'tan',
-        r'\\tg': 'tan',  # Russian notation
-        r'\\log': 'log',
-        r'\\ln': 'ln',
-        r'\\exp': 'exp'
-    }
-    
-    for latex_func, sympy_func in function_replacements.items():
-        s = re.sub(latex_func, sympy_func, s)
-    
-    # Handle other LaTeX constructs
-    s = s.replace('\\cdot', '*')
-    s = s.replace('^\\circ', '*(pi/180)')  # Degrees to radians
-    
-    # Handle function spacing: \sin 2x -> \sin(2x), \cos 3y -> \cos(3y), etc.
-    # This needs to be done before other processing
-    function_spacing_patterns = [
-        (r'\\sin\s+([^()\s]+)', r'\\sin(\1)'),
-        (r'\\cos\s+([^()\s]+)', r'\\cos(\1)'),
-        (r'\\tan\s+([^()\s]+)', r'\\tan(\1)'),
-        (r'\\log\s+([^()\s]+)', r'\\log(\1)'),
-        (r'\\ln\s+([^()\s]+)', r'\\ln(\1)'),
-        (r'\\exp\s+([^()\s]+)', r'\\exp(\1)'),
-        (r'\\sqrt\s+([^()\s]+)', r'\\sqrt(\1)'),
-    ]
-    
-    for pattern, replacement in function_spacing_patterns:
-        s = re.sub(pattern, replacement, s)
-    
-    # Also handle cases where function is followed directly by a number/variable without space
-    # sin 2x -> sin(2x), but also sin2x -> sin(2x)
-    direct_function_patterns = [
-        (r'sin\s*([0-9]+[a-zA-Z]*)', r'sin(\1)'),
-        (r'cos\s*([0-9]+[a-zA-Z]*)', r'cos(\1)'),
-        (r'tan\s*([0-9]+[a-zA-Z]*)', r'tan(\1)'),
-        (r'log\s*([0-9]+[a-zA-Z]*)', r'log(\1)'),
-        (r'ln\s*([0-9]+[a-zA-Z]*)', r'ln(\1)'),
-        (r'exp\s*([0-9]+[a-zA-Z]*)', r'exp(\1)'),
-    ]
-    
-    for pattern, replacement in direct_function_patterns:
-        s = re.sub(pattern, replacement, s)
-    
-    # Handle exponentiation with braces: e^{2x} -> e**(2x)
-    # This needs to be done before implicit multiplication to avoid conflicts
-    def replace_exponentiation(text):
-        result = ""
-        i = 0
-        while i < len(text):
-            if text[i] == '^' and i + 1 < len(text) and text[i+1] == '{':
-                # Found ^{
-                content, next_pos = extract_braced_content(text, i + 1)
-                result += f'**({content})'
-                i = next_pos
-            else:
-                result += text[i]
-                i += 1
-        return result
-    
-    s = replace_exponentiation(s)
-    
-    # Step 2: Handle implicit multiplication (only after LaTeX commands are processed)
-    # Use a more sophisticated approach that preserves function names and multi-letter variables
-    
-    # Define known function names and multi-letter variables that should not be split
-    known_names = [
-        'cos', 'sin', 'tan', 'log', 'ln', 'exp', 'sqrt', 'Abs', 'floor',
-        'pi', 'alpha', 'beta', 'gamma', 'delta', 'epsilon', 'theta', 'lambda',
-        'mu', 'sigma', 'phi', 'omega', 'oo'
-    ]
-    
-    # Use regex to handle implicit multiplication more intelligently
-    # This approach preserves known function/variable names
-    
-    # First, protect known names by temporarily replacing them with placeholders
-    protected_names = {}
-    placeholder_counter = 0
-    
-    for name in sorted(known_names, key=len, reverse=True):  # Sort by length to handle longer names first
-        if name in s:
-            placeholder = f"__PROTECTED_{placeholder_counter}__"
-            protected_names[placeholder] = name
-            s = s.replace(name, placeholder)
-            placeholder_counter += 1
-    
-    # Now apply implicit multiplication rules on the protected string
-    processed_s = []
-    i = 0
-    while i < len(s):
-        processed_s.append(s[i])
-        if i + 1 < len(s):
-            current_char = s[i]
-            next_char = s[i+1]
-
-            # Case 1: Digit followed by letter or opening parenthesis (e.g., 2x, 2(x+y))
-            if current_char.isdigit() and (next_char.isalpha() or next_char == '('):
-                processed_s.append('*')
-            # Case 2: Closing parenthesis followed by letter, digit, or opening parenthesis (e.g., (x+y)z, (x+y)2, (x+1)(x+2))
-            elif current_char == ')' and (next_char.isalpha() or next_char.isdigit() or next_char == '('):
-                processed_s.append('*')
-            # Case 3: Letter followed by opening parenthesis - check if it's a protected function
-            elif current_char.isalpha() and next_char == '(':
-                # Look ahead to see if this is part of a protected function name
-                is_protected_function = False
-                for placeholder in protected_names:
-                    if placeholder in s[max(0, i-20):i+20] and placeholder.endswith('__'):
-                        # This is likely part of a protected function, don't add multiplication
-                        is_protected_function = True
-                        break
-                if not is_protected_function:
-                    processed_s.append('*')
-            # Case 3b: Function name followed by space and then digit/letter (e.g., "sin 2x")
-            elif current_char == ' ' and i > 0:
-                # Check if we just finished a function name
-                func_end_pos = i
-                for func_name in ['cos', 'sin', 'tan', 'log', 'ln', 'exp', 'sqrt']:
-                    if func_end_pos >= len(func_name) and s[func_end_pos - len(func_name):func_end_pos] == func_name:
-                        # This is a function followed by space, replace space with opening parenthesis
-                        # and find the end of the argument to add closing parenthesis
-                        if next_char.isalnum():
-                            # Replace the space with '('
-                            processed_s[-1] = '('  # Replace the space we just added
-                            # We need to find where to put the closing parenthesis
-                            # For now, let's add it at the end of the current "word"
-                            j = i + 1
-                            while j < len(s) and (s[j].isalnum() or s[j] in '*+-^{}()'):
-                                j += 1
-                            # Insert closing paren at position j
-                            s = s[:j] + ')' + s[j:]
-                        break
-            # Case 4: Letter followed by letter (e.g., xy -> x*y)
-            elif current_char.isalpha() and next_char.isalpha():
-                # Only add multiplication if we're not inside a protected name
-                in_protected_name = False
-                for placeholder in protected_names:
-                    if placeholder in s[max(0, i-20):i+20]:
-                        in_protected_name = True
-                        break
-                if not in_protected_name:
-                    processed_s.append('*')
-        i += 1
-    
-    s = "".join(processed_s)
-    
-    # Restore protected names
-    for placeholder, original_name in protected_names.items():
-        s = s.replace(placeholder, original_name)
-
-    # Step 3: Use sympify with a comprehensive local dictionary
-    local_dict = {
-        'pi': sp.pi,
-        'e': sp.E,
-        'i': sp.I,
-        'oo': sp.oo,
-        'cos': sp.cos,
-        'sin': sp.sin,
-        'tan': sp.tan,
-        'tg': sp.tan,
-        'log': sp.log,
-        'ln': sp.ln,
-        'exp': sp.exp,
-        'floor': sp.floor,
-        'sqrt': sp.sqrt,
-        'Abs': sp.Abs,
-        # Greek letters
-        'alpha': sp.Symbol('alpha'),
-        'beta': sp.Symbol('beta'),
-        'gamma': sp.Symbol('gamma'),
-        'delta': sp.Symbol('delta'),
-        'epsilon': sp.Symbol('epsilon'),
-        'theta': sp.Symbol('theta'),
-        'lambda': sp.Symbol('lambda'),
-        'mu': sp.Symbol('mu'),
-        'sigma': sp.Symbol('sigma'),
-        'phi': sp.Symbol('phi'),
-        'omega': sp.Symbol('omega')
-    }
-    
-    # Add any undefined symbols as SymPy symbols
-    # This ensures that variables like 'N', 'x', 'n', etc. are treated as symbols
-    # Find all alphabetic identifiers in the string
-    identifiers = re.findall(r'[a-zA-Z_][a-zA-Z0-9_]*', s)
-    for identifier in identifiers:
-        if identifier not in local_dict and not identifier.isdigit():
-            local_dict[identifier] = sp.Symbol(identifier)
-    
-    return sp.sympify(s, locals=local_dict)
 
 # === Core IR ===
 class SymbolSpec(BaseModel):
@@ -345,7 +57,7 @@ class MatrixDef(BaseModel):
 
 class DistributionDef(BaseModel):
     name: str
-    kind: Literal['bernoulli','binomial','geometric','poisson','hypergeom','uniform']
+    kind: Literal['bernoulli','binomial','geometric','poisson','hypergeom']
     params: Dict[str, str]
 
 class GeometryDef(BaseModel):
@@ -413,6 +125,7 @@ class TargetMatrixSolve(BaseModel):
 class TargetProbability(BaseModel):
     type: Literal['probability']
     event_expr: str
+    name: Optional[str] = None
 
 class TargetValue(BaseModel):
     type: Literal['value']
@@ -471,7 +184,7 @@ class ValidationSpec(BaseModel):
 
 class MathIR(BaseModel):
     meta: Dict[str, Any] = {}
-    task_type: Literal['auto','integral','limit','sum','algebra','matrix','probability','geometry','optimize'] = 'auto'
+    task_type: Literal['auto','integral','limit','sum','algebra','matrix','probability','geometry','optimize','solve_for'] = 'auto'
     expr_format: Literal['latex','sympy','infix'] = 'latex'
     prob_space: Optional[Dict[str, Any]] = None
     assumptions: Dict[str, Any] = {}
@@ -495,6 +208,7 @@ class Runtime:
     geometry: Dict[str, Any]
     # Master context for parsing
     context: Dict[Any, Any]
+    applied_subs: Dict[sp.Expr, sp.Expr]
 
 # === Builders ===
 DOMAIN_MAP = {
@@ -509,9 +223,11 @@ DOMAIN_MAP = {
 def build_runtime(ir: MathIR) -> Runtime:
     symtab: Dict[str, sp.Symbol] = {}
     for s in ir.symbols:
-        # Simplified domain handling for now
+        # Domain handling with assumptions
         if s.domain == 'R':
             symtab[s.name] = sp.Symbol(s.name, real=True)
+        elif s.domain == 'R+':
+            symtab[s.name] = sp.Symbol(s.name, real=True, positive=True)
         elif s.domain == 'Z':
             symtab[s.name] = sp.Symbol(s.name, integer=True)
         elif s.domain == 'N':
@@ -542,14 +258,16 @@ def build_runtime(ir: MathIR) -> Runtime:
             context[const_name] = sp.Symbol(const_name)
 
     funcs: Dict[sp.Function, sp.Lambda] = {}
+    applied_subs: Dict[sp.Expr, sp.Expr] = {}
     for f_def in ir.definitions.functions:
         func_symbol = sp.Function(f_def.name)
         args = [sp.Symbol(a) for a in f_def.args]
         # For function definitions, the context is only the function's own arguments
         func_arg_context = {a.name: a for a in args}
-        expr_template = to_sympy_expr(f_def.expr)
-        expr = expr_template.subs(func_arg_context)
-        funcs[func_symbol] = sp.Lambda(tuple(args), expr)
+        expr = parse_any(f_def.expr, {}, func_arg_context)
+        lambda_expr = sp.Lambda(tuple(args), expr)
+        funcs[func_symbol] = lambda_expr
+        applied_subs[func_symbol(*args)] = expr
 
     sequences: Dict[sp.Function, sp.Lambda] = {}
     for s_def in ir.definitions.sequences:
@@ -557,81 +275,94 @@ def build_runtime(ir: MathIR) -> Runtime:
         args = [sp.Symbol(a) for a in s_def.args]
         # Similar for sequences
         seq_arg_context = {a.name: a for a in args}
-        expr_template = to_sympy_expr(s_def.expr)
-        expr = expr_template.subs(seq_arg_context)
-        sequences[seq_symbol] = sp.Lambda(tuple(args), expr)
-        
+        expr = parse_any(s_def.expr, {}, seq_arg_context)
+        lambda_expr = sp.Lambda(tuple(args), expr)
+        sequences[seq_symbol] = lambda_expr
+        applied_subs[seq_symbol(*args)] = expr
+
     matrices: Dict[str, sp.Matrix] = {}
     for m in ir.definitions.matrices:
         # Matrix elements are parsed with the main context
-        mat = sp.Matrix([[to_sympy_expr(v).subs(context) for v in row] for row in m.data])
+        mat = sp.Matrix([[parse_any(v, applied_subs, context) for v in row] for row in m.data])
         matrices[m.name] = mat
+
+    # Add string names to context for functions and sequences
+    for f_def in ir.definitions.functions:
+        context[f_def.name] = sp.Function(f_def.name)
+    for s_def in ir.definitions.sequences:
+        context[s_def.name] = sp.Function(s_def.name)
 
     # Add newly defined items to context
     context.update(funcs.items())
     context.update(sequences.items())
     context.update(matrices)
 
-    return Runtime(symtab, funcs, sequences, matrices, {}, {}, context)
+    distributions: Dict[str, Any] = {}
+    for d in ir.definitions.distributions:
+        if d.kind == 'binomial':
+            from sympy.stats import Binomial
+            n = parse_any(d.params['n'], {}, context)
+            p = parse_any(d.params['p'], {}, context)
+            distributions[d.name] = Binomial(d.name, n, p)
+        elif d.kind == 'bernoulli':
+            from sympy.stats import Bernoulli
+            p = parse_any(d.params['p'], {}, context)
+            distributions[d.name] = Bernoulli(d.name, p)
+        elif d.kind == 'geometric':
+            from sympy.stats import Geometric
+            p = parse_any(d.params['p'], {}, context)
+            distributions[d.name] = Geometric(d.name, p)
+        elif d.kind == 'poisson':
+            from sympy.stats import Poisson
+            lam = parse_any(d.params['lambda'], {}, context)
+            distributions[d.name] = Poisson(d.name, lam)
+        elif d.kind == 'hypergeom':
+            from sympy.stats import Hypergeometric
+            N = parse_any(d.params['N'], {}, context)
+            K = parse_any(d.params['K'], {}, context)
+            n = parse_any(d.params['n'], {}, context)
+            distributions[d.name] = Hypergeometric(d.name, N, K, n)
+        # Add more as needed
+
+    return Runtime(symtab, funcs, sequences, matrices, distributions, {}, context, applied_subs)
 
 # === Node executors ===
 
 def exec_integral(rt: Runtime, t: TargetIntegral) -> Tuple[str, sp.Expr]:
     # This is the correct way to handle the integration variable
-    integration_var = sp.Symbol(t.var, real=True)
+    integration_var = rt.context[t.var]
 
     # 1. Parse expressions first from raw LaTeX
-    a_template = to_sympy_expr(str(t.limits[0]))
-    b_template = to_sympy_expr(str(t.limits[1]))
-    expr_template = to_sympy_expr(t.expr)
-
-    # 2. Create the substitution dictionary from the runtime context
-    subs_dict = rt.context.copy()
-
-    # 3. Substitute the context into the templates
-    a = a_template.subs(subs_dict)
-    b = b_template.subs(subs_dict)
-    expr = expr_template.subs(subs_dict)
+    a = parse_any(str(t.limits[0]), rt.applied_subs, rt.context)
+    b = parse_any(str(t.limits[1]), rt.applied_subs, rt.context)
+    expr = parse_any(t.expr, rt.applied_subs, rt.context)
 
     val = sp.integrate(expr, (integration_var, a, b))
-    # .doit() is crucial for evaluating definite integrals
-    return (t.name or 'I', val.doit())
+    if isinstance(val, sp.Integral):
+        # Could not compute symbolically, return error to avoid hanging on numerical
+        return (t.name or 'I', {'error': 'could not compute integral'})
+    return (t.name or 'I', val)
 
-def exec_value(rt: Runtime, t: TargetValue, store: Dict[str, sp.Expr]) -> Tuple[str, sp.Expr]:
-    # For value, the context must also include the intermediate results from the store
-    if '\\' in t.expr or '|' in t.expr:
-        # Use to_sympy_expr for LaTeX expressions or expressions with absolute values
-        expr_template = to_sympy_expr(t.expr)
-        subs_dict = {k: v for k, v in {**rt.context, **store}.items()}
-        expr = expr_template.subs(subs_dict).doit()
-    else:
-        local_dict = {}
-        for k, v in rt.context.items():
-            if isinstance(k, str):
-                local_dict[k] = v
-            elif hasattr(k, 'name'):
-                local_dict[k.name] = v
-        for k in store:
-            if k not in local_dict:
-                local_dict[k] = sp.Symbol(k)
-        expr_template = sp.parse_expr(t.expr, local_dict=local_dict)
-        expr = expr_template.subs(store).doit()
+def exec_value(rt: Runtime, t: TargetValue, expr_store: Dict[str, sp.Expr]) -> Tuple[str, sp.Expr]:
+    # For value, the context must also include the intermediate results from the expr_store
+    expr = parse_any(t.expr, rt.applied_subs, {**rt.context, **expr_store}).doit()
     return (t.name, expr)
 
 def exec_limit(rt: Runtime, t: TargetLimit) -> Tuple[str, sp.Expr]:
-    limit_var = sp.Symbol(t.var, real=True)
+    # Ensure the limit variable is in context
+    if t.var not in rt.context:
+        rt.context[t.var] = sp.Symbol(t.var, real=True)
+    limit_var = rt.context[t.var]
     subs_dict = rt.context.copy()
 
-    expr_template = to_sympy_expr(t.expr)
-    expr = expr_template.subs(subs_dict)
+    expr = parse_any(t.expr, rt.applied_subs, subs_dict)
 
-    if t.to == "oo":
+    if t.to == "oo" or t.to == "+\\infty":
         to = sp.oo
     elif t.to == "-oo":
         to = -sp.oo
     else:
-        to_template = to_sympy_expr(t.to)
-        to = to_template.subs(subs_dict)
+        to = parse_any(t.to, rt.applied_subs, subs_dict)
 
     val = sp.limit(expr, limit_var, to)
     simplified = sp.simplify(val.doit())
@@ -643,20 +374,17 @@ def exec_sum(rt: Runtime, t: TargetSum) -> Tuple[str, sp.Expr]:
     unique_idx_name = f"idx_{uuid.uuid4().hex[:8]}"
     idx_var = sp.Symbol(unique_idx_name, integer=True)
 
-    # Parse the term using to_sympy_expr for proper LaTeX handling
+    # Parse the term using parse_any for consistent handling
     if '\\' in t.term:
-        # Use to_sympy_expr for LaTeX expressions
-        term_template = to_sympy_expr(t.term)
+        # LaTeX expressions
+        local_dict = rt.context.copy()
+        term_template = parse_any(t.term, rt.applied_subs, local_dict)
     else:
-        # For non-LaTeX expressions, use parse_expr with proper local_dict
-        local_dict = {t.idx: rt.context[t.idx]}
-        for k, v in rt.context.items():
-            if isinstance(k, str):
-                local_dict[k] = v
-            elif hasattr(k, 'name'):
-                local_dict[k.name] = v
-        term_template = sp.parse_expr(t.term, local_dict=local_dict)
-    
+        # For non-LaTeX expressions, use parse_any with local_dict
+        local_dict = rt.context.copy()
+        local_dict[t.idx] = rt.context[t.idx]
+        term_template = parse_any(t.term, rt.applied_subs, local_dict)
+
     # This replaces the index variable (e.g., 'n') with the unique index variable
     term_for_sum = term_template.subs({rt.context[t.idx]: idx_var})
 
@@ -664,11 +392,11 @@ def exec_sum(rt: Runtime, t: TargetSum) -> Tuple[str, sp.Expr]:
     subs_dict = {k: v for k, v in rt.context.items() if k != t.idx}
     term = term_for_sum.subs(subs_dict).doit()
 
-    start = sp.Integer(t.start)
+    start = parse_any(t.start, rt.applied_subs, rt.context)
     if str(t.end) == 'oo':
         end = sp.oo
     else:
-        end = sp.Integer(t.end)
+        end = parse_any(t.end, rt.applied_subs, rt.context)
 
     val = sp.summation(term, (idx_var, start, end))
     return ('sum', val.doit())
@@ -682,68 +410,114 @@ def exec_solve(rt: Runtime, t: TargetSolve) -> Tuple[str, Any]:
     for eq_str in t.equations:
         if '=' in eq_str:
             lhs, rhs = eq_str.split('=', 1)
-            lhs_expr = to_sympy_expr(lhs).subs(subs_dict)
-            rhs_expr = to_sympy_expr(rhs).subs(subs_dict)
+            lhs_expr = parse_any(lhs, rt.applied_subs, subs_dict)
+            rhs_expr = parse_any(rhs, rt.applied_subs, subs_dict)
             eqs.append(sp.Eq(lhs_expr, rhs_expr))
         else:
             # Implicit equation, expr = 0
-            expr = to_sympy_expr(eq_str).subs(subs_dict)
+            expr = parse_any(eq_str, rt.applied_subs, subs_dict)
             eqs.append(sp.Eq(expr, 0))
     if not eqs:
         return ('solve', {'error': 'no equations found'})
 
-    solution = sp.solve(eqs, unknowns)
-    if isinstance(solution, dict):
-        solution = [solution]
-    elif isinstance(solution, list):
-        if solution and isinstance(solution[0], dict):
-            # Already list of dicts
-            pass
-        else:
-            # List of tuples (for multiple unknowns) or values (for single)
-            solution = [dict(zip(unknowns, val if isinstance(val, tuple) else (val,))) for val in solution]
+    try:
+        solution = sp.solve(eqs, unknowns)
+        if isinstance(solution, dict):
+            solution = [solution]
+        elif isinstance(solution, list):
+            if solution and isinstance(solution[0], dict):
+                # Already list of dicts
+                pass
+            else:
+                # List of tuples (for multiple unknowns) or values (for single)
+                solution = [dict(zip(unknowns, val if isinstance(val, tuple) else (val,))) for val in solution]
+    except NotImplementedError:
+        solution = {'error': 'could not solve'}
     return ('solve', solution)
 
 def exec_ineq(rt: Runtime, t: TargetIneq) -> Tuple[str, Any]:
     subs_dict = rt.context.copy()
 
-    # Assuming a single variable for now, as reduce_inequalities is tricky with multiple
+    # Collect all free symbols
     all_symbols = set()
     parsed_ineqs = []
     for ineq_str in t.inequalities:
-        ineq_expr = to_sympy_expr(ineq_str).subs(subs_dict)
+        ineq_expr = parse_any(ineq_str, rt.applied_subs, subs_dict)
         all_symbols.update(ineq_expr.free_symbols)
         parsed_ineqs.append(ineq_expr)
 
-    # Convert set to list for sympy
-    symbols_list = list(all_symbols)
+    # Order symbols stably: first those in IR symbols, then others
+    ir_symbols = {sp.Symbol(s.name) for s in ir.symbols}
+    ir_symbols_list = [s for s in ir_symbols if s in all_symbols]
+    other_symbols = [s for s in all_symbols if s not in ir_symbols]
+    symbols_list = ir_symbols_list + other_symbols
 
     solution = sp.reduce_inequalities(parsed_ineqs, symbols_list)
     return ('inequalities', solution)
 
 def parse_matrix_expr(expr_str: str, matrices: Dict[str, sp.Matrix | sp.MatrixSymbol]) -> sp.Matrix | sp.MatrixSymbol:
-    """Safely parse a matrix expression like 'A*B.T' without eval."""
-    # Split on '*' and handle each part
-    parts = expr_str.replace(' ', '').split('*')
-    result = None
+    """Safely parse a matrix expression like 'A*(B + C.T)' without eval."""
+    expr_str = expr_str.replace(' ', '')
+    tokens = tokenize_matrix_expr(expr_str)
+    result, _ = parse_expr_matrix(tokens, 0, matrices)
+    return result
 
-    for part in parts:
-        is_transpose = part.endswith('.T')
-        matrix_name = part.replace('.T', '')
+def tokenize_matrix_expr(s: str) -> list:
+    tokens = []
+    i = 0
+    while i < len(s):
+        if s[i] in '+-*().':
+            tokens.append(s[i])
+            i += 1
+        elif s[i].isalpha():
+            start = i
+            while i < len(s) and (s[i].isalnum() or s[i] == '_'):
+                i += 1
+            tokens.append(s[start:i])
+        elif s[i] == '.' and i + 1 < len(s) and s[i+1] == 'T':
+            tokens.append('.T')
+            i += 2
+        else:
+            raise ValueError(f"Invalid character '{s[i]}' in matrix expression")
+    return tokens
 
+def parse_expr_matrix(tokens: list, pos: int, matrices: dict) -> (sp.Matrix | sp.MatrixSymbol, int):
+    left, pos = parse_term_matrix(tokens, pos, matrices)
+    while pos < len(tokens) and tokens[pos] in '+-':
+        op = tokens[pos]
+        pos += 1
+        right, pos = parse_term_matrix(tokens, pos, matrices)
+        if op == '+':
+            left = left + right
+        elif op == '-':
+            left = left - right
+    return left, pos
+
+def parse_term_matrix(tokens: list, pos: int, matrices: dict) -> (sp.Matrix | sp.MatrixSymbol, int):
+    left, pos = parse_factor_matrix(tokens, pos, matrices)
+    while pos < len(tokens) and tokens[pos] == '*':
+        pos += 1
+        right, pos = parse_factor_matrix(tokens, pos, matrices)
+        left = left * right
+    return left, pos
+
+def parse_factor_matrix(tokens: list, pos: int, matrices: dict) -> (sp.Matrix | sp.MatrixSymbol, int):
+    if tokens[pos] == '(':
+        pos += 1
+        expr, pos = parse_expr_matrix(tokens, pos, matrices)
+        if pos >= len(tokens) or tokens[pos] != ')':
+            raise ValueError("Mismatched parentheses in matrix expression")
+        pos += 1
+    else:
+        matrix_name = tokens[pos]
+        pos += 1
         if matrix_name not in matrices:
             raise ValueError(f"Matrix '{matrix_name}' not defined")
-
-        matrix = matrices[matrix_name]
-        if is_transpose:
-            matrix = matrix.T
-
-        if result is None:
-            result = matrix
-        else:
-            result = result * matrix
-
-    return result
+        expr = matrices[matrix_name]
+    if pos < len(tokens) and tokens[pos] == '.T':
+        expr = expr.T
+        pos += 1
+    return expr, pos
 
 def exec_matrix(rt: Runtime, t: TargetMatrixSolve, ir: MathIR) -> Tuple[str, Any]:
     # Find the matrix equation in conditions
@@ -813,8 +587,8 @@ def exec_sequence_limit_condition(rt: Runtime, t: TargetSequenceLimitCondition) 
     """Solves an inequality like |a_n| < epsilon for n."""
     try:
         var = rt.context[t.var]
-        epsilon = to_sympy_expr(t.epsilon).subs(rt.context)
-        seq_expr = to_sympy_expr(t.sequence_expr).subs(rt.context)
+        epsilon = parse_any(t.epsilon, rt.applied_subs, rt.context)
+        seq_expr = parse_any(t.sequence_expr, rt.applied_subs, rt.context)
 
         # Assuming the inequality is of the form |expr| < epsilon
         inequality = sp.Abs(seq_expr) < epsilon
@@ -840,7 +614,7 @@ def exec_find_maximum(rt: Runtime, t: TargetFindMaximum) -> Tuple[str, Any]:
     """Finds the maximum of an expression by finding critical points."""
     try:
         var = rt.context[t.var]
-        expr = to_sympy_expr(t.expr).subs(rt.context)
+        expr = parse_any(t.expr, rt.applied_subs, rt.context)
         
         # Find the derivative
         f_diff = sp.diff(expr, var)
@@ -862,8 +636,8 @@ def exec_area_between_curves(rt: Runtime, t: TargetAreaBetweenCurves) -> Tuple[s
         if len(t.curves) != 2:
             return ('area', {'error': 'area_between_curves requires exactly two curves.'})
 
-        curve1_expr = to_sympy_expr(t.curves[0]).subs(rt.context)
-        curve2_expr = to_sympy_expr(t.curves[1]).subs(rt.context)
+        curve1_expr = parse_any(t.curves[0], rt.applied_subs, rt.context)
+        curve2_expr = parse_any(t.curves[1], rt.applied_subs, rt.context)
         
         limits = t.limits
         if not limits:
@@ -883,6 +657,30 @@ def exec_area_between_curves(rt: Runtime, t: TargetAreaBetweenCurves) -> Tuple[s
     except Exception as e:
         return ('area', {'error': f'Failed to calculate area: {e}'})
 
+def exec_probability(rt: Runtime, t: TargetProbability) -> Tuple[str, Any]:
+    try:
+        # Special case for !D1 & !D2
+        if '!' in t.event_expr and '&' in t.event_expr and '|' not in t.event_expr:
+            parts = [p.strip().lstrip('!') for p in t.event_expr.split('&')]
+            if len(parts) == 2 and all(p in rt.distributions for p in parts):
+                dists = [rt.distributions[p] for p in parts]
+                if all(hasattr(d.pspace.distribution, 'p') for d in dists):
+                    prob = sp.prod([sp.Rational(str(1 - d.pspace.distribution.p)) for d in dists])
+                    name = t.name or 'probability'
+                    return (name, prob)
+        # General case
+        event_str = t.event_expr.replace('!', '~').replace('&', '&').replace('|', '|')
+        # For probability events, use sympy's parse_expr without transformations to avoid misinterpretation
+        local_dict = {k: v for k, v in rt.context.items() if isinstance(k, str)}
+        event = parse_expr(event_str, local_dict=local_dict)  # Default transformations
+        from sympy.stats import P
+        prob = P(event).doit()
+        name = t.name or 'probability'
+        return (name, prob)
+    except Exception as e:
+        name = t.name or 'probability'
+        return (name, {'error': str(e)})
+
 def exec_double_integral(rt: Runtime, t: TargetDoubleIntegral) -> Tuple[str, Any]:
     """Computes a double integral."""
     try:
@@ -891,14 +689,14 @@ def exec_double_integral(rt: Runtime, t: TargetDoubleIntegral) -> Tuple[str, Any
 
         var1 = sp.Symbol(t.vars[0])
         var2 = sp.Symbol(t.vars[1])
-        
-        expr = to_sympy_expr(t.expr).subs(rt.context)
-        
+
+        expr = parse_any(t.expr, rt.applied_subs, rt.context)
+
         # Parse limits
-        lim1_start = to_sympy_expr(str(t.limits[0][0])).subs(rt.context)
-        lim1_end = to_sympy_expr(str(t.limits[0][1])).subs(rt.context)
-        lim2_start = to_sympy_expr(str(t.limits[1][0])).subs(rt.context)
-        lim2_end = to_sympy_expr(str(t.limits[1][1])).subs(rt.context)
+        lim1_start = parse_any(str(t.limits[0][0]), rt.applied_subs, rt.context)
+        lim1_end = parse_any(str(t.limits[0][1]), rt.applied_subs, rt.context)
+        lim2_start = parse_any(str(t.limits[1][0]), rt.applied_subs, rt.context)
+        lim2_end = parse_any(str(t.limits[1][1]), rt.applied_subs, rt.context)
 
         # Integrate step-by-step
         inner_integral = sp.integrate(expr, (var2, lim2_start, lim2_end))
@@ -913,75 +711,101 @@ def exec_double_integral(rt: Runtime, t: TargetDoubleIntegral) -> Tuple[str, Any
 # Other exec functions would follow a similar pattern, using rt.context
 # For brevity, they are omitted as the main bug is in integral/value flow
 
+def run_mathir_worker(ir: MathIR, result_queue: multiprocessing.Queue):
+    """Worker function to run mathir in a separate process."""
+    try:
+        rt = build_runtime(ir)
+        expr_store: Dict[str, sp.Expr] = {}
+        results: Dict[str, Any] = {}
+
+        for tgt in ir.targets:
+            k: Optional[str] = None
+            v: Any = None
+
+            if tgt.type == 'integral_def':
+                k, v = exec_integral(rt, tgt)
+                if k: expr_store[k] = v
+            elif tgt.type == 'value':
+                k, v = exec_value(rt, tgt, expr_store)
+            elif tgt.type == 'limit':
+                k, v = exec_limit(rt, tgt)
+            elif tgt.type == 'sum':
+                k, v = exec_sum(rt, tgt)
+            elif tgt.type == 'solve_for':
+                k, v = exec_solve(rt, tgt)
+            elif tgt.type == 'inequalities':
+                k, v = exec_ineq(rt, tgt)
+            elif tgt.type == 'solve_for_matrix':
+                k, v = exec_matrix(rt, tgt, ir)
+            elif tgt.type == 'matrix_inverse':
+                k, v = exec_matrix_inverse(rt, tgt)
+            elif tgt.type == 'matrix_determinant':
+                k, v = exec_matrix_determinant(rt, tgt)
+            elif tgt.type == 'sequence_limit_condition':
+                k, v = exec_sequence_limit_condition(rt, tgt)
+            elif tgt.type == 'find_maximum':
+                k, v = exec_find_maximum(rt, tgt)
+            elif tgt.type == 'probability':
+                k, v = exec_probability(rt, tgt)
+            elif tgt.type == 'area_between_curves':
+                k, v = exec_area_between_curves(rt, tgt)
+            elif tgt.type == 'integral_double':
+                k, v = exec_double_integral(rt, tgt)
+            else:
+                results[f"{tgt.type}"] = {"error": "unsupported_target"}
+                continue
+
+            if k is None: continue
+
+            # Store expr for later use
+            if isinstance(v, sp.Expr):
+                expr_store[k] = v
+
+            # Post-processing for output
+            output_v = v
+            if isinstance(output_v, sp.Expr):
+                if ir.output.simplify:
+                    output_v = sp.simplify(output_v)
+                if ir.output.mode == 'decimal':
+                    # Only attempt numerical evaluation if the expression is a number or can be evaluated to one
+                    if output_v.is_Number or not output_v.free_symbols: # Check if it's a number or has no free symbols
+                        try:
+                            # Use sp.N for robust numerical evaluation
+                            numerical_value = sp.N(output_v)
+                            round_to = ir.output.round_to if ir.output.round_to is not None else 3
+                            # Format as string with fixed decimal places
+                            output_v = f"{float(numerical_value):.{round_to}f}"
+                        except (TypeError, ValueError):
+                            logging.warning(f"Could not convert expression '{output_v}' to a decimal value.")
+                    else:
+                        logging.info(f"Skipping decimal conversion for symbolic expression: '{output_v}'")
+
+            results[k] = output_v
+
+        # Debug logging
+        logging.debug(f"Raw results: {results}")
+
+        result_queue.put(results)
+    except Exception as e:
+        result_queue.put({'error': str(e)})
+
 # === Main runner ===
 def run_mathir(ir: MathIR) -> Dict[str, Any]:
-    rt = build_runtime(ir)
-    store: Dict[str, sp.Expr] = {}
-    results: Dict[str, Any] = {}
+    result_queue = multiprocessing.Queue()
+    process = multiprocessing.Process(target=run_mathir_worker, args=(ir, result_queue))
+    process.start()
+    process.join(timeout=3)  # 3 seconds timeout
 
-    for tgt in ir.targets:
-        k: Optional[str] = None
-        v: Any = None
+    if process.is_alive():
+        process.terminate()
+        process.join()
+        return {'error': 'timeout: computation took longer than 3 seconds'}
 
-        if tgt.type == 'integral_def':
-            k, v = exec_integral(rt, tgt)
-            if k: store[k] = v
-        elif tgt.type == 'value':
-            k, v = exec_value(rt, tgt, store)
-        elif tgt.type == 'limit':
-            k, v = exec_limit(rt, tgt)
-        elif tgt.type == 'sum':
-            k, v = exec_sum(rt, tgt)
-        elif tgt.type == 'solve_for':
-            k, v = exec_solve(rt, tgt)
-        elif tgt.type == 'inequalities':
-            k, v = exec_ineq(rt, tgt)
-        elif tgt.type == 'solve_for_matrix':
-            k, v = exec_matrix(rt, tgt, ir)
-        elif tgt.type == 'matrix_inverse':
-            k, v = exec_matrix_inverse(rt, tgt)
-        elif tgt.type == 'matrix_determinant':
-            k, v = exec_matrix_determinant(rt, tgt)
-        elif tgt.type == 'sequence_limit_condition':
-            k, v = exec_sequence_limit_condition(rt, tgt)
-        elif tgt.type == 'find_maximum':
-            k, v = exec_find_maximum(rt, tgt)
-        elif tgt.type == 'area_between_curves':
-            k, v = exec_area_between_curves(rt, tgt)
-        elif tgt.type == 'integral_double':
-            k, v = exec_double_integral(rt, tgt)
-        else:
-            results[f"{tgt.type}"] = {"error": "unsupported_target"}
-            continue
-        
-        if k is None: continue
-
-        # Post-processing
-        if isinstance(v, sp.Expr):
-            if ir.output.simplify:
-                v = sp.simplify(v)
-            if ir.output.mode == 'decimal':
-                # Only attempt numerical evaluation if the expression is a number or can be evaluated to one
-                if v.is_Number or not v.free_symbols: # Check if it's a number or has no free symbols
-                    try:
-                        # Use sp.N for robust numerical evaluation
-                        numerical_value = sp.N(v)
-                        if ir.output.round_to is not None:
-                            # round() works on SymPy numeric types
-                            v = round(numerical_value, ir.output.round_to)
-                        else:
-                            v = numerical_value
-                    except (TypeError, ValueError):
-                        logging.warning(f"Could not convert expression '{v}' to a decimal value.")
-                else:
-                    logging.info(f"Skipping decimal conversion for symbolic expression: '{v}'")
-        
-        results[k] = v
-
-    # Debug logging
-    logging.debug(f"Raw results: {results}")
-
-    return results
+    try:
+        results = result_queue.get_nowait()
+        return results
+    except queue.Empty:
+        return {'error': 'no result from worker'}
 
 # === Logging functions ===
 def log_success(task_id, input_data, final_output, actions):
@@ -1010,18 +834,10 @@ def log_error(task_id, input_data, error_type, traceback_str, context, actions):
     logging.error(f"Error processing task {task_id}: {error_type} - {context}")
 
 def log_to_file(filename, entry):
-    """Append entry to JSON file (create if not exists)"""
-    if os.path.exists(filename):
-        try:
-            with open(filename, 'r', encoding='utf-8') as f:
-                data = json.load(f)
-        except (FileNotFoundError, json.JSONDecodeError):
-            data = []
-    else:
-        data = []
-    data.append(entry)
-    with open(filename, 'w', encoding='utf-8') as f:
-        json.dump(data, f, indent=2, ensure_ascii=False)
+    """Append entry to JSONL file (one JSON per line)"""
+    with open(filename, 'a', encoding='utf-8') as f:
+        json.dump(entry, f, ensure_ascii=False)
+        f.write('\n')
 
 # === Main execution block ===
 if __name__ == '__main__':

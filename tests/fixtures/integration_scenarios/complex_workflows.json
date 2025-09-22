@@ -1,0 +1,343 @@
+[
+  {
+    "name": "multi_step_calculus_workflow",
+    "description": "Complex workflow combining integrals, limits, and function definitions",
+    "mathir": {
+      "expr_format": "latex",
+      "symbols": [
+        {"name": "x", "domain": "R"},
+        {"name": "t", "domain": "R"}
+      ],
+      "definitions": {
+        "functions": [
+          {
+            "name": "f",
+            "args": ["x"],
+            "expr": "x^2 + 2*x + 1"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "type": "integral_def",
+          "expr": "f(x)",
+          "var": "x",
+          "limits": [0, 1],
+          "name": "I1"
+        },
+        {
+          "type": "limit",
+          "expr": "\\frac{f(t) - f(0)}{t}",
+          "var": "t",
+          "to": "0"
+        },
+        {
+          "type": "value",
+          "name": "combined_result",
+          "expr": "I1 + limit"
+        }
+      ],
+      "output": {"mode": "exact"}
+    },
+    "expected_results": {
+      "I1": "7/3",
+      "limit": "2",
+      "combined_result": "13/3"
+    },
+    "metadata": {
+      "category": "integration_scenarios",
+      "subcategory": "complex_workflows",
+      "difficulty": "advanced",
+      "tags": ["multi_target", "function_definition", "calculus"]
+    }
+  },
+  {
+    "name": "matrix_system_solving",
+    "description": "Matrix operations with system solving",
+    "mathir": {
+      "expr_format": "latex",
+      "definitions": {
+        "matrices": [
+          {
+            "name": "A",
+            "rows": 3,
+            "cols": 3,
+            "data": [
+              ["2", "1", "0"],
+              ["1", "2", "1"],
+              ["0", "1", "2"]
+            ]
+          },
+          {
+            "name": "b",
+            "rows": 3,
+            "cols": 1,
+            "data": [["3"], ["4"], ["3"]]
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "type": "matrix_equation",
+          "expr": "A*x = b"
+        }
+      ],
+      "targets": [
+        {
+          "type": "matrix_determinant",
+          "matrix_name": "A"
+        },
+        {
+          "type": "matrix_inverse",
+          "matrix_name": "A"
+        },
+        {
+          "type": "solve_for_matrix",
+          "unknown": "x"
+        }
+      ],
+      "output": {"mode": "exact"}
+    },
+    "expected_results": {
+      "determinant": "4",
+      "solution_exists": true
+    },
+    "metadata": {
+      "category": "integration_scenarios",
+      "subcategory": "matrix_operations",
+      "difficulty": "intermediate",
+      "tags": ["matrix", "linear_algebra", "system_solving"]
+    }
+  },
+  {
+    "name": "series_convergence_analysis",
+    "description": "Analysis of infinite series convergence",
+    "mathir": {
+      "expr_format": "latex",
+      "symbols": [
+        {"name": "n", "domain": "N+"}
+      ],
+      "targets": [
+        {
+          "type": "sum",
+          "term": "\\frac{1}{n^2}",
+          "idx": "n",
+          "start": "1",
+          "end": "100"
+        },
+        {
+          "type": "sum",
+          "term": "\\frac{(-1)^{n+1}}{n}",
+          "idx": "n",
+          "start": "1",
+          "end": "50"
+        },
+        {
+          "type": "limit",
+          "expr": "\\frac{1}{n}",
+          "var": "n",
+          "to": "oo"
+        }
+      ],
+      "output": {"mode": "decimal", "round_to": 6}
+    },
+    "expected_results": {
+      "sum": "approximately_pi_squared_over_6",
+      "alternating_sum": "approximately_ln_2",
+      "limit": "0"
+    },
+    "metadata": {
+      "category": "integration_scenarios",
+      "subcategory": "series_analysis",
+      "difficulty": "advanced",
+      "tags": ["infinite_series", "convergence", "limits"]
+    }
+  },
+  {
+    "name": "optimization_with_constraints",
+    "description": "Optimization problem with constraint handling",
+    "mathir": {
+      "expr_format": "latex",
+      "symbols": [
+        {"name": "x", "domain": "R"},
+        {"name": "y", "domain": "R"}
+      ],
+      "targets": [
+        {
+          "type": "solve_for",
+          "unknowns": ["x", "y"],
+          "equations": [
+            "2*x + 3*y = 12",
+            "x + y = 5"
+          ]
+        },
+        {
+          "type": "value",
+          "name": "objective_value",
+          "expr": "x^2 + y^2"
+        }
+      ],
+      "output": {"mode": "exact"}
+    },
+    "expected_results": {
+      "solve": [{"x": "3", "y": "2"}],
+      "objective_value": "13"
+    },
+    "metadata": {
+      "category": "integration_scenarios",
+      "subcategory": "optimization",
+      "difficulty": "intermediate",
+      "tags": ["optimization", "constraints", "system_solving"]
+    }
+  },
+  {
+    "name": "probability_distribution_analysis",
+    "description": "Analysis of probability distributions",
+    "mathir": {
+      "expr_format": "latex",
+      "symbols": [
+        {"name": "x", "domain": "R+"}
+      ],
+      "targets": [
+        {
+          "type": "integral_def",
+          "expr": "\\frac{1}{\\sqrt{2*\\pi}} * e^{-x^2/2}",
+          "var": "x",
+          "limits": [0, 1],
+          "name": "normal_cdf_part"
+        },
+        {
+          "type": "value",
+          "name": "probability",
+          "expr": "2 * normal_cdf_part"
+        }
+      ],
+      "output": {"mode": "decimal", "round_to": 4}
+    },
+    "expected_results": {
+      "normal_cdf_part": "approximately_0.3413",
+      "probability": "approximately_0.6826"
+    },
+    "metadata": {
+      "category": "integration_scenarios",
+      "subcategory": "probability",
+      "difficulty": "advanced",
+      "tags": ["probability", "normal_distribution", "integration"]
+    }
+  },
+  {
+    "name": "differential_equation_solution",
+    "description": "Solving differential equations using symbolic methods",
+    "mathir": {
+      "expr_format": "latex",
+      "symbols": [
+        {"name": "x", "domain": "R"},
+        {"name": "C", "domain": "R"}
+      ],
+      "targets": [
+        {
+          "type": "integral_def",
+          "expr": "e^x",
+          "var": "x",
+          "limits": [0, "t"],
+          "name": "exponential_integral"
+        },
+        {
+          "type": "value",
+          "name": "general_solution",
+          "expr": "C * e^x"
+        }
+      ],
+      "output": {"mode": "exact"}
+    },
+    "expected_results": {
+      "exponential_integral": "e^t - 1",
+      "general_solution": "C*exp(x)"
+    },
+    "metadata": {
+      "category": "integration_scenarios",
+      "subcategory": "differential_equations",
+      "difficulty": "advanced",
+      "tags": ["differential_equations", "exponential", "symbolic"]
+    }
+  },
+  {
+    "name": "fourier_analysis_basics",
+    "description": "Basic Fourier analysis computations",
+    "mathir": {
+      "expr_format": "latex",
+      "symbols": [
+        {"name": "x", "domain": "R"},
+        {"name": "n", "domain": "N+"}
+      ],
+      "targets": [
+        {
+          "type": "integral_def",
+          "expr": "\\sin(n*x)",
+          "var": "x",
+          "limits": [0, "\\pi"],
+          "name": "fourier_coefficient"
+        },
+        {
+          "type": "sum",
+          "term": "\\frac{1}{n^2}",
+          "idx": "n",
+          "start": "1",
+          "end": "10"
+        }
+      ],
+      "output": {"mode": "exact"}
+    },
+    "expected_results": {
+      "fourier_coefficient": "depends_on_n",
+      "sum": "partial_basel_sum"
+    },
+    "metadata": {
+      "category": "integration_scenarios",
+      "subcategory": "fourier_analysis",
+      "difficulty": "advanced",
+      "tags": ["fourier", "trigonometric", "series"]
+    }
+  },
+  {
+    "name": "numerical_methods_validation",
+    "description": "Validation of numerical methods against exact solutions",
+    "mathir": {
+      "expr_format": "latex",
+      "symbols": [
+        {"name": "x", "domain": "R"}
+      ],
+      "targets": [
+        {
+          "type": "integral_def",
+          "expr": "x^3",
+          "var": "x",
+          "limits": [0, 2],
+          "name": "exact_integral"
+        },
+        {
+          "type": "value",
+          "name": "numerical_approximation",
+          "expr": "4.0"
+        },
+        {
+          "type": "value",
+          "name": "error",
+          "expr": "abs(exact_integral - numerical_approximation)"
+        }
+      ],
+      "output": {"mode": "decimal", "round_to": 6}
+    },
+    "expected_results": {
+      "exact_integral": "4.0",
+      "numerical_approximation": "4.0",
+      "error": "0.0"
+    },
+    "metadata": {
+      "category": "integration_scenarios",
+      "subcategory": "numerical_validation",
+      "difficulty": "intermediate",
+      "tags": ["numerical_methods", "validation", "error_analysis"]
+    }
+  }
+]

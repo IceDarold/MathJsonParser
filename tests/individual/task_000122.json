@@ -1,0 +1,44 @@
+{
+  "task_id": "task_000122",
+  "task": "Колода из 36 карт хорошо перемешана. Найти вероятность, что места расположения тузов образуют арифметическую прогрессию с шагом 7. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"probability\",\n  \"symbols\": [{\"name\": \"n\", \"domain\": \"N+\"}],\n  \"definitions\": {\n    \"distributions\": [\n      {\"name\": \"H\", \"kind\": \"uniform\", \"params\": {\"min\": 1, \"max\": 36}}\n    ]\n  },\n  \"targets\": [\n    {\"type\": \"probability\", \"event_expr\": \"H1 & H2 & H3 & H4 & (H1 + H3 - 2*H2 = 7)\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 16.2609703540802,
+  "timestamp": "2025-09-22T12:20:21.563325",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "probability",
+    "symbols": [
+      {
+        "name": "n",
+        "domain": "N+"
+      }
+    ],
+    "definitions": {
+      "distributions": [
+        {
+          "name": "H",
+          "kind": "uniform",
+          "params": {
+            "min": 1,
+            "max": 36
+          }
+        }
+      ]
+    },
+    "targets": [
+      {
+        "type": "probability",
+        "event_expr": "H1 & H2 & H3 & H4 & (H1 + H3 - 2*H2 = 7)"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

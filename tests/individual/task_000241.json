@@ -1,0 +1,40 @@
+{
+  "task_id": "task_000241",
+  "task": "В урне 3 белых и 7 черных шаров. Найти вероятность вынуть 2 черных шара. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"probability\",\n  \"symbols\": [],\n  \"definitions\": {\n    \"distributions\": [\n      {\"name\": \"H\", \"kind\": \"hypergeom\", \"params\": {\"M\": 10, \"D\": 7, \"n\": 2}}\n    ]\n  },\n  \"targets\": [{\"type\": \"probability\", \"event_expr\": \"H\"}],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 13.17140531539917,
+  "timestamp": "2025-09-22T12:48:23.159330",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "probability",
+    "symbols": [],
+    "definitions": {
+      "distributions": [
+        {
+          "name": "H",
+          "kind": "hypergeom",
+          "params": {
+            "M": 10,
+            "D": 7,
+            "n": 2
+          }
+        }
+      ]
+    },
+    "targets": [
+      {
+        "type": "probability",
+        "event_expr": "H"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

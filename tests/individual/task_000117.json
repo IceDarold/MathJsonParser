@@ -1,0 +1,35 @@
+{
+  "task_id": "task_000117",
+  "task": "Найти площадь фигуры, ограниченной линиями: $y = 3x - x^2$, $y = 0$. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"geometry\",\n  \"definitions\": {\n    \"geometry\": [\n      {\"id\": \"P1\", \"kind\": \"parabola\", \"equation\": \"y = 3x - x^2\"}\n    ]\n  },\n  \"targets\": [\n    {\"type\": \"area_between_curves\", \"curves\": [\"3x - x^2\", \"0\"], \"var\": \"x\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3}\n}",
+  "latency": 12.961288928985596,
+  "timestamp": "2025-09-22T12:19:10.374531",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "geometry",
+    "definitions": {
+      "geometry": [
+        {
+          "id": "P1",
+          "kind": "parabola",
+          "equation": "y = 3x - x^2"
+        }
+      ]
+    },
+    "targets": [
+      {
+        "type": "area_between_curves",
+        "curves": [
+          "3x - x^2",
+          "0"
+        ],
+        "var": "x"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    }
+  }
+}

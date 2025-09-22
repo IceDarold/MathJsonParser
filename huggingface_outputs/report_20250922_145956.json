@@ -1,0 +1,10 @@
+{
+  "timestamp": "2025-09-22T14:59:56.982406",
+  "total_tasks": 344,
+  "successful": 342,
+  "failed": 2,
+  "success_rate": 0.9941860465116279,
+  "total_latency": 10840.599107027054,
+  "average_latency": 31.697658207681442,
+  "model": "Qwen/Qwen2.5-7B-Instruct"
+}

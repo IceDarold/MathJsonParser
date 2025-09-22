@@ -1,0 +1,64 @@
+{
+  "task_id": "task_000082",
+  "task": "Парабола с уравнением $ y=x^2-4 $ поворачивается на $ 60^{\\circ} $ против часовой стрелки вокруг начала координат. Единственная точка в четвертом квадранте, где исходная парабола и ее образ пересекаются, имеет координату $ y, $ равную $ \\dfrac{a-\\sqrt{b}}{c}, $ где $ a,b,c- $ положительные целые числа, и $ a $ и $ c $ взаимно просты. Найди $ a+b+c.$Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"geometry\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}, {\"name\": \"y\", \"domain\": \"R\"}],\n  \"definitions\": {\n    \"geometry\": [\n      {\"id\": \"C\", \"kind\": \"parabola\", \"equation\": \"y = x^2 - 4\"}\n    ]\n  },\n  \"transforms\": [\n    {\"target\": \"C\", \"type\": \"rotation\", \"angle_deg\": 60, \"center\": [0, 0]}\n  ],\n  \"conditions\": [\n    {\"type\": \"quadrant\", \"object\": \"C\", \"value\": 4}\n  ],\n  \"targets\": [\n    {\"type\": \"value\", \"name\": \"answer\", \"expr\": \"a + b + c\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 21.160499334335327,
+  "timestamp": "2025-09-22T12:11:09.655159",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "geometry",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R"
+      },
+      {
+        "name": "y",
+        "domain": "R"
+      }
+    ],
+    "definitions": {
+      "geometry": [
+        {
+          "id": "C",
+          "kind": "parabola",
+          "equation": "y = x^2 - 4"
+        }
+      ]
+    },
+    "transforms": [
+      {
+        "target": "C",
+        "type": "rotation",
+        "angle_deg": 60,
+        "center": [
+          0,
+          0
+        ]
+      }
+    ],
+    "conditions": [
+      {
+        "type": "quadrant",
+        "object": "C",
+        "value": 4
+      }
+    ],
+    "targets": [
+      {
+        "type": "value",
+        "name": "answer",
+        "expr": "a + b + c"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

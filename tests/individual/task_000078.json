@@ -1,0 +1,33 @@
+{
+  "task_id": "task_000078",
+  "task": "Вычислить $\\displaystyle \\lim_{n \\to \\infty} \\frac{\\sqrt[3]{n^3 - 2n}}{n + 2}$. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"n\", \"domain\": \"N+\"}],\n  \"targets\": [\n    {\n      \"type\": \"limit\",\n      \"expr\": \"\\\\frac{\\\\sqrt[3]{n^3 - 2n}}{n + 2}\",\n      \"var\": \"n\",\n      \"to\": \"oo\"\n    }\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 12.76781940460205,
+  "timestamp": "2025-09-22T12:10:07.598989",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "symbols": [
+      {
+        "name": "n",
+        "domain": "N+"
+      }
+    ],
+    "targets": [
+      {
+        "type": "limit",
+        "expr": "\\frac{\\sqrt[3]{n^3 - 2n}}{n + 2}",
+        "var": "n",
+        "to": "oo"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

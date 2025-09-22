@@ -1,0 +1,37 @@
+{
+  "task_id": "task_000060",
+  "task": "Вычислить несобственный интеграл: $\\displaystyle \\int_{1}^{+\\infty} \\frac{dx}{x^2}$. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R+\"}],\n  \"targets\": [\n    {\"type\": \"integral_def\", \"expr\": \"1/x^2\", \"var\": \"x\", \"limits\": [1, \"oo\"], \"name\": \"I\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 11.784238338470459,
+  "timestamp": "2025-09-22T12:05:48.946404",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R+"
+      }
+    ],
+    "targets": [
+      {
+        "type": "integral_def",
+        "expr": "1/x^2",
+        "var": "x",
+        "limits": [
+          1,
+          "oo"
+        ],
+        "name": "I"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

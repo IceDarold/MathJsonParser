@@ -1,0 +1,34 @@
+{
+  "task_id": "task_000087",
+  "task": "Вычисли $ \\displaystyle \\lim_{x \\rightarrow 3} (x^2-5x+6)/(x^2-8x+15)$. Ответ запиши в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"limit\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}],\n  \"targets\": [\n    {\"type\": \"limit\", \"expr\": \"(x^2-5x+6)/(x^2-8x+15)\", \"var\": \"x\", \"to\": \"3\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 12.644230127334595,
+  "timestamp": "2025-09-22T12:12:16.747617",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "limit",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R"
+      }
+    ],
+    "targets": [
+      {
+        "type": "limit",
+        "expr": "(x^2-5x+6)/(x^2-8x+15)",
+        "var": "x",
+        "to": "3"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

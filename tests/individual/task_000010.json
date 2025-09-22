@@ -1,0 +1,49 @@
+{
+  "task_id": "task_000010",
+  "task": "Найти вероятность правильно угадать 2 последние разные нечетные цифры номера. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"probability\",\n  \"symbols\": [{\"name\": \"p\", \"domain\": \"R\"}],\n  \"definitions\": {\n    \"distributions\": [\n      {\"name\": \"H\", \"kind\": \"binomial\", \"params\": {\"n\": \"2\", \"p\": \"0.5\"}}\n    ]\n  },\n  \"targets\": [\n    {\"type\": \"probability\", \"event_expr\": \"H = 2\"},\n    {\"type\": \"value\", \"name\": \"answer\", \"expr\": \"p\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 16.01736569404602,
+  "timestamp": "2025-09-22T11:54:15.660835",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "probability",
+    "symbols": [
+      {
+        "name": "p",
+        "domain": "R"
+      }
+    ],
+    "definitions": {
+      "distributions": [
+        {
+          "name": "H",
+          "kind": "binomial",
+          "params": {
+            "n": "2",
+            "p": "0.5"
+          }
+        }
+      ]
+    },
+    "targets": [
+      {
+        "type": "probability",
+        "event_expr": "H = 2"
+      },
+      {
+        "type": "value",
+        "name": "answer",
+        "expr": "p"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

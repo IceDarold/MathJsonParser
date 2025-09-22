@@ -1,0 +1,34 @@
+{
+  "task_id": "task_000145",
+  "task": "Вычисли $ \\displaystyle \\lim_{x \\rightarrow 0}(\\sqrt{1+x}-\\sqrt{1-x})/(\\sqrt[3]{1+x}-\\sqrt[3]{1-x})$. Ответ запиши в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"limit\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}],\n  \"targets\": [\n    {\n      \"type\": \"limit\",\n      \"expr\": \"(\\\\sqrt{1+x}-\\\\sqrt{1-x})/(\\\\sqrt[3]{1+x}-\\\\sqrt[3]{1-x})\",\n      \"var\": \"x\",\n      \"to\": \"0\"\n    }\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 14.08093786239624,
+  "timestamp": "2025-09-22T12:25:52.124409",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "limit",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R"
+      }
+    ],
+    "targets": [
+      {
+        "type": "limit",
+        "expr": "(\\sqrt{1+x}-\\sqrt{1-x})/(\\sqrt[3]{1+x}-\\sqrt[3]{1-x})",
+        "var": "x",
+        "to": "0"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

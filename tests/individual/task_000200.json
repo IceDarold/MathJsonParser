@@ -1,0 +1,44 @@
+{
+  "task_id": "task_000200",
+  "task": "Найти площадь фигуры, ограниченной линиями: $y = x$, $y = x^3$. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"geometry\",\n  \"definitions\": {\n    \"geometry\": [\n      {\"id\": \"L1\", \"kind\": \"line\", \"equation\": \"y = x\"},\n      {\"id\": \"L2\", \"kind\": \"curve\", \"equation\": \"y = x^3\"}\n    ]\n  },\n  \"targets\": [{\"type\": \"area_between_curves\", \"curves\": [\"x\", \"x^3\"], \"var\": \"x\"}],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 14.885174751281738,
+  "timestamp": "2025-09-22T12:38:43.421253",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "geometry",
+    "definitions": {
+      "geometry": [
+        {
+          "id": "L1",
+          "kind": "line",
+          "equation": "y = x"
+        },
+        {
+          "id": "L2",
+          "kind": "curve",
+          "equation": "y = x^3"
+        }
+      ]
+    },
+    "targets": [
+      {
+        "type": "area_between_curves",
+        "curves": [
+          "x",
+          "x^3"
+        ],
+        "var": "x"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

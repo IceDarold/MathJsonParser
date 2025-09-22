@@ -1,0 +1,47 @@
+{
+  "task_id": "task_000125",
+  "task": "Вычислить определитель: \\[ \\begin{vmatrix} -7 & -2 & 2 \\\\ 16 & 3 & -5 \\\\ -8 & -3 & 2 \\\\ \\end{vmatrix} \\] Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"definitions\": {\n    \"matrices\": [\n      {\"name\": \"M\", \"rows\": 3, \"cols\": 3, \"data\": [[\"-7\",\"-2\",\"2\"], [\"16\",\"3\",\"-5\"], [\"-8\",\"-3\",\"2\"]]}\n    ]\n  },\n  \"targets\": [{\"type\": \"matrix_determinant\", \"matrix_name\": \"M\"}],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3}\n}",
+  "latency": 12.464012384414673,
+  "timestamp": "2025-09-22T12:21:08.534695",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "definitions": {
+      "matrices": [
+        {
+          "name": "M",
+          "rows": 3,
+          "cols": 3,
+          "data": [
+            [
+              "-7",
+              "-2",
+              "2"
+            ],
+            [
+              "16",
+              "3",
+              "-5"
+            ],
+            [
+              "-8",
+              "-3",
+              "2"
+            ]
+          ]
+        }
+      ]
+    },
+    "targets": [
+      {
+        "type": "matrix_determinant",
+        "matrix_name": "M"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    }
+  }
+}

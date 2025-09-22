@@ -1,0 +1,34 @@
+{
+  "task_id": "task_000120",
+  "task": "Вычисли $ \\displaystyle \\lim_{x \\rightarrow 3}(\\sqrt{x+13}-2\\sqrt{x+1})/(x^2-9)$. Ответ запиши в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"limit\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}],\n  \"targets\": [\n    {\n      \"type\": \"limit\",\n      \"expr\": \"(\\\\sqrt{x+13}-2\\\\sqrt{x+1})/(x^2-9)\",\n      \"var\": \"x\",\n      \"to\": \"3\"\n    }\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 13.411550998687744,
+  "timestamp": "2025-09-22T12:19:50.930291",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "limit",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R"
+      }
+    ],
+    "targets": [
+      {
+        "type": "limit",
+        "expr": "(\\sqrt{x+13}-2\\sqrt{x+1})/(x^2-9)",
+        "var": "x",
+        "to": "3"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

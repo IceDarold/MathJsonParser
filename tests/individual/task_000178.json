@@ -1,0 +1,47 @@
+{
+  "task_id": "task_000178",
+  "task": "Бросаем монету до первого герба. Найти вероятность, что потребуется четное число бросков. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"probability\",\n  \"symbols\": [{\"name\": \"p\", \"domain\": \"R+\", \"assumptions\": {\"reals_default\": true, \"positivity\": \"R+\"}}],\n  \"definitions\": {\n    \"distributions\": [\n      {\"name\": \"H\", \"kind\": \"geometric\", \"params\": {\"p\": \"p\"}}\n    ]\n  },\n  \"targets\": [\n    {\n      \"type\": \"probability\",\n      \"event_expr\": \"!H & !H2 & H4 & !H6 & H8 & !H10 & H12 & !H14 & H16 & !H18 & H20 & !H22 & H24 & !H26 & H28 & !H30 & H32 & !H34 & H36 & !H38 & H40 & !H42 & H44 & !H46 & H48 & !H50 & H52 & !H54 & H56 & !H58 & H60\"\n    }\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"Вероятность успеха не указана, но для геометрического распределения она равна p = 0.5 для монеты.\"}\n}",
+  "latency": 29.909929037094116,
+  "timestamp": "2025-09-22T12:33:45.101009",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "probability",
+    "symbols": [
+      {
+        "name": "p",
+        "domain": "R+",
+        "assumptions": {
+          "reals_default": true,
+          "positivity": "R+"
+        }
+      }
+    ],
+    "definitions": {
+      "distributions": [
+        {
+          "name": "H",
+          "kind": "geometric",
+          "params": {
+            "p": "p"
+          }
+        }
+      ]
+    },
+    "targets": [
+      {
+        "type": "probability",
+        "event_expr": "!H & !H2 & H4 & !H6 & H8 & !H10 & H12 & !H14 & H16 & !H18 & H20 & !H22 & H24 & !H26 & H28 & !H30 & H32 & !H34 & H36 & !H38 & H40 & !H42 & H44 & !H46 & H48 & !H50 & H52 & !H54 & H56 & !H58 & H60"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": "Вероятность успеха не указана, но для геометрического распределения она равна p = 0.5 для монеты."
+    }
+  }
+}

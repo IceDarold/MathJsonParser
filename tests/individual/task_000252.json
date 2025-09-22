@@ -1,0 +1,33 @@
+{
+  "task_id": "task_000252",
+  "task": "Вычисли $ \\displaystyle \\lim_{x \\rightarrow 16}(\\sqrt[4]{x}-2)/(\\sqrt{x}-4)$. Ответ запиши в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R+\"}],\n  \"targets\": [\n    {\n      \"type\": \"limit\",\n      \"expr\": \"(\\\\sqrt[4]{x} - 2)/(\\\\sqrt{x} - 4)\",\n      \"var\": \"x\",\n      \"to\": \"16\"\n    }\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 12.58983063697815,
+  "timestamp": "2025-09-22T12:51:04.530125",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R+"
+      }
+    ],
+    "targets": [
+      {
+        "type": "limit",
+        "expr": "(\\sqrt[4]{x} - 2)/(\\sqrt{x} - 4)",
+        "var": "x",
+        "to": "16"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

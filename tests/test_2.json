@@ -1,0 +1,8 @@
+{
+  "expr_format": "latex",
+  "meta": {"lang": "ru", "notes": ""},
+  "output": {"mode": "decimal", "round_to": 3, "simplify": true, "rationalize": false},
+  "targets": [
+    {"type": "limit", "expr": "\\cos(x)/\\cos(2x)", "var": "x", "to": "0"}
+  ]
+}

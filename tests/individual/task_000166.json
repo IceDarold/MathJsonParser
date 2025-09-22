@@ -1,0 +1,37 @@
+{
+  "task_id": "task_000166",
+  "task": "Вычислить несобственный интеграл: $\\displaystyle \\int_{1}^{+\\infty} e^{2x} dx$. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}],\n  \"targets\": [\n    {\"type\": \"integral_def\", \"expr\": \"e^{2x}\", \"var\": \"x\", \"limits\": [1, \"+oo\"], \"name\": \"I\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 11.624415874481201,
+  "timestamp": "2025-09-22T12:30:34.341316",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R"
+      }
+    ],
+    "targets": [
+      {
+        "type": "integral_def",
+        "expr": "e^{2x}",
+        "var": "x",
+        "limits": [
+          1,
+          "+oo"
+        ],
+        "name": "I"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

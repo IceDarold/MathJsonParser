@@ -1,0 +1,473 @@
+[
+  {
+    "timestamp": "2025-09-22T12:58:37.390325+00:00",
+    "task_id": "task_000002",
+    "input_data": {
+      "task_id": "task_000002",
+      "task": "Р’С‹С‡РёСЃР»РёС‚СЊ $\\displaystyle \\lim_{n \\to \\infty} (\\sqrt{n + 1} - \\sqrt{n})$. РћС‚РІРµС‚ Р·Р°РїРёС€РёС‚Рµ РІ РІРёРґРµ РґРµСЃСЏС‚РёС‡РЅРѕР№ РґСЂРѕР±Рё, РѕРєСЂСѓРіР»РёРІ РїРѕ РїСЂР°РІРёР»Р°Рј РјР°С‚РµРјР°С‚РёС‡РµСЃРєРѕРіРѕ РѕРєСЂСѓРіР»РµРЅРёСЏ РґРѕ 3 Р·РЅР°РєРѕРІ РїРѕСЃР»Рµ Р·Р°РїСЏС‚РѕР№.",
+      "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"limit\",\n  \"symbols\": [{\"name\": \"n\", \"domain\": \"N+\"}],\n  \"targets\": [\n    {\"type\": \"limit\", \"expr\": \"\\\\sqrt{n + 1} - \\\\sqrt{n}\", \"var\": \"n\", \"to\": \"oo\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+      "latency": 11.755307674407959,
+      "timestamp": "2025-09-22T11:43:02.480735",
+      "status": "success",
+      "parsed_json": {
+        "expr_format": "latex",
+        "task_type": "limit",
+        "symbols": [
+          {
+            "name": "n",
+            "domain": "N+"
+          }
+        ],
+        "targets": [
+          {
+            "type": "limit",
+            "expr": "\\sqrt{n + 1} - \\sqrt{n}",
+            "var": "n",
+            "to": "oo"
+          }
+        ],
+        "output": {
+          "mode": "decimal",
+          "round_to": 3
+        },
+        "meta": {
+          "lang": "ru",
+          "notes": ""
+        }
+      }
+    },
+    "error_type": "SympifyError",
+    "traceback": "ValueError: Error from parse_expr with transformed code: \"Symbol ('s' )*Symbol ('q' )*Symbol ('r' )*Symbol ('t' ){Symbol ('n' )+Integer (1 )}-Symbol ('s' )*Symbol ('q' )*Symbol ('r' )*Symbol ('t' ){Symbol ('n' )}\"\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\artem\\AppData\\Roaming\\Python\\Python312\\site-packages\\sympy\\core\\sympify.py\", line 507, in sympify\n    expr = parse_expr(a, local_dict=locals, transformations=transformations, evaluate=evaluate)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\AppData\\Roaming\\Python\\Python312\\site-packages\\sympy\\parsing\\sympy_parser.py\", line 1090, in parse_expr\n    raise e from ValueError(f\"Error from parse_expr with transformed code: {code!r}\")\n  File \"C:\\Users\\artem\\AppData\\Roaming\\Python\\Python312\\site-packages\\sympy\\parsing\\sympy_parser.py\", line 1081, in parse_expr\n    rv = eval_expr(code, local_dict, global_dict)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\AppData\\Roaming\\Python\\Python312\\site-packages\\sympy\\parsing\\sympy_parser.py\", line 905, in eval_expr\n    expr = eval(\n           ^^^^^\n  File \"<string>\", line 1\n    Symbol ('s' )*Symbol ('q' )*Symbol ('r' )*Symbol ('t' ){Symbol ('n' )+Integer (1 )}-Symbol ('s' )*Symbol ('q' )*Symbol ('r' )*Symbol ('t' ){Symbol ('n' )}\n                                                           ^\nSyntaxError: invalid syntax\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 818, in <module>\n    results = run_mathir(math_ir)\n              ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 678, in run_mathir\n    k, v = exec_limit(rt, tgt)\n           ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 373, in exec_limit\n    expr_template = to_sympy_expr(t.expr)\n                    ^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 84, in to_sympy_expr\n    return sp.sympify(s, locals=local_dict)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\AppData\\Roaming\\Python\\Python312\\site-packages\\sympy\\core\\sympify.py\", line 509, in sympify\n    raise SympifyError('could not parse %r' % a, exc)\nsympy.core.sympify.SympifyError: Sympify of expression 'could not parse 's*q*r*t{n + 1} - s*q*r*t{n}'' failed, because of exception being raised:\nSyntaxError: invalid syntax (<string>, line 1)\n",
+    "context": "Sympify of expression 'could not parse 's*q*r*t{n + 1} - s*q*r*t{n}'' failed, because of exception being raised:\nSyntaxError: invalid syntax (<string>, line 1)",
+    "actions": [
+      "Validated MathIR data",
+      "Built runtime context"
+    ]
+  },
+  {
+    "timestamp": "2025-09-22T12:58:37.408495+00:00",
+    "task_id": "task_000003",
+    "input_data": {
+      "task_id": "task_000003",
+      "task": "Р’С‹С‡РёСЃР»РёС‚СЊ РёРЅС‚РµРіСЂР°Р»: $\\displaystyle \\int_{0}^{\\pi} \\sin 2x dx$. РћС‚РІРµС‚ Р·Р°РїРёС€РёС‚Рµ РІ РІРёРґРµ РґРµСЃСЏС‚РёС‡РЅРѕР№ РґСЂРѕР±Рё, РѕРєСЂСѓРіР»РёРІ РїРѕ РїСЂР°РІРёР»Р°Рј РјР°С‚РµРјР°С‚РёС‡РµСЃРєРѕРіРѕ РѕРєСЂСѓРіР»РµРЅРёСЏ РґРѕ 3 Р·РЅР°РєРѕРІ РїРѕСЃР»Рµ Р·Р°РїСЏС‚РѕР№.",
+      "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}],\n  \"targets\": [\n    {\"type\": \"integral_def\", \"expr\": \"\\\\sin 2x\", \"var\": \"x\", \"limits\": [0, \"\\\\pi\"], \"name\": \"I\"},\n    {\"type\": \"value\", \"name\": \"answer\", \"expr\": \"I\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+      "latency": 13.043519020080566,
+      "timestamp": "2025-09-22T11:43:15.524634",
+      "status": "success",
+      "parsed_json": {
+        "expr_format": "latex",
+        "symbols": [
+          {
+            "name": "x",
+            "domain": "R"
+          }
+        ],
+        "targets": [
+          {
+            "type": "integral_def",
+            "expr": "\\sin 2x",
+            "var": "x",
+            "limits": [
+              0,
+              "\\pi"
+            ],
+            "name": "I"
+          },
+          {
+            "type": "value",
+            "name": "answer",
+            "expr": "I"
+          }
+        ],
+        "output": {
+          "mode": "decimal",
+          "round_to": 3
+        },
+        "meta": {
+          "lang": "ru",
+          "notes": ""
+        }
+      }
+    },
+    "error_type": "SympifyError",
+    "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\artem\\AppData\\Roaming\\Python\\Python312\\site-packages\\sympy\\core\\sympify.py\", line 507, in sympify\n    expr = parse_expr(a, local_dict=locals, transformations=transformations, evaluate=evaluate)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\AppData\\Roaming\\Python\\Python312\\site-packages\\sympy\\parsing\\sympy_parser.py\", line 1075, in parse_expr\n    code = stringify_expr(s, local_dict, global_dict, _transformations)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\AppData\\Roaming\\Python\\Python312\\site-packages\\sympy\\parsing\\sympy_parser.py\", line 890, in stringify_expr\n    for toknum, tokval, _, _, _ in generate_tokens(input_code.readline):\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python312\\Lib\\tokenize.py\", line 582, in _generate_tokens_from_c_tokenizer\n    raise TokenError(msg, (e.lineno, e.offset)) from None\ntokenize.TokenError: ('unexpected character after line continuation character', (1, 5))\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 818, in <module>\n    results = run_mathir(math_ir)\n              ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 673, in run_mathir\n    k, v = exec_integral(rt, tgt)\n           ^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 334, in exec_integral\n    b_template = to_sympy_expr(str(t.limits[1]))\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 84, in to_sympy_expr\n    return sp.sympify(s, locals=local_dict)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\AppData\\Roaming\\Python\\Python312\\site-packages\\sympy\\core\\sympify.py\", line 509, in sympify\n    raise SympifyError('could not parse %r' % a, exc)\nsympy.core.sympify.SympifyError: Sympify of expression 'could not parse '\\\\p*i'' failed, because of exception being raised:\nTokenError: ('unexpected character after line continuation character', (1, 5))\n",
+    "context": "Sympify of expression 'could not parse '\\\\p*i'' failed, because of exception being raised:\nTokenError: ('unexpected character after line continuation character', (1, 5))",
+    "actions": [
+      "Validated MathIR data",
+      "Built runtime context"
+    ]
+  },
+  {
+    "timestamp": "2025-09-22T12:58:37.456766+00:00",
+    "task_id": "task_000005",
+    "input_data": {
+      "task_id": "task_000005",
+      "task": "Р’С‹С‡РёСЃР»Рё $ \\displaystyle \\int_1^2 \\dfrac{2e^{2x}-e^x}{\\sqrt{3e^{2x}-6e^x-1}}dx$.РћС‚РІРµС‚ Р·Р°РїРёС€РёС‚Рµ РІ РІРёРґРµ РґРµСЃСЏС‚РёС‡РЅРѕР№ РґСЂРѕР±Рё, РѕРєСЂСѓРіР»РёРІ РїРѕ РїСЂР°РІРёР»Р°Рј РјР°С‚РµРјР°С‚РёС‡РµСЃРєРѕРіРѕ РѕРєСЂСѓРіР»РµРЅРёСЏ РґРѕ 3 Р·РЅР°РєРѕРІ РїРѕСЃР»Рµ Р·Р°РїСЏС‚РѕР№.",
+      "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}],\n  \"targets\": [\n    {\"type\": \"integral_def\", \"expr\": \"\\\\frac{2e^{2x} - e^x}{\\\\sqrt{3e^{2x} - 6e^x - 1}}\", \"var\": \"x\", \"limits\": [1, 2], \"name\": \"I\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+      "latency": 14.079002857208252,
+      "timestamp": "2025-09-22T11:43:46.652480",
+      "status": "success",
+      "parsed_json": {
+        "expr_format": "latex",
+        "symbols": [
+          {
+            "name": "x",
+            "domain": "R"
+          }
+        ],
+        "targets": [
+          {
+            "type": "integral_def",
+            "expr": "\\frac{2e^{2x} - e^x}{\\sqrt{3e^{2x} - 6e^x - 1}}",
+            "var": "x",
+            "limits": [
+              1,
+              2
+            ],
+            "name": "I"
+          }
+        ],
+        "output": {
+          "mode": "decimal",
+          "round_to": 3
+        },
+        "meta": {
+          "lang": "ru",
+          "notes": ""
+        }
+      }
+    },
+    "error_type": "SympifyError",
+    "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\artem\\AppData\\Roaming\\Python\\Python312\\site-packages\\sympy\\core\\sympify.py\", line 507, in sympify\n    expr = parse_expr(a, local_dict=locals, transformations=transformations, evaluate=evaluate)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\AppData\\Roaming\\Python\\Python312\\site-packages\\sympy\\parsing\\sympy_parser.py\", line 1075, in parse_expr\n    code = stringify_expr(s, local_dict, global_dict, _transformations)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\AppData\\Roaming\\Python\\Python312\\site-packages\\sympy\\parsing\\sympy_parser.py\", line 890, in stringify_expr\n    for toknum, tokval, _, _, _ in generate_tokens(input_code.readline):\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python312\\Lib\\tokenize.py\", line 582, in _generate_tokens_from_c_tokenizer\n    raise TokenError(msg, (e.lineno, e.offset)) from None\ntokenize.TokenError: ('unexpected character after line continuation character', (1, 58))\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 818, in <module>\n    results = run_mathir(math_ir)\n              ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 673, in run_mathir\n    k, v = exec_integral(rt, tgt)\n           ^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 335, in exec_integral\n    expr_template = to_sympy_expr(t.expr)\n                    ^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 84, in to_sympy_expr\n    return sp.sympify(s, locals=local_dict)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\AppData\\Roaming\\Python\\Python312\\site-packages\\sympy\\core\\sympify.py\", line 509, in sympify\n    raise SympifyError('could not parse %r' % a, exc)\nsympy.core.sympify.SympifyError: Sympify of expression 'could not parse '\\\\f*r*a*c{2*e^{2*x} - e^x}{s*q*r*t{3*e^{2*x} - 6*e^x - 1}}'' failed, because of exception being raised:\nTokenError: ('unexpected character after line continuation character', (1, 58))\n",
+    "context": "Sympify of expression 'could not parse '\\\\f*r*a*c{2*e^{2*x} - e^x}{s*q*r*t{3*e^{2*x} - 6*e^x - 1}}'' failed, because of exception being raised:\nTokenError: ('unexpected character after line continuation character', (1, 58))",
+    "actions": [
+      "Validated MathIR data",
+      "Built runtime context"
+    ]
+  },
+  {
+    "timestamp": "2025-09-22T12:58:37.480438+00:00",
+    "task_id": "task_000006",
+    "input_data": {
+      "task_id": "task_000006",
+      "task": "РЎСѓС‰РµСЃС‚РІСѓРµС‚ 8! РІРѕСЃСЊРјРёР·РЅР°С‡РЅС‹С… РїРѕР»РѕР¶РёС‚РµР»СЊРЅС‹С… С‡РёСЃРµР», РєРѕС‚РѕСЂС‹Рµ РёСЃРїРѕР»СЊР·СѓСЋС‚ РєР°Р¶РґСѓСЋ РёР· С†РёС„СЂ 1,2,3,4,5,6,7,8 СЂРѕРІРЅРѕ РѕРґРёРЅ СЂР°Р·. РџСѓСЃС‚СЊ $ N - $ РєРѕР»РёС‡РµСЃС‚РІРѕ С‚Р°РєРёС… С‡РёСЃРµР», РєРѕС‚РѕСЂС‹Рµ РґРµР»СЏС‚СЃСЏ РЅР° 22. РќР°Р№РґРё РјРѕРґСѓР»СЊ СЂР°Р·РЅРѕСЃС‚Рё $ N - 2025.$РћС‚РІРµС‚ Р·Р°РїРёС€РёС‚Рµ РІ РІРёРґРµ РґРµСЃСЏС‚РёС‡РЅРѕР№ РґСЂРѕР±Рё, РѕРєСЂСѓРіР»РёРІ РїРѕ РїСЂР°РІРёР»Р°Рј РјР°С‚РµРјР°С‚РёС‡РµСЃРєРѕРіРѕ РѕРєСЂСѓРіР»РµРЅРёСЏ РґРѕ 3 Р·РЅР°РєРѕРІ РїРѕСЃР»Рµ Р·Р°РїСЏС‚РѕР№.",
+      "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"algebra\",\n  \"symbols\": [\n    {\"name\": \"N\", \"domain\": \"R\"}\n  ],\n  \"targets\": [\n    {\n      \"type\": \"value\",\n      \"name\": \"answer\",\n      \"expr\": \"|N - 2025|\"\n    }\n  ],\n  \"output\": {\n    \"mode\": \"decimal\",\n    \"round_to\": 3\n  },\n  \"meta\": {\n    \"lang\": \"ru\",\n    \"notes\": \"РќРµРѕР±С…РѕРґРёРјРѕ РЅР°Р№С‚Рё РєРѕР»РёС‡РµСЃС‚РІРѕ РІРѕСЃСЊРјРёР·РЅР°С‡РЅС‹С… С‡РёСЃРµР», РёСЃРїРѕР»СЊР·СѓСЋС‰РёС… РєР°Р¶РґСѓСЋ РёР· С†РёС„СЂ 1,2,3,4,5,6,7,8 СЂРѕРІРЅРѕ РѕРґРёРЅ СЂР°Р· Рё РґРµР»СЏС‰РёС…СЃСЏ РЅР° 22.\"\n  }\n}",
+      "latency": 17.77610969543457,
+      "timestamp": "2025-09-22T11:44:04.428998",
+      "status": "success",
+      "parsed_json": {
+        "expr_format": "latex",
+        "task_type": "algebra",
+        "symbols": [
+          {
+            "name": "N",
+            "domain": "R"
+          }
+        ],
+        "targets": [
+          {
+            "type": "value",
+            "name": "answer",
+            "expr": "|N - 2025|"
+          }
+        ],
+        "output": {
+          "mode": "decimal",
+          "round_to": 3
+        },
+        "meta": {
+          "lang": "ru",
+          "notes": "РќРµРѕР±С…РѕРґРёРјРѕ РЅР°Р№С‚Рё РєРѕР»РёС‡РµСЃС‚РІРѕ РІРѕСЃСЊРјРёР·РЅР°С‡РЅС‹С… С‡РёСЃРµР», РёСЃРїРѕР»СЊР·СѓСЋС‰РёС… РєР°Р¶РґСѓСЋ РёР· С†РёС„СЂ 1,2,3,4,5,6,7,8 СЂРѕРІРЅРѕ РѕРґРёРЅ СЂР°Р· Рё РґРµР»СЏС‰РёС…СЃСЏ РЅР° 22."
+        }
+      }
+    },
+    "error_type": "SyntaxError",
+    "traceback": "ValueError: Error from parse_expr with transformed code: '|N -Integer (2025 )|'\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 818, in <module>\n    results = run_mathir(math_ir)\n              ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 676, in run_mathir\n    k, v = exec_value(rt, tgt, store)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 365, in exec_value\n    expr_template = sp.parse_expr(t.expr, local_dict=local_dict)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\AppData\\Roaming\\Python\\Python312\\site-packages\\sympy\\parsing\\sympy_parser.py\", line 1090, in parse_expr\n    raise e from ValueError(f\"Error from parse_expr with transformed code: {code!r}\")\n  File \"C:\\Users\\artem\\AppData\\Roaming\\Python\\Python312\\site-packages\\sympy\\parsing\\sympy_parser.py\", line 1081, in parse_expr\n    rv = eval_expr(code, local_dict, global_dict)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\AppData\\Roaming\\Python\\Python312\\site-packages\\sympy\\parsing\\sympy_parser.py\", line 905, in eval_expr\n    expr = eval(\n           ^^^^^\n  File \"<string>\", line 1\n    |N -Integer (2025 )|\n    ^\nSyntaxError: invalid syntax\n",
+    "context": "invalid syntax (<string>, line 1)",
+    "actions": [
+      "Validated MathIR data",
+      "Built runtime context"
+    ]
+  },
+  {
+    "timestamp": "2025-09-22T12:58:37.698605+00:00",
+    "task_id": "task_000009",
+    "input_data": {
+      "task_id": "task_000009",
+      "task": "РќР°Р№РґРёС‚Рµ СЃСѓРјРјСѓ СЂСЏРґР°: $\\displaystyle \\frac{1}{1 \\cdot 2 \\cdot 3} + \\frac{1}{2 \\cdot 3 \\cdot 4} + \\frac{1}{3 \\cdot 4 \\cdot 5} + \\frac{1}{4 \\cdot 5 \\cdot 6} + \\ldots$. РћС‚РІРµС‚ Р·Р°РїРёС€РёС‚Рµ РІ РІРёРґРµ РґРµСЃСЏС‚РёС‡РЅРѕР№ РґСЂРѕР±Рё, РѕРєСЂСѓРіР»РёРІ РїРѕ РїСЂР°РІРёР»Р°Рј РјР°С‚РµРјР°С‚РёС‡РµСЃРєРѕРіРѕ РѕРєСЂСѓРіР»РµРЅРёСЏ РґРѕ 3 Р·РЅР°РєРѕРІ РїРѕСЃР»Рµ Р·Р°РїСЏС‚РѕР№.",
+      "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"n\", \"domain\": \"N+\"}],\n  \"targets\": [\n    {\n      \"type\": \"sum\",\n      \"term\": \"\\\\frac{1}{n(n+1)(n+2)}\",\n      \"idx\": \"n\",\n      \"start\": \"1\",\n      \"end\": \"oo\"\n    }\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+      "latency": 12.955434322357178,
+      "timestamp": "2025-09-22T11:44:42.162876",
+      "status": "success",
+      "parsed_json": {
+        "expr_format": "latex",
+        "symbols": [
+          {
+            "name": "n",
+            "domain": "N+"
+          }
+        ],
+        "targets": [
+          {
+            "type": "sum",
+            "term": "\\frac{1}{n(n+1)(n+2)}",
+            "idx": "n",
+            "start": "1",
+            "end": "oo"
+          }
+        ],
+        "output": {
+          "mode": "decimal",
+          "round_to": 3
+        },
+        "meta": {
+          "lang": "ru",
+          "notes": ""
+        }
+      }
+    },
+    "error_type": "TypeError",
+    "traceback": "ValueError: Error from parse_expr with transformed code: '(Integer (1 ))/(n (n +Integer (1 ))(n +Integer (2 )))'\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 818, in <module>\n    results = run_mathir(math_ir)\n              ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 680, in run_mathir\n    k, v = exec_sum(rt, tgt)\n           ^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 398, in exec_sum\n    term_template = sp.parse_expr(infix, local_dict={t.idx: rt.context[t.idx]})\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\AppData\\Roaming\\Python\\Python312\\site-packages\\sympy\\parsing\\sympy_parser.py\", line 1090, in parse_expr\n    raise e from ValueError(f\"Error from parse_expr with transformed code: {code!r}\")\n  File \"C:\\Users\\artem\\AppData\\Roaming\\Python\\Python312\\site-packages\\sympy\\parsing\\sympy_parser.py\", line 1081, in parse_expr\n    rv = eval_expr(code, local_dict, global_dict)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\AppData\\Roaming\\Python\\Python312\\site-packages\\sympy\\parsing\\sympy_parser.py\", line 905, in eval_expr\n    expr = eval(\n           ^^^^^\n  File \"<string>\", line 1, in <module>\nTypeError: 'Symbol' object is not callable\n",
+    "context": "'Symbol' object is not callable",
+    "actions": [
+      "Validated MathIR data",
+      "Built runtime context"
+    ]
+  },
+  {
+    "timestamp": "2025-09-22T12:58:37.717142+00:00",
+    "task_id": "task_000010",
+    "input_data": {
+      "task_id": "task_000010",
+      "task": "РќР°Р№С‚Рё РІРµСЂРѕСЏС‚РЅРѕСЃС‚СЊ РїСЂР°РІРёР»СЊРЅРѕ СѓРіР°РґР°С‚СЊ 2 РїРѕСЃР»РµРґРЅРёРµ СЂР°Р·РЅС‹Рµ РЅРµС‡РµС‚РЅС‹Рµ С†РёС„СЂС‹ РЅРѕРјРµСЂР°. РћС‚РІРµС‚ Р·Р°РїРёС€РёС‚Рµ РІ РІРёРґРµ РґРµСЃСЏС‚РёС‡РЅРѕР№ РґСЂРѕР±Рё, РѕРєСЂСѓРіР»РёРІ РїРѕ РїСЂР°РІРёР»Р°Рј РјР°С‚РµРјР°С‚РёС‡РµСЃРєРѕРіРѕ РѕРєСЂСѓРіР»РµРЅРёСЏ РґРѕ 3 Р·РЅР°РєРѕРІ РїРѕСЃР»Рµ Р·Р°РїСЏС‚РѕР№.",
+      "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"p\", \"domain\": \"R\"}],\n  \"definitions\": {\n    \"distributions\": [\n      {\"name\": \"H\", \"kind\": \"uniform\", \"params\": {\"low\": 1, \"high\": 9}}\n    ]\n  },\n  \"targets\": [\n    {\"type\": \"probability\", \"event_expr\": \"(H1 & H2) | (!H1 & !H2)\"},\n    {\"type\": \"value\", \"name\": \"answer\", \"expr\": \"p\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+      "latency": 16.13387155532837,
+      "timestamp": "2025-09-22T11:44:58.297129",
+      "status": "success",
+      "parsed_json": {
+        "expr_format": "latex",
+        "symbols": [
+          {
+            "name": "p",
+            "domain": "R"
+          }
+        ],
+        "definitions": {
+          "distributions": [
+            {
+              "name": "H",
+              "kind": "uniform",
+              "params": {
+                "low": 1,
+                "high": 9
+              }
+            }
+          ]
+        },
+        "targets": [
+          {
+            "type": "probability",
+            "event_expr": "(H1 & H2) | (!H1 & !H2)"
+          },
+          {
+            "type": "value",
+            "name": "answer",
+            "expr": "p"
+          }
+        ],
+        "output": {
+          "mode": "decimal",
+          "round_to": 3
+        },
+        "meta": {
+          "lang": "ru",
+          "notes": ""
+        }
+      }
+    },
+    "error_type": "ValidationError",
+    "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 816, in <module>\n    math_ir = MathIR.model_validate(math_ir_data)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\AppData\\Roaming\\Python\\Python312\\site-packages\\pydantic\\main.py\", line 705, in model_validate\n    return cls.__pydantic_validator__.validate_python(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\npydantic_core._pydantic_core.ValidationError: 3 validation errors for MathIR\ndefinitions.distributions.0.kind\n  Input should be 'bernoulli', 'binomial', 'geometric', 'poisson' or 'hypergeom' [type=literal_error, input_value='uniform', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.11/v/literal_error\ndefinitions.distributions.0.params.low\n  Input should be a valid string [type=string_type, input_value=1, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.11/v/string_type\ndefinitions.distributions.0.params.high\n  Input should be a valid string [type=string_type, input_value=9, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.11/v/string_type\n",
+    "context": "3 validation errors for MathIR\ndefinitions.distributions.0.kind\n  Input should be 'bernoulli', 'binomial', 'geometric', 'poisson' or 'hypergeom' [type=literal_error, input_value='uniform', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.11/v/literal_error\ndefinitions.distributions.0.params.low\n  Input should be a valid string [type=string_type, input_value=1, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.11/v/string_type\ndefinitions.distributions.0.params.high\n  Input should be a valid string [type=string_type, input_value=9, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.11/v/string_type",
+    "actions": [
+      "Validated MathIR data"
+    ]
+  },
+  {
+    "timestamp": "2025-09-22T17:24:15.388723+00:00",
+    "task_id": "task_000010",
+    "input_data": {
+      "task_id": "task_000010",
+      "task": "РќР°Р№С‚Рё РІРµСЂРѕСЏС‚РЅРѕСЃС‚СЊ РїСЂР°РІРёР»СЊРЅРѕ СѓРіР°РґР°С‚СЊ 2 РїРѕСЃР»РµРґРЅРёРµ СЂР°Р·РЅС‹Рµ РЅРµС‡РµС‚РЅС‹Рµ С†РёС„СЂС‹ РЅРѕРјРµСЂР°. РћС‚РІРµС‚ Р·Р°РїРёС€РёС‚Рµ РІ РІРёРґРµ РґРµСЃСЏС‚РёС‡РЅРѕР№ РґСЂРѕР±Рё, РѕРєСЂСѓРіР»РёРІ РїРѕ РїСЂР°РІРёР»Р°Рј РјР°С‚РµРјР°С‚РёС‡РµСЃРєРѕРіРѕ РѕРєСЂСѓРіР»РµРЅРёСЏ РґРѕ 3 Р·РЅР°РєРѕРІ РїРѕСЃР»Рµ Р·Р°РїСЏС‚РѕР№.",
+      "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"p\", \"domain\": \"R\"}],\n  \"definitions\": {\n    \"distributions\": [\n      {\"name\": \"H\", \"kind\": \"uniform\", \"params\": {\"low\": 1, \"high\": 9}}\n    ]\n  },\n  \"targets\": [\n    {\"type\": \"probability\", \"event_expr\": \"(H1 & H2) | (!H1 & !H2)\"},\n    {\"type\": \"value\", \"name\": \"answer\", \"expr\": \"p\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+      "latency": 16.13387155532837,
+      "timestamp": "2025-09-22T11:44:58.297129",
+      "status": "success",
+      "parsed_json": {
+        "expr_format": "latex",
+        "symbols": [
+          {
+            "name": "p",
+            "domain": "R"
+          }
+        ],
+        "definitions": {
+          "distributions": [
+            {
+              "name": "H",
+              "kind": "uniform",
+              "params": {
+                "low": 1,
+                "high": 9
+              }
+            }
+          ]
+        },
+        "targets": [
+          {
+            "type": "probability",
+            "event_expr": "(H1 & H2) | (!H1 & !H2)"
+          },
+          {
+            "type": "value",
+            "name": "answer",
+            "expr": "p"
+          }
+        ],
+        "output": {
+          "mode": "decimal",
+          "round_to": 3
+        },
+        "meta": {
+          "lang": "ru",
+          "notes": ""
+        }
+      }
+    },
+    "error_type": "ValidationError",
+    "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 1070, in <module>\n    math_ir = MathIR.model_validate(math_ir_data)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\AppData\\Roaming\\Python\\Python312\\site-packages\\pydantic\\main.py\", line 705, in model_validate\n    return cls.__pydantic_validator__.validate_python(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\npydantic_core._pydantic_core.ValidationError: 2 validation errors for MathIR\ndefinitions.distributions.0.params.low\n  Input should be a valid string [type=string_type, input_value=1, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.11/v/string_type\ndefinitions.distributions.0.params.high\n  Input should be a valid string [type=string_type, input_value=9, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.11/v/string_type\n",
+    "context": "2 validation errors for MathIR\ndefinitions.distributions.0.params.low\n  Input should be a valid string [type=string_type, input_value=1, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.11/v/string_type\ndefinitions.distributions.0.params.high\n  Input should be a valid string [type=string_type, input_value=9, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.11/v/string_type",
+    "actions": [
+      "Validated MathIR data"
+    ]
+  },
+  {
+    "timestamp": "2025-09-22T17:35:17.198812+00:00",
+    "task_id": "task_000010",
+    "input_data": {
+      "task_id": "task_000010",
+      "task": "РќР°Р№С‚Рё РІРµСЂРѕСЏС‚РЅРѕСЃС‚СЊ РїСЂР°РІРёР»СЊРЅРѕ СѓРіР°РґР°С‚СЊ 2 РїРѕСЃР»РµРґРЅРёРµ СЂР°Р·РЅС‹Рµ РЅРµС‡РµС‚РЅС‹Рµ С†РёС„СЂС‹ РЅРѕРјРµСЂР°. РћС‚РІРµС‚ Р·Р°РїРёС€РёС‚Рµ РІ РІРёРґРµ РґРµСЃСЏС‚РёС‡РЅРѕР№ РґСЂРѕР±Рё, РѕРєСЂСѓРіР»РёРІ РїРѕ РїСЂР°РІРёР»Р°Рј РјР°С‚РµРјР°С‚РёС‡РµСЃРєРѕРіРѕ РѕРєСЂСѓРіР»РµРЅРёСЏ РґРѕ 3 Р·РЅР°РєРѕРІ РїРѕСЃР»Рµ Р·Р°РїСЏС‚РѕР№.",
+      "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"p\", \"domain\": \"R\"}],\n  \"definitions\": {\n    \"distributions\": [\n      {\"name\": \"H\", \"kind\": \"uniform\", \"params\": {\"low\": 1, \"high\": 9}}\n    ]\n  },\n  \"targets\": [\n    {\"type\": \"probability\", \"event_expr\": \"(H1 & H2) | (!H1 & !H2)\"},\n    {\"type\": \"value\", \"name\": \"answer\", \"expr\": \"p\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+      "latency": 16.13387155532837,
+      "timestamp": "2025-09-22T11:44:58.297129",
+      "status": "success",
+      "parsed_json": {
+        "expr_format": "latex",
+        "symbols": [
+          {
+            "name": "p",
+            "domain": "R"
+          }
+        ],
+        "definitions": {
+          "distributions": [
+            {
+              "name": "H",
+              "kind": "uniform",
+              "params": {
+                "low": 1,
+                "high": 9
+              }
+            }
+          ]
+        },
+        "targets": [
+          {
+            "type": "probability",
+            "event_expr": "(H1 & H2) | (!H1 & !H2)"
+          },
+          {
+            "type": "value",
+            "name": "answer",
+            "expr": "p"
+          }
+        ],
+        "output": {
+          "mode": "decimal",
+          "round_to": 3
+        },
+        "meta": {
+          "lang": "ru",
+          "notes": ""
+        }
+      }
+    },
+    "error_type": "ValidationError",
+    "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 1070, in <module>\n    math_ir = MathIR.model_validate(math_ir_data)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\AppData\\Roaming\\Python\\Python312\\site-packages\\pydantic\\main.py\", line 705, in model_validate\n    return cls.__pydantic_validator__.validate_python(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\npydantic_core._pydantic_core.ValidationError: 2 validation errors for MathIR\ndefinitions.distributions.0.params.low\n  Input should be a valid string [type=string_type, input_value=1, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.11/v/string_type\ndefinitions.distributions.0.params.high\n  Input should be a valid string [type=string_type, input_value=9, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.11/v/string_type\n",
+    "context": "2 validation errors for MathIR\ndefinitions.distributions.0.params.low\n  Input should be a valid string [type=string_type, input_value=1, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.11/v/string_type\ndefinitions.distributions.0.params.high\n  Input should be a valid string [type=string_type, input_value=9, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.11/v/string_type",
+    "actions": [
+      "Validated MathIR data"
+    ]
+  },
+  {
+    "timestamp": "2025-09-22T18:13:25.113975+00:00",
+    "task_id": "global",
+    "input_data": {
+      "meta": {},
+      "task_type": "auto",
+      "expr_format": "latex",
+      "prob_space": null,
+      "assumptions": {},
+      "constants": {},
+      "symbols": [
+        {
+          "name": "x",
+          "domain": "R"
+        }
+      ],
+      "definitions": {
+        "functions": [
+          {
+            "name": "f",
+            "args": [
+              "x"
+            ],
+            "expr": "x^2"
+          }
+        ],
+        "sequences": [],
+        "matrices": [],
+        "distributions": [],
+        "geometry": []
+      },
+      "transforms": [],
+      "conditions": [],
+      "targets": [
+        {
+          "type": "value",
+          "name": "result",
+          "expr": "f(3)"
+        }
+      ],
+      "output": {
+        "mode": "decimal",
+        "round_to": 3,
+        "simplify": true,
+        "rationalize": false
+      },
+      "validation": {
+        "tolerance_abs": 1e-09,
+        "check_domain_violations": true
+      }
+    },
+    "error_type": "TypeError",
+    "traceback": "ValueError: Error from parse_expr with transformed code: 'x ^Integer (2 )'\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"c:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 790, in <module>\n    results = run_mathir(math_ir)\n              ^^^^^^^^^^^^^^^^^^^\n  File \"c:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 609, in run_mathir\n    rt = build_runtime(ir)\n         ^^^^^^^^^^^^^^^^^\n  File \"c:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 257, in build_runtime\n    expr = parse_any(f_def.expr, {}, func_arg_context)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"c:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 17, in parse_any\n    expr = parse_expr(s, transformations=TRANS, local_dict=context)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\AppData\\Roaming\\Python\\Python312\\site-packages\\sympy\\parsing\\sympy_parser.py\", line 1090, in parse_expr\n    raise e from ValueError(f\"Error from parse_expr with transformed code: {code!r}\")\n  File \"C:\\Users\\artem\\AppData\\Roaming\\Python\\Python312\\site-packages\\sympy\\parsing\\sympy_parser.py\", line 1081, in parse_expr\n    rv = eval_expr(code, local_dict, global_dict)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\AppData\\Roaming\\Python\\Python312\\site-packages\\sympy\\parsing\\sympy_parser.py\", line 905, in eval_expr\n    expr = eval(\n           ^^^^^\n  File \"<string>\", line 1, in <module>\nTypeError: unsupported operand type(s) for ^: 'Symbol' and 'Integer'\n",
+    "context": "unsupported operand type(s) for ^: 'Symbol' and 'Integer'",
+    "actions": [
+      "Global processing"
+    ]
+  }
+]{"timestamp": "2025-09-22T18:30:28.710639+00:00", "task_id": "task_000001", "input_data": {"task_id": "task_000001", "task": "Р’С‹С‡РёСЃР»РёС‚СЊ $\\displaystyle \\lim_{n \\to \\infty} \\frac{n \\cos(n^2 + e^n)}{2^n - 1}$. РћС‚РІРµС‚ Р·Р°РїРёС€РёС‚Рµ РІ РІРёРґРµ РґРµСЃСЏС‚РёС‡РЅРѕР№ РґСЂРѕР±Рё, РѕРєСЂСѓРіР»РёРІ РїРѕ РїСЂР°РІРёР»Р°Рј РјР°С‚РµРјР°С‚РёС‡РµСЃРєРѕРіРѕ РѕРєСЂСѓРіР»РµРЅРёСЏ РґРѕ 3 Р·РЅР°РєРѕРІ РїРѕСЃР»Рµ Р·Р°РїСЏС‚РѕР№.", "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"limit\",\n  \"symbols\": [{\"name\": \"n\", \"domain\": \"N+\"}],\n  \"targets\": [\n    {\"type\": \"limit\", \"expr\": \"n * cos(n^2 + exp(n)) / (2^n - 1)\", \"var\": \"n\", \"to\": \"oo\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}", "latency": 12.482339143753052, "timestamp": "2025-09-22T11:42:50.725007", "status": "success", "parsed_json": {"expr_format": "latex", "task_type": "limit", "symbols": [{"name": "n", "domain": "N+"}], "targets": [{"type": "limit", "expr": "n * cos(n^2 + exp(n)) / (2^n - 1)", "var": "n", "to": "oo"}], "output": {"mode": "decimal", "round_to": 3}, "meta": {"lang": "ru", "notes": ""}}}, "error_type": "TypeError", "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 794, in <module>\n    results = run_mathir(math_ir)\n              ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 664, in run_mathir\n    k, v = exec_limit(rt, tgt)\n           ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 314, in exec_limit\n    expr_template = parse_any(t.expr).xreplace(rt.applied_subs)\n                    ^^^^^^^^^^^^^^^^^\nTypeError: parse_any() missing 2 required positional arguments: 'applied_subs' and 'context'\n", "context": "parse_any() missing 2 required positional arguments: 'applied_subs' and 'context'", "actions": ["Validated MathIR data", "Built runtime context"]}
+{"timestamp": "2025-09-22T18:30:28.713639+00:00", "task_id": "task_000002", "input_data": {"task_id": "task_000002", "task": "Р’С‹С‡РёСЃР»РёС‚СЊ $\\displaystyle \\lim_{n \\to \\infty} (\\sqrt{n + 1} - \\sqrt{n})$. РћС‚РІРµС‚ Р·Р°РїРёС€РёС‚Рµ РІ РІРёРґРµ РґРµСЃСЏС‚РёС‡РЅРѕР№ РґСЂРѕР±Рё, РѕРєСЂСѓРіР»РёРІ РїРѕ РїСЂР°РІРёР»Р°Рј РјР°С‚РµРјР°С‚РёС‡РµСЃРєРѕРіРѕ РѕРєСЂСѓРіР»РµРЅРёСЏ РґРѕ 3 Р·РЅР°РєРѕРІ РїРѕСЃР»Рµ Р·Р°РїСЏС‚РѕР№.", "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"limit\",\n  \"symbols\": [{\"name\": \"n\", \"domain\": \"N+\"}],\n  \"targets\": [\n    {\"type\": \"limit\", \"expr\": \"\\\\sqrt{n + 1} - \\\\sqrt{n}\", \"var\": \"n\", \"to\": \"oo\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}", "latency": 11.755307674407959, "timestamp": "2025-09-22T11:43:02.480735", "status": "success", "parsed_json": {"expr_format": "latex", "task_type": "limit", "symbols": [{"name": "n", "domain": "N+"}], "targets": [{"type": "limit", "expr": "\\sqrt{n + 1} - \\sqrt{n}", "var": "n", "to": "oo"}], "output": {"mode": "decimal", "round_to": 3}, "meta": {"lang": "ru", "notes": ""}}}, "error_type": "TypeError", "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 794, in <module>\n    results = run_mathir(math_ir)\n              ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 664, in run_mathir\n    k, v = exec_limit(rt, tgt)\n           ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 314, in exec_limit\n    expr_template = parse_any(t.expr).xreplace(rt.applied_subs)\n                    ^^^^^^^^^^^^^^^^^\nTypeError: parse_any() missing 2 required positional arguments: 'applied_subs' and 'context'\n", "context": "parse_any() missing 2 required positional arguments: 'applied_subs' and 'context'", "actions": ["Validated MathIR data", "Built runtime context"]}
+{"timestamp": "2025-09-22T18:30:33.859526+00:00", "task_id": "task_000009", "input_data": {"task_id": "task_000009", "task": "РќР°Р№РґРёС‚Рµ СЃСѓРјРјСѓ СЂСЏРґР°: $\\displaystyle \\frac{1}{1 \\cdot 2 \\cdot 3} + \\frac{1}{2 \\cdot 3 \\cdot 4} + \\frac{1}{3 \\cdot 4 \\cdot 5} + \\frac{1}{4 \\cdot 5 \\cdot 6} + \\ldots$. РћС‚РІРµС‚ Р·Р°РїРёС€РёС‚Рµ РІ РІРёРґРµ РґРµСЃСЏС‚РёС‡РЅРѕР№ РґСЂРѕР±Рё, РѕРєСЂСѓРіР»РёРІ РїРѕ РїСЂР°РІРёР»Р°Рј РјР°С‚РµРјР°С‚РёС‡РµСЃРєРѕРіРѕ РѕРєСЂСѓРіР»РµРЅРёСЏ РґРѕ 3 Р·РЅР°РєРѕРІ РїРѕСЃР»Рµ Р·Р°РїСЏС‚РѕР№.", "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"n\", \"domain\": \"N+\"}],\n  \"targets\": [\n    {\n      \"type\": \"sum\",\n      \"term\": \"\\\\frac{1}{n(n+1)(n+2)}\",\n      \"idx\": \"n\",\n      \"start\": \"1\",\n      \"end\": \"oo\"\n    }\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}", "latency": 12.955434322357178, "timestamp": "2025-09-22T11:44:42.162876", "status": "success", "parsed_json": {"expr_format": "latex", "symbols": [{"name": "n", "domain": "N+"}], "targets": [{"type": "sum", "term": "\\frac{1}{n(n+1)(n+2)}", "idx": "n", "start": "1", "end": "oo"}], "output": {"mode": "decimal", "round_to": 3}, "meta": {"lang": "ru", "notes": ""}}}, "error_type": "TypeError", "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 794, in <module>\n    results = run_mathir(math_ir)\n              ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 666, in run_mathir\n    k, v = exec_sum(rt, tgt)\n           ^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 338, in exec_sum\n    term_template = parse_any(t.term).xreplace(rt.applied_subs)\n                    ^^^^^^^^^^^^^^^^^\nTypeError: parse_any() missing 2 required positional arguments: 'applied_subs' and 'context'\n", "context": "parse_any() missing 2 required positional arguments: 'applied_subs' and 'context'", "actions": ["Validated MathIR data", "Built runtime context"]}
+{"timestamp": "2025-09-22T18:30:33.869188+00:00", "task_id": "task_000010", "input_data": {"task_id": "task_000010", "task": "РќР°Р№С‚Рё РІРµСЂРѕСЏС‚РЅРѕСЃС‚СЊ РїСЂР°РІРёР»СЊРЅРѕ СѓРіР°РґР°С‚СЊ 2 РїРѕСЃР»РµРґРЅРёРµ СЂР°Р·РЅС‹Рµ РЅРµС‡РµС‚РЅС‹Рµ С†РёС„СЂС‹ РЅРѕРјРµСЂР°. РћС‚РІРµС‚ Р·Р°РїРёС€РёС‚Рµ РІ РІРёРґРµ РґРµСЃСЏС‚РёС‡РЅРѕР№ РґСЂРѕР±Рё, РѕРєСЂСѓРіР»РёРІ РїРѕ РїСЂР°РІРёР»Р°Рј РјР°С‚РµРјР°С‚РёС‡РµСЃРєРѕРіРѕ РѕРєСЂСѓРіР»РµРЅРёСЏ РґРѕ 3 Р·РЅР°РєРѕРІ РїРѕСЃР»Рµ Р·Р°РїСЏС‚РѕР№.", "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"p\", \"domain\": \"R\"}],\n  \"definitions\": {\n    \"distributions\": [\n      {\"name\": \"H\", \"kind\": \"uniform\", \"params\": {\"low\": 1, \"high\": 9}}\n    ]\n  },\n  \"targets\": [\n    {\"type\": \"probability\", \"event_expr\": \"(H1 & H2) | (!H1 & !H2)\"},\n    {\"type\": \"value\", \"name\": \"answer\", \"expr\": \"p\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}", "latency": 16.13387155532837, "timestamp": "2025-09-22T11:44:58.297129", "status": "success", "parsed_json": {"expr_format": "latex", "symbols": [{"name": "p", "domain": "R"}], "definitions": {"distributions": [{"name": "H", "kind": "uniform", "params": {"low": 1, "high": 9}}]}, "targets": [{"type": "probability", "event_expr": "(H1 & H2) | (!H1 & !H2)"}, {"type": "value", "name": "answer", "expr": "p"}], "output": {"mode": "decimal", "round_to": 3}, "meta": {"lang": "ru", "notes": ""}}}, "error_type": "ValidationError", "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 792, in <module>\n    math_ir = MathIR.model_validate(math_ir_data)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\AppData\\Roaming\\Python\\Python312\\site-packages\\pydantic\\main.py\", line 705, in model_validate\n    return cls.__pydantic_validator__.validate_python(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\npydantic_core._pydantic_core.ValidationError: 3 validation errors for MathIR\ndefinitions.distributions.0.kind\n  Input should be 'bernoulli', 'binomial', 'geometric', 'poisson' or 'hypergeom' [type=literal_error, input_value='uniform', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.11/v/literal_error\ndefinitions.distributions.0.params.low\n  Input should be a valid string [type=string_type, input_value=1, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.11/v/string_type\ndefinitions.distributions.0.params.high\n  Input should be a valid string [type=string_type, input_value=9, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.11/v/string_type\n", "context": "3 validation errors for MathIR\ndefinitions.distributions.0.kind\n  Input should be 'bernoulli', 'binomial', 'geometric', 'poisson' or 'hypergeom' [type=literal_error, input_value='uniform', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.11/v/literal_error\ndefinitions.distributions.0.params.low\n  Input should be a valid string [type=string_type, input_value=1, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.11/v/string_type\ndefinitions.distributions.0.params.high\n  Input should be a valid string [type=string_type, input_value=9, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.11/v/string_type", "actions": ["Validated MathIR data"]}
+{"timestamp": "2025-09-22T18:46:50.242109+00:00", "task_id": "task_000010", "input_data": {"task_id": "task_000010", "task": "РќР°Р№С‚Рё РІРµСЂРѕСЏС‚РЅРѕСЃС‚СЊ РїСЂР°РІРёР»СЊРЅРѕ СѓРіР°РґР°С‚СЊ 2 РїРѕСЃР»РµРґРЅРёРµ СЂР°Р·РЅС‹Рµ РЅРµС‡РµС‚РЅС‹Рµ С†РёС„СЂС‹ РЅРѕРјРµСЂР°. РћС‚РІРµС‚ Р·Р°РїРёС€РёС‚Рµ РІ РІРёРґРµ РґРµСЃСЏС‚РёС‡РЅРѕР№ РґСЂРѕР±Рё, РѕРєСЂСѓРіР»РёРІ РїРѕ РїСЂР°РІРёР»Р°Рј РјР°С‚РµРјР°С‚РёС‡РµСЃРєРѕРіРѕ РѕРєСЂСѓРіР»РµРЅРёСЏ РґРѕ 3 Р·РЅР°РєРѕРІ РїРѕСЃР»Рµ Р·Р°РїСЏС‚РѕР№.", "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"p\", \"domain\": \"R\"}],\n  \"definitions\": {\n    \"distributions\": [\n      {\"name\": \"H\", \"kind\": \"uniform\", \"params\": {\"low\": 1, \"high\": 9}}\n    ]\n  },\n  \"targets\": [\n    {\"type\": \"probability\", \"event_expr\": \"(H1 & H2) | (!H1 & !H2)\"},\n    {\"type\": \"value\", \"name\": \"answer\", \"expr\": \"p\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}", "latency": 16.13387155532837, "timestamp": "2025-09-22T11:44:58.297129", "status": "success", "parsed_json": {"expr_format": "latex", "symbols": [{"name": "p", "domain": "R"}], "definitions": {"distributions": [{"name": "H", "kind": "uniform", "params": {"low": 1, "high": 9}}]}, "targets": [{"type": "probability", "event_expr": "(H1 & H2) | (!H1 & !H2)"}, {"type": "value", "name": "answer", "expr": "p"}], "output": {"mode": "decimal", "round_to": 3}, "meta": {"lang": "ru", "notes": ""}}}, "error_type": "ValidationError", "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\artem\\Projects\\MathJsonParser\\mathir_parser\\main.py\", line 838, in <module>\n    math_ir = MathIR.model_validate(math_ir_data)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\artem\\AppData\\Roaming\\Python\\Python312\\site-packages\\pydantic\\main.py\", line 705, in model_validate\n    return cls.__pydantic_validator__.validate_python(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\npydantic_core._pydantic_core.ValidationError: 3 validation errors for MathIR\ndefinitions.distributions.0.kind\n  Input should be 'bernoulli', 'binomial', 'geometric', 'poisson' or 'hypergeom' [type=literal_error, input_value='uniform', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.11/v/literal_error\ndefinitions.distributions.0.params.low\n  Input should be a valid string [type=string_type, input_value=1, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.11/v/string_type\ndefinitions.distributions.0.params.high\n  Input should be a valid string [type=string_type, input_value=9, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.11/v/string_type\n", "context": "3 validation errors for MathIR\ndefinitions.distributions.0.kind\n  Input should be 'bernoulli', 'binomial', 'geometric', 'poisson' or 'hypergeom' [type=literal_error, input_value='uniform', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.11/v/literal_error\ndefinitions.distributions.0.params.low\n  Input should be a valid string [type=string_type, input_value=1, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.11/v/string_type\ndefinitions.distributions.0.params.high\n  Input should be a valid string [type=string_type, input_value=9, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.11/v/string_type", "actions": ["Validated MathIR data"]}

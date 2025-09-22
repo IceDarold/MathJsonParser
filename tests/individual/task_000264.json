@@ -1,0 +1,28 @@
+{
+  "task_id": "task_000264",
+  "task": "Вычисли $ \\displaystyle \\lim_{x \\rightarrow 0} \\sqrt{1-\\cos x^2}/(1-\\cos x)$. Ответ запиши в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"limit\",\n  \"targets\": [\n    {\n      \"type\": \"limit\",\n      \"expr\": \"\\\\sqrt{1-\\\\cos(x^2)}/(1-\\\\cos(x))\",\n      \"var\": \"x\",\n      \"to\": \"0\"\n    }\n  ],\n  \"output\": {\n    \"mode\": \"decimal\",\n    \"round_to\": 3\n  },\n  \"meta\": {\n    \"lang\": \"ru\",\n    \"notes\": \"\"\n  }\n}",
+  "latency": 12.55192255973816,
+  "timestamp": "2025-09-22T12:54:10.251631",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "limit",
+    "targets": [
+      {
+        "type": "limit",
+        "expr": "\\sqrt{1-\\cos(x^2)}/(1-\\cos(x))",
+        "var": "x",
+        "to": "0"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

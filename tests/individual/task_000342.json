@@ -1,0 +1,40 @@
+{
+  "task_id": "task_000342",
+  "task": "Для всех действительных $x$ и $y$ выполняется равенство $f(x^2 + y) = f(x) + f(y^2)$. Найдите $f(-1)$. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}, {\"name\": \"y\", \"domain\": \"R\"}],\n  \"targets\": [\n    {\n      \"type\": \"solve_for\",\n      \"unknowns\": [\"f(-1)\"],\n      \"equations\": [\"f(x^2 + y) = f(x) + f(y^2)\"]\n    }\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 13.262316226959229,
+  "timestamp": "2025-09-22T13:12:25.972330",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R"
+      },
+      {
+        "name": "y",
+        "domain": "R"
+      }
+    ],
+    "targets": [
+      {
+        "type": "solve_for",
+        "unknowns": [
+          "f(-1)"
+        ],
+        "equations": [
+          "f(x^2 + y) = f(x) + f(y^2)"
+        ]
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

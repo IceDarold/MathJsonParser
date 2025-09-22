@@ -1,0 +1,36 @@
+{
+  "task_id": "task_000015",
+  "task": "В телефонном номере 135-3?-?? стерлись три последние цифры. Найти вероятность, что стерлись одинаковые цифры. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}],\n  \"targets\": [\n    {\n      \"type\": \"probability\",\n      \"event_expr\": \"!((last_digit == digit1) & (last_digit == digit2))\"\n    },\n    {\"type\": \"value\", \"name\": \"answer\", \"expr\": \"x\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 12.859622240066528,
+  "timestamp": "2025-09-22T11:55:19.906199",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R"
+      }
+    ],
+    "targets": [
+      {
+        "type": "probability",
+        "event_expr": "!((last_digit == digit1) & (last_digit == digit2))"
+      },
+      {
+        "type": "value",
+        "name": "answer",
+        "expr": "x"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

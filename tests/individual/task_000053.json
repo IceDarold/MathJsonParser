@@ -1,0 +1,53 @@
+{
+  "task_id": "task_000053",
+  "task": "В телефонном номере 135-3?-?? стерлись три последние цифры. Найти вероятность, что стерлись различные цифры, отличные от 1, 3, 5. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"probability\",\n  \"symbols\": [{\"name\": \"digit\", \"domain\": \"N\"}],\n  \"definitions\": {\n    \"distributions\": [\n      {\"name\": \"H\", \"kind\": \"uniform\", \"params\": {\"min\": 0, \"max\": 9}}\n    ]\n  },\n  \"prob_space\": {\"independence\": [[\"H1\", \"H2\", \"H3\"]]},\n  \"targets\": [\n    {\"type\": \"probability\", \"event_expr\": \"(H1 != 1) & (H1 != 3) & (H1 != 5) & (H2 != 1) & (H2 != 3) & (H2 != 5) & (H3 != 1) & (H3 != 3) & (H3 != 5)\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 21.715375185012817,
+  "timestamp": "2025-09-22T12:04:15.653391",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "probability",
+    "symbols": [
+      {
+        "name": "digit",
+        "domain": "N"
+      }
+    ],
+    "definitions": {
+      "distributions": [
+        {
+          "name": "H",
+          "kind": "uniform",
+          "params": {
+            "min": 0,
+            "max": 9
+          }
+        }
+      ]
+    },
+    "prob_space": {
+      "independence": [
+        [
+          "H1",
+          "H2",
+          "H3"
+        ]
+      ]
+    },
+    "targets": [
+      {
+        "type": "probability",
+        "event_expr": "(H1 != 1) & (H1 != 3) & (H1 != 5) & (H2 != 1) & (H2 != 3) & (H2 != 5) & (H3 != 1) & (H3 != 3) & (H3 != 5)"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

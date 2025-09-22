@@ -1,0 +1,28 @@
+{
+  "task_id": "task_000203",
+  "task": "Вычисли $ \\displaystyle \\lim_{x \\rightarrow +\\infty} \\sin{\\sqrt{x+1}} - \\sin{\\sqrt{x}}$. Ответ запиши в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"limit\",\n  \"targets\": [\n    {\n      \"type\": \"limit\",\n      \"expr\": \"\\\\sin{\\\\sqrt{x+1}} - \\\\sin{\\\\sqrt{x}}\",\n      \"var\": \"x\",\n      \"to\": \"+\\\\infty\"\n    }\n  ],\n  \"output\": {\n    \"mode\": \"decimal\",\n    \"round_to\": 3\n  },\n  \"meta\": {\n    \"lang\": \"ru\",\n    \"notes\": \"\"\n  }\n}",
+  "latency": 12.642601251602173,
+  "timestamp": "2025-09-22T12:39:22.153987",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "limit",
+    "targets": [
+      {
+        "type": "limit",
+        "expr": "\\sin{\\sqrt{x+1}} - \\sin{\\sqrt{x}}",
+        "var": "x",
+        "to": "+\\infty"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

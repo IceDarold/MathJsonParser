@@ -1,0 +1,37 @@
+{
+  "task_id": "task_000008",
+  "task": "Вычислить несобственный интеграл: $\\displaystyle \\int_{2}^{+\\infty} \\frac{dx}{x^2+2x-3}$. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}],\n  \"targets\": [\n    {\"type\": \"integral_def\", \"expr\": \"1/(x^2 + 2*x - 3)\", \"var\": \"x\", \"limits\": [2, \"oo\"], \"name\": \"I\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 12.602902889251709,
+  "timestamp": "2025-09-22T11:53:45.950375",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R"
+      }
+    ],
+    "targets": [
+      {
+        "type": "integral_def",
+        "expr": "1/(x^2 + 2*x - 3)",
+        "var": "x",
+        "limits": [
+          2,
+          "oo"
+        ],
+        "name": "I"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

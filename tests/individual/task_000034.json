@@ -1,0 +1,35 @@
+{
+  "task_id": "task_000034",
+  "task": "Указать такие $N$, начиная с которых можно гарантировать выполнение неравенства $|a_n| < \\varepsilon$ при $a_n = \\frac{1}{n}$ и $\\varepsilon = 0.001$. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"algebra\",\n  \"symbols\": [{\"name\": \"n\", \"domain\": \"N+\"}],\n  \"targets\": [{\n    \"type\": \"sequence_limit_condition\",\n    \"sequence_expr\": \"1/n\",\n    \"var\": \"n\",\n    \"inequality\": \"|1/n| < 0.001\",\n    \"epsilon\": \"0.001\"\n  }],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 13.734807252883911,
+  "timestamp": "2025-09-22T11:59:47.568235",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "algebra",
+    "symbols": [
+      {
+        "name": "n",
+        "domain": "N+"
+      }
+    ],
+    "targets": [
+      {
+        "type": "sequence_limit_condition",
+        "sequence_expr": "1/n",
+        "var": "n",
+        "inequality": "|1/n| < 0.001",
+        "epsilon": "0.001"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

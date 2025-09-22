@@ -1,0 +1,39 @@
+{
+  "task_id": "task_000278",
+  "task": "Брошена игральная кость. Найти вероятность выпадения числа > 4. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"probability\",\n  \"definitions\": {\n    \"distributions\": [\n      {\"name\": \"H\", \"kind\": \"uniform\", \"params\": {\"min\": 1, \"max\": 6}}\n    ]\n  },\n  \"targets\": [\n    {\"type\": \"probability\", \"event_expr\": \"!((H <= 4))\", \"name\": \"answer\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 13.423167943954468,
+  "timestamp": "2025-09-22T12:57:44.006459",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "probability",
+    "definitions": {
+      "distributions": [
+        {
+          "name": "H",
+          "kind": "uniform",
+          "params": {
+            "min": 1,
+            "max": 6
+          }
+        }
+      ]
+    },
+    "targets": [
+      {
+        "type": "probability",
+        "event_expr": "!((H <= 4))",
+        "name": "answer"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

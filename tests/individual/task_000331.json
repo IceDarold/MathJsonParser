@@ -1,0 +1,33 @@
+{
+  "task_id": "task_000331",
+  "task": "Вычислить $\\displaystyle \\lim_{n \\to \\infty} \\frac{n^4 + 1}{n^2 + 3}$. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"n\", \"domain\": \"N+\"}],\n  \"targets\": [\n    {\"type\": \"limit\", \"expr\": \"\\\\frac{n^4 + 1}{n^2 + 3}\", \"var\": \"n\", \"to\": \"oo\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 11.64573621749878,
+  "timestamp": "2025-09-22T13:09:38.903265",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "symbols": [
+      {
+        "name": "n",
+        "domain": "N+"
+      }
+    ],
+    "targets": [
+      {
+        "type": "limit",
+        "expr": "\\frac{n^4 + 1}{n^2 + 3}",
+        "var": "n",
+        "to": "oo"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

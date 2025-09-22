@@ -1,0 +1,37 @@
+{
+  "task_id": "task_000260",
+  "task": "Вычислить интеграл: $\\displaystyle \\int_{1}^{4} \\frac{dx}{\\sqrt{5x-4}}$. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}],\n  \"targets\": [\n    {\"type\": \"integral_def\", \"expr\": \"1/\\\\sqrt{5x-4}\", \"var\": \"x\", \"limits\": [1, 4], \"name\": \"I\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 12.024847745895386,
+  "timestamp": "2025-09-22T12:53:08.031679",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R"
+      }
+    ],
+    "targets": [
+      {
+        "type": "integral_def",
+        "expr": "1/\\sqrt{5x-4}",
+        "var": "x",
+        "limits": [
+          1,
+          4
+        ],
+        "name": "I"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "task_id": "task_000138",
+  "task": "В очереди из 10 человек найти вероятность, что A и B разделены тремя лицами. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"probability\",\n  \"symbols\": [{\"name\": \"A\", \"domain\": \"R\"}, {\"name\": \"B\", \"domain\": \"R\"}],\n  \"targets\": [\n    {\n      \"type\": \"probability\",\n      \"event_expr\": \"!((A-3 < B) & (B < A))\"\n    }\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 12.60373592376709,
+  "timestamp": "2025-09-22T12:24:09.674411",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "probability",
+    "symbols": [
+      {
+        "name": "A",
+        "domain": "R"
+      },
+      {
+        "name": "B",
+        "domain": "R"
+      }
+    ],
+    "targets": [
+      {
+        "type": "probability",
+        "event_expr": "!((A-3 < B) & (B < A))"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

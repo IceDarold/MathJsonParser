@@ -1,0 +1,37 @@
+{
+  "task_id": "task_000279",
+  "task": "Вычисли $ \\displaystyle \\int_0^1 \\sqrt{\\tan(x)}dx$.Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}],\n  \"targets\": [\n    {\"type\": \"integral_def\", \"expr\": \"\\\\sqrt{\\\\tan(x)}\", \"var\": \"x\", \"limits\": [0, 1], \"name\": \"I\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 11.84509563446045,
+  "timestamp": "2025-09-22T12:57:55.851905",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R"
+      }
+    ],
+    "targets": [
+      {
+        "type": "integral_def",
+        "expr": "\\sqrt{\\tan(x)}",
+        "var": "x",
+        "limits": [
+          0,
+          1
+        ],
+        "name": "I"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

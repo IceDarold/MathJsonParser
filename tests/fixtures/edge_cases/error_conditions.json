@@ -1,0 +1,44 @@
+[
+  {
+    "description": "Division by zero error case",
+    "mathir": {
+      "expr_format": "latex",
+      "symbols": [{"name": "x", "domain": "R"}],
+      "targets": [{
+        "type": "value",
+        "name": "result",
+        "expr": "\\frac{1}{0}"
+      }],
+      "output": {"mode": "exact"}
+    },
+    "expected_results": {
+      "error_type": "division_by_zero",
+      "should_fail": true
+    },
+    "metadata": {
+      "category": "error_handling",
+      "test_type": "edge_case"
+    }
+  },
+  {
+    "description": "Complex square root",
+    "mathir": {
+      "expr_format": "latex",
+      "symbols": [{"name": "x", "domain": "R"}],
+      "targets": [{
+        "type": "value",
+        "name": "result",
+        "expr": "\\sqrt{-1}"
+      }],
+      "output": {"mode": "exact"}
+    },
+    "expected_results": {
+      "result": "I",
+      "is_complex": true
+    },
+    "metadata": {
+      "category": "complex_numbers",
+      "test_type": "edge_case"
+    }
+  }
+]

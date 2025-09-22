@@ -1,0 +1,51 @@
+{
+  "task_id": "task_000327",
+  "task": "На полке в случайном порядке расставлено 40 книг, среди которых находится трехтомник А. С. Пушкина. Найти вероятность, что тома стоят в порядке возрастания слева направо (не обязательно рядом). Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"probability\",\n  \"symbols\": [{\"name\": \"n\", \"domain\": \"N+\"}],\n  \"definitions\": {\n    \"distributions\": [\n      {\"name\": \"H\", \"kind\": \"uniform\", \"params\": {\"min\": 1, \"max\": 40}}\n    ]\n  },\n  \"prob_space\": {\"independence\": [[\"H\"]]},\n  \"targets\": [\n    {\"type\": \"probability\", \"event_expr\": \"H1 & H2 & H3 & !H1.H2.H3\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 16.226550340652466,
+  "timestamp": "2025-09-22T13:08:49.963477",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "probability",
+    "symbols": [
+      {
+        "name": "n",
+        "domain": "N+"
+      }
+    ],
+    "definitions": {
+      "distributions": [
+        {
+          "name": "H",
+          "kind": "uniform",
+          "params": {
+            "min": 1,
+            "max": 40
+          }
+        }
+      ]
+    },
+    "prob_space": {
+      "independence": [
+        [
+          "H"
+        ]
+      ]
+    },
+    "targets": [
+      {
+        "type": "probability",
+        "event_expr": "H1 & H2 & H3 & !H1.H2.H3"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

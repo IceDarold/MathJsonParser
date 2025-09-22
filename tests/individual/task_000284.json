@@ -1,0 +1,54 @@
+{
+  "task_id": "task_000284",
+  "task": "В ящике 10 красных и 6 синих пуговиц. Найти вероятность, что 2 вынутые пуговицы одного цвета. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"probability\",\n  \"symbols\": [{\"name\": \"n\", \"domain\": \"N+\"}],\n  \"definitions\": {\n    \"distributions\": [\n      {\"name\": \"H_red\", \"kind\": \"hypergeom\", \"params\": {\"N\": 16, \"K\": 10, \"n\": 2}},\n      {\"name\": \"H_blue\", \"kind\": \"hypergeom\", \"params\": {\"N\": 16, \"K\": 6, \"n\": 2}}\n    ]\n  },\n  \"targets\": [\n    {\"type\": \"probability\", \"event_expr\": \"(H_red.win) + (H_blue.win)\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 18.542557954788208,
+  "timestamp": "2025-09-22T12:59:04.319991",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "probability",
+    "symbols": [
+      {
+        "name": "n",
+        "domain": "N+"
+      }
+    ],
+    "definitions": {
+      "distributions": [
+        {
+          "name": "H_red",
+          "kind": "hypergeom",
+          "params": {
+            "N": 16,
+            "K": 10,
+            "n": 2
+          }
+        },
+        {
+          "name": "H_blue",
+          "kind": "hypergeom",
+          "params": {
+            "N": 16,
+            "K": 6,
+            "n": 2
+          }
+        }
+      ]
+    },
+    "targets": [
+      {
+        "type": "probability",
+        "event_expr": "(H_red.win) + (H_blue.win)"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

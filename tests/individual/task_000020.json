@@ -1,0 +1,34 @@
+{
+  "task_id": "task_000020",
+  "task": "Вычисли $ \\displaystyle \\lim_{x \\rightarrow 0}\\sqrt[x]{1-2x} $. Ответ запиши в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"limit\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}],\n  \"targets\": [\n    {\"type\": \"limit\", \"expr\": \"\\\\sqrt[x]{1-2x}\", \"var\": \"x\", \"to\": \"0\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 11.839029312133789,
+  "timestamp": "2025-09-22T11:56:36.879846",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "limit",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R"
+      }
+    ],
+    "targets": [
+      {
+        "type": "limit",
+        "expr": "\\sqrt[x]{1-2x}",
+        "var": "x",
+        "to": "0"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

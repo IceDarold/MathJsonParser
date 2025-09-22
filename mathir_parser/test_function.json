@@ -1,0 +1,27 @@
+{
+  "meta": {},
+  "task_type": "auto",
+  "expr_format": "latex",
+  "prob_space": null,
+  "assumptions": {},
+  "constants": {},
+  "symbols": [
+    {"name": "x", "domain": "R"}
+  ],
+  "definitions": {
+    "functions": [
+      {"name": "f", "args": ["x"], "expr": "x^2"}
+    ],
+    "sequences": [],
+    "matrices": [],
+    "distributions": [],
+    "geometry": []
+  },
+  "transforms": [],
+  "conditions": [],
+  "targets": [
+    {"type": "value", "name": "result", "expr": "f(3)"}
+  ],
+  "output": {"mode": "decimal", "round_to": 3, "simplify": true, "rationalize": false},
+  "validation": {"tolerance_abs": 1e-9, "check_domain_violations": true}
+}

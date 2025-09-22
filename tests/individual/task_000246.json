@@ -1,0 +1,34 @@
+{
+  "task_id": "task_000246",
+  "task": "Вычисли $ \\displaystyle \\lim_{x \\rightarrow 0}(\\sqrt[3]{27+x}-\\sqrt[3]{27-x})/(x+2\\sqrt[3]{x^4})$. Ответ запиши в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"limit\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}],\n  \"targets\": [\n    {\n      \"type\": \"limit\",\n      \"expr\": \"\\\\sqrt[3]{27+x}-\\\\sqrt[3]{27-x}\",\n      \"var\": \"x\",\n      \"to\": \"0\"\n    }\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 13.006335496902466,
+  "timestamp": "2025-09-22T12:49:36.392556",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "limit",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R"
+      }
+    ],
+    "targets": [
+      {
+        "type": "limit",
+        "expr": "\\sqrt[3]{27+x}-\\sqrt[3]{27-x}",
+        "var": "x",
+        "to": "0"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

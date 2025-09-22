@@ -1,0 +1,47 @@
+{
+  "task_id": "task_000191",
+  "task": "Найти обратную матрицу для: \\[ \\begin{pmatrix} 25 & 5 & 3 \\\\ 10 & 2 & 1 \\\\ 4 & 1 & 1 \\end{pmatrix} \\] Ответ запиши в формате $ a_{11}; a_{12}; \\dots; a_{1n}; a_{21}; a_{22}; \\dots; a_{mn}, $ округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"definitions\": {\n    \"matrices\": [\n      {\"name\": \"A\", \"rows\": 3, \"cols\": 3, \"data\": [[\"25\",\"5\",\"3\"], [\"10\",\"2\",\"1\"], [\"4\",\"1\",\"1\"]]}\n    ]\n  },\n  \"targets\": [{\"type\": \"matrix_inverse\", \"matrix_name\": \"A\"}],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3}\n}",
+  "latency": 11.981676816940308,
+  "timestamp": "2025-09-22T12:36:35.542859",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "definitions": {
+      "matrices": [
+        {
+          "name": "A",
+          "rows": 3,
+          "cols": 3,
+          "data": [
+            [
+              "25",
+              "5",
+              "3"
+            ],
+            [
+              "10",
+              "2",
+              "1"
+            ],
+            [
+              "4",
+              "1",
+              "1"
+            ]
+          ]
+        }
+      ]
+    },
+    "targets": [
+      {
+        "type": "matrix_inverse",
+        "matrix_name": "A"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    }
+  }
+}

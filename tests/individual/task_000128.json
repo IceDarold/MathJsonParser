@@ -1,0 +1,42 @@
+{
+  "task_id": "task_000128",
+  "task": "Вычислить интеграл: $\\displaystyle \\int_{0}^{6} \\frac{dx}{\\sqrt{4x+1}}$. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}],\n  \"targets\": [\n    {\"type\": \"integral_def\", \"expr\": \"1/\\\\sqrt{4x+1}\", \"var\": \"x\", \"limits\": [0, 6], \"name\": \"I\"},\n    {\"type\": \"value\", \"name\": \"answer\", \"expr\": \"I\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 13.608207702636719,
+  "timestamp": "2025-09-22T12:21:46.495596",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R"
+      }
+    ],
+    "targets": [
+      {
+        "type": "integral_def",
+        "expr": "1/\\sqrt{4x+1}",
+        "var": "x",
+        "limits": [
+          0,
+          6
+        ],
+        "name": "I"
+      },
+      {
+        "type": "value",
+        "name": "answer",
+        "expr": "I"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "task_id": "task_000311",
+  "task": "Вычисли $ \\displaystyle \\lim_{x \\rightarrow \\pi/6}(2\\sin^2 x + \\sin x - 1)/(2\\sin^2 x -3 \\sin x +1)$. Ответ запиши в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"limit\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}],\n  \"targets\": [\n    {\n      \"type\": \"limit\",\n      \"expr\": \"(2*sin(x)^2 + sin(x) - 1)/(2*sin(x)^2 - 3*sin(x) + 1)\",\n      \"var\": \"x\",\n      \"to\": \"\\\\pi/6\"\n    }\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 14.120767593383789,
+  "timestamp": "2025-09-22T13:05:18.579968",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "limit",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R"
+      }
+    ],
+    "targets": [
+      {
+        "type": "limit",
+        "expr": "(2*sin(x)^2 + sin(x) - 1)/(2*sin(x)^2 - 3*sin(x) + 1)",
+        "var": "x",
+        "to": "\\pi/6"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

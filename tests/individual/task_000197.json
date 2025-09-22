@@ -1,0 +1,56 @@
+{
+  "task_id": "task_000197",
+  "task": "Студент знает 24 из 30 вопросов. Найти вероятность сдать зачет при возможности ответа на 2 вопроса. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"probability\",\n  \"symbols\": [{\"name\": \"p\", \"domain\": \"R\"}],\n  \"definitions\": {\n    \"distributions\": [\n      {\"name\": \"H1\", \"kind\": \"binomial\", \"params\": {\"n\": 2, \"p\": \"p\"}}\n    ]\n  },\n  \"prob_space\": {\"independence\": [[\"H1\"]]},\n  \"targets\": [\n    {\"type\": \"probability\", \"event_expr\": \"H1 >= 1\"},\n    {\"type\": \"value\", \"name\": \"answer\", \"expr\": \"1 - binompdf(2, p, 0)\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 18.039916038513184,
+  "timestamp": "2025-09-22T12:38:02.413055",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "probability",
+    "symbols": [
+      {
+        "name": "p",
+        "domain": "R"
+      }
+    ],
+    "definitions": {
+      "distributions": [
+        {
+          "name": "H1",
+          "kind": "binomial",
+          "params": {
+            "n": 2,
+            "p": "p"
+          }
+        }
+      ]
+    },
+    "prob_space": {
+      "independence": [
+        [
+          "H1"
+        ]
+      ]
+    },
+    "targets": [
+      {
+        "type": "probability",
+        "event_expr": "H1 >= 1"
+      },
+      {
+        "type": "value",
+        "name": "answer",
+        "expr": "1 - binompdf(2, p, 0)"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

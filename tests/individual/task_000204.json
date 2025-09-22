@@ -1,0 +1,39 @@
+{
+  "task_id": "task_000204",
+  "task": "Найди сумму всех целых оснований $ b > 9, $ для которых $ 17_b $ является делителем $ 97_b.$Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"algebra\",\n  \"symbols\": [\n    {\"name\": \"b\", \"domain\": \"N+\"}\n  ],\n  \"targets\": [\n    {\n      \"type\": \"value\",\n      \"name\": \"answer\",\n      \"expr\": \"sum(b)\"\n    }\n  ],\n  \"output\": {\n    \"mode\": \"decimal\",\n    \"round_to\": 3\n  },\n  \"meta\": {\n    \"lang\": \"ru\",\n    \"notes\": \"Необходимо найти все основания b > 9, для которых 17_b делит 97_b.\"\n  },\n  \"conditions\": [\n    {\n      \"type\": \"matrix_equation\",\n      \"expr\": \"(1*b + 7) * (9*b + 7) = k * (1*b + 9)\"\n    }\n  ]\n}",
+  "latency": 18.83853769302368,
+  "timestamp": "2025-09-22T12:39:40.992877",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "algebra",
+    "symbols": [
+      {
+        "name": "b",
+        "domain": "N+"
+      }
+    ],
+    "targets": [
+      {
+        "type": "value",
+        "name": "answer",
+        "expr": "sum(b)"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": "Необходимо найти все основания b > 9, для которых 17_b делит 97_b."
+    },
+    "conditions": [
+      {
+        "type": "matrix_equation",
+        "expr": "(1*b + 7) * (9*b + 7) = k * (1*b + 9)"
+      }
+    ]
+  }
+}

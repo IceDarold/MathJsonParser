@@ -19,7 +19,6 @@ async def test_math_task():
     }
     
     client = create_client(config)
-    
     # Mathematical task from the CSV
     math_prompt = '''Convert this Russian mathematical task to MathIR JSON format:
 

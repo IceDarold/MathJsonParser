@@ -1,0 +1,34 @@
+{
+  "task_id": "task_000286",
+  "task": "Вычисли $ \\displaystyle \\lim_{x \\rightarrow \\infty}x^{1/3}((x+1)^{1/3}-(x-1)^{2/3})$. Ответ запиши в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"limit\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R+\"}],\n  \"targets\": [\n    {\n      \"type\": \"limit\",\n      \"expr\": \"x^{1/3}((x+1)^{1/3}-(x-1)^{2/3})\",\n      \"var\": \"x\",\n      \"to\": \"oo\"\n    }\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 13.828405857086182,
+  "timestamp": "2025-09-22T12:59:33.060289",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "limit",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R+"
+      }
+    ],
+    "targets": [
+      {
+        "type": "limit",
+        "expr": "x^{1/3}((x+1)^{1/3}-(x-1)^{2/3})",
+        "var": "x",
+        "to": "oo"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

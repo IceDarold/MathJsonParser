@@ -1,0 +1,58 @@
+{
+  "task_id": "task_000114",
+  "task": "В одном ящике 5 белых и 10 красных шаров, в другом 10 белых и 5 красных. Найти вероятность, что хотя бы из одного ящика будет вынут белый шар (по одному шару из каждого). Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"probability\",\n  \"symbols\": [],\n  \"definitions\": {\n    \"distributions\": [\n      {\"name\": \"H1\", \"kind\": \"bernoulli\", \"params\": {\"p\": \"5/15\"}},\n      {\"name\": \"H2\", \"kind\": \"bernoulli\", \"params\": {\"p\": \"10/15\"}}\n    ]\n  },\n  \"prob_space\": {\"independence\": [[\"H1\", \"H2\"]]},\n  \"targets\": [\n    {\"type\": \"probability\", \"event_expr\": \"!H1 & !H2\"},\n    {\"type\": \"value\", \"name\": \"answer\", \"expr\": \"1 - (!H1 & !H2)\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 19.617685079574585,
+  "timestamp": "2025-09-22T12:18:31.196345",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "probability",
+    "symbols": [],
+    "definitions": {
+      "distributions": [
+        {
+          "name": "H1",
+          "kind": "bernoulli",
+          "params": {
+            "p": "5/15"
+          }
+        },
+        {
+          "name": "H2",
+          "kind": "bernoulli",
+          "params": {
+            "p": "10/15"
+          }
+        }
+      ]
+    },
+    "prob_space": {
+      "independence": [
+        [
+          "H1",
+          "H2"
+        ]
+      ]
+    },
+    "targets": [
+      {
+        "type": "probability",
+        "event_expr": "!H1 & !H2"
+      },
+      {
+        "type": "value",
+        "name": "answer",
+        "expr": "1 - (!H1 & !H2)"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

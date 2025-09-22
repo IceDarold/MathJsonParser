@@ -443,5 +443,30 @@ class TestMathIRParser:
         assert isinstance(results, dict)
         assert len(results) > 0
 
+    def test_1(self):
+        """Test the 1 task from public test."""
+        ir = MathIR.model_validate({
+            "expr_format": "latex",
+            "symbols": [{"name": "x", "domain": "R"}],
+            "targets": [
+                {
+                    "type": "integral_def",
+                    "expr": "x",
+                    "var": "x",
+                    "limits": [0, 1],
+                    "name": "I"
+                },
+                {
+                    "type": "value",
+                    "name": "result",
+                    "expr": "I"
+                }
+            ],
+            "output": {"mode": "exact"}
+        })
+        results = run_mathir(ir)
+        assert "result" in results
+        # Integral of x from 0 to 1 is 1/2
+        assert results["result"] == sp.Rational(1, 2)
 if __name__ == "__main__":
     pytest.main([__file__])

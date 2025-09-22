@@ -1,0 +1,42 @@
+{
+  "task_id": "task_000235",
+  "task": "Брошено три монеты. Найти вероятность, что первая монета выпала «гербом» вверх. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"probability\",\n  \"definitions\": {\n    \"distributions\": [\n      {\"name\": \"H1\", \"kind\": \"bernoulli\", \"params\": {\"p\": \"0.5\"}}\n    ]\n  },\n  \"targets\": [\n    {\"type\": \"probability\", \"event_expr\": \"H1\"},\n    {\"type\": \"value\", \"name\": \"answer\", \"expr\": \"0.5\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 14.121600866317749,
+  "timestamp": "2025-09-22T12:47:03.688852",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "probability",
+    "definitions": {
+      "distributions": [
+        {
+          "name": "H1",
+          "kind": "bernoulli",
+          "params": {
+            "p": "0.5"
+          }
+        }
+      ]
+    },
+    "targets": [
+      {
+        "type": "probability",
+        "event_expr": "H1"
+      },
+      {
+        "type": "value",
+        "name": "answer",
+        "expr": "0.5"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

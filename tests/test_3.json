@@ -1,0 +1,22 @@
+{
+  "expr_format": "latex",
+  "task_type": "limit",
+  "targets": [
+    {
+      "type": "limit",
+      "expr": "x*(\\ln(1+x/2)-\\ln(x/2))",
+      "var": "x",
+      "to": "+oo"
+    }
+  ],
+  "output": {
+    "mode": "decimal",
+    "round_to": 3,
+    "simplify": true,
+    "rationalize": false
+  },
+  "meta": {
+    "lang": "ru",
+    "notes": ""
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "task_id": "task_000032",
+  "task": "Вычисли $ \\displaystyle \\lim_{x \\rightarrow \\pi/4 + 0} (\\operatorname{tg}(\\pi/8+x))^{\\operatorname{tg}2x}$. Ответ запиши в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"limit\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}],\n  \"targets\": [\n    {\n      \"type\": \"limit\",\n      \"expr\": \"(\\\\operatorname{tg}(\\\\pi/8 + x))^{{\\\\operatorname{tg}(2x)}}\",\n      \"var\": \"x\",\n      \"to\": \"\\\\pi/4 + 0\"\n    }\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 14.141707420349121,
+  "timestamp": "2025-09-22T11:59:16.985833",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "limit",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R"
+      }
+    ],
+    "targets": [
+      {
+        "type": "limit",
+        "expr": "(\\operatorname{tg}(\\pi/8 + x))^{{\\operatorname{tg}(2x)}}",
+        "var": "x",
+        "to": "\\pi/4 + 0"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

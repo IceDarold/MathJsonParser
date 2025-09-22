@@ -1,0 +1,56 @@
+{
+  "task_id": "task_000275",
+  "task": "Из 28 костей домино случайно выбираются две. Найти вероятность, что из них можно составить «цепочку» по правилам игры. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"probability\",\n  \"symbols\": [{\"name\": \"k\", \"domain\": \"N+\"}],\n  \"definitions\": {\n    \"distributions\": [\n      {\"name\": \"H\", \"kind\": \"binomial\", \"params\": {\"n\": 28, \"p\": \"unknown\"}}\n    ]\n  },\n  \"prob_space\": {\"independence\": [[\"H\"]]},\n  \"targets\": [\n    {\"type\": \"probability\", \"event_expr\": \"H1 | H2\"},\n    {\"type\": \"value\", \"name\": \"answer\", \"expr\": \"H1 | H2\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"Вероятность события 'можно составить цепочку' не указана явно, поэтому задача является неоднозначной.\"}\n}",
+  "latency": 20.07826519012451,
+  "timestamp": "2025-09-22T12:56:51.133642",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "probability",
+    "symbols": [
+      {
+        "name": "k",
+        "domain": "N+"
+      }
+    ],
+    "definitions": {
+      "distributions": [
+        {
+          "name": "H",
+          "kind": "binomial",
+          "params": {
+            "n": 28,
+            "p": "unknown"
+          }
+        }
+      ]
+    },
+    "prob_space": {
+      "independence": [
+        [
+          "H"
+        ]
+      ]
+    },
+    "targets": [
+      {
+        "type": "probability",
+        "event_expr": "H1 | H2"
+      },
+      {
+        "type": "value",
+        "name": "answer",
+        "expr": "H1 | H2"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": "Вероятность события 'можно составить цепочку' не указана явно, поэтому задача является неоднозначной."
+    }
+  }
+}

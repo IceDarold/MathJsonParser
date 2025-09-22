@@ -117,7 +117,7 @@ class ValidationSpec(BaseModel):
 
 class MathIR(BaseModel):
     meta: Dict[str, Any] = {}
-    task_type: Literal['auto', 'integral', 'limit', 'sum', 'algebra', 'matrix', 'probability', 'geometry', 'optimize'] = 'auto'
+    task_type: Literal['auto', 'integral', 'limit', 'sum', 'algebra', 'matrix', 'probability', 'geometry', 'optimize', 'solve_for'] = 'auto'
     expr_format: Literal['latex', 'sympy', 'infix'] = 'latex'
     assumptions: Dict[str, Any] = {"reals_default": True}
     constants: Dict[str, str] = {}

@@ -1,0 +1,360 @@
+[
+  {
+    "name": "simple_arithmetic_benchmark",
+    "description": "Benchmark for simple arithmetic operations",
+    "mathir": {
+      "expr_format": "latex",
+      "targets": [
+        {
+          "type": "value",
+          "name": "result",
+          "expr": "2 + 3 * 4 - 1"
+        }
+      ],
+      "output": {"mode": "exact"}
+    },
+    "performance_expectations": {
+      "max_execution_time": 0.1,
+      "max_memory_mb": 10,
+      "complexity": "O(1)"
+    },
+    "metadata": {
+      "category": "performance_benchmarks",
+      "subcategory": "arithmetic",
+      "difficulty": "trivial",
+      "tags": ["benchmark", "arithmetic", "fast"]
+    }
+  },
+  {
+    "name": "polynomial_integration_benchmark",
+    "description": "Benchmark for polynomial integration",
+    "mathir": {
+      "expr_format": "latex",
+      "symbols": [{"name": "x", "domain": "R"}],
+      "targets": [
+        {
+          "type": "integral_def",
+          "expr": "x^5 + 3*x^4 - 2*x^3 + x^2 - 5*x + 7",
+          "var": "x",
+          "limits": [0, 1],
+          "name": "result"
+        }
+      ],
+      "output": {"mode": "exact"}
+    },
+    "performance_expectations": {
+      "max_execution_time": 0.5,
+      "max_memory_mb": 20,
+      "complexity": "O(n)"
+    },
+    "metadata": {
+      "category": "performance_benchmarks",
+      "subcategory": "integration",
+      "difficulty": "easy",
+      "tags": ["benchmark", "integration", "polynomial"]
+    }
+  },
+  {
+    "name": "trigonometric_limit_benchmark",
+    "description": "Benchmark for trigonometric limit computation",
+    "mathir": {
+      "expr_format": "latex",
+      "symbols": [{"name": "x", "domain": "R"}],
+      "targets": [
+        {
+          "type": "limit",
+          "expr": "\\frac{\\sin(x) - x*\\cos(x)}{x^3}",
+          "var": "x",
+          "to": "0"
+        }
+      ],
+      "output": {"mode": "exact"}
+    },
+    "performance_expectations": {
+      "max_execution_time": 1.0,
+      "max_memory_mb": 30,
+      "complexity": "O(log n)"
+    },
+    "metadata": {
+      "category": "performance_benchmarks",
+      "subcategory": "limits",
+      "difficulty": "medium",
+      "tags": ["benchmark", "limits", "trigonometric"]
+    }
+  },
+  {
+    "name": "finite_sum_benchmark",
+    "description": "Benchmark for finite sum computation",
+    "mathir": {
+      "expr_format": "latex",
+      "symbols": [{"name": "n", "domain": "N"}],
+      "targets": [
+        {
+          "type": "sum",
+          "term": "n^3 + 2*n^2 - n + 1",
+          "idx": "n",
+          "start": "1",
+          "end": "1000"
+        }
+      ],
+      "output": {"mode": "exact"}
+    },
+    "performance_expectations": {
+      "max_execution_time": 2.0,
+      "max_memory_mb": 50,
+      "complexity": "O(n)"
+    },
+    "metadata": {
+      "category": "performance_benchmarks",
+      "subcategory": "summation",
+      "difficulty": "medium",
+      "tags": ["benchmark", "summation", "finite"]
+    }
+  },
+  {
+    "name": "matrix_determinant_benchmark",
+    "description": "Benchmark for matrix determinant computation",
+    "mathir": {
+      "expr_format": "latex",
+      "definitions": {
+        "matrices": [
+          {
+            "name": "A",
+            "rows": 5,
+            "cols": 5,
+            "data": [
+              ["1", "2", "3", "4", "5"],
+              ["2", "3", "4", "5", "1"],
+              ["3", "4", "5", "1", "2"],
+              ["4", "5", "1", "2", "3"],
+              ["5", "1", "2", "3", "4"]
+            ]
+          }
+        ]
+      },
+      "targets": [
+        {
+          "type": "matrix_determinant",
+          "matrix_name": "A"
+        }
+      ],
+      "output": {"mode": "exact"}
+    },
+    "performance_expectations": {
+      "max_execution_time": 1.5,
+      "max_memory_mb": 40,
+      "complexity": "O(n^3)"
+    },
+    "metadata": {
+      "category": "performance_benchmarks",
+      "subcategory": "matrix",
+      "difficulty": "medium",
+      "tags": ["benchmark", "matrix", "determinant"]
+    }
+  },
+  {
+    "name": "system_solving_benchmark",
+    "description": "Benchmark for system of equations solving",
+    "mathir": {
+      "expr_format": "latex",
+      "symbols": [
+        {"name": "x1", "domain": "R"},
+        {"name": "x2", "domain": "R"},
+        {"name": "x3", "domain": "R"},
+        {"name": "x4", "domain": "R"}
+      ],
+      "targets": [
+        {
+          "type": "solve_for",
+          "unknowns": ["x1", "x2", "x3", "x4"],
+          "equations": [
+            "2*x1 + x2 - x3 + x4 = 5",
+            "x1 - x2 + 2*x3 - x4 = 1",
+            "x1 + x2 + x3 + x4 = 6",
+            "x1 - x2 - x3 + 2*x4 = 2"
+          ]
+        }
+      ],
+      "output": {"mode": "exact"}
+    },
+    "performance_expectations": {
+      "max_execution_time": 2.0,
+      "max_memory_mb": 60,
+      "complexity": "O(n^3)"
+    },
+    "metadata": {
+      "category": "performance_benchmarks",
+      "subcategory": "solving",
+      "difficulty": "medium",
+      "tags": ["benchmark", "system_solving", "linear"]
+    }
+  },
+  {
+    "name": "complex_workflow_benchmark",
+    "description": "Benchmark for complex multi-target workflow",
+    "mathir": {
+      "expr_format": "latex",
+      "symbols": [
+        {"name": "x", "domain": "R"},
+        {"name": "n", "domain": "N"}
+      ],
+      "definitions": {
+        "functions": [
+          {
+            "name": "f",
+            "args": ["x"],
+            "expr": "x^2 + \\sin(x)"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "type": "integral_def",
+          "expr": "f(x)",
+          "var": "x",
+          "limits": [0, "\\pi"],
+          "name": "I1"
+        },
+        {
+          "type": "sum",
+          "term": "\\frac{1}{n^2}",
+          "idx": "n",
+          "start": "1",
+          "end": "100"
+        },
+        {
+          "type": "limit",
+          "expr": "\\frac{f(x) - f(0)}{x}",
+          "var": "x",
+          "to": "0"
+        },
+        {
+          "type": "value",
+          "name": "combined",
+          "expr": "I1 + sum + limit"
+        }
+      ],
+      "output": {"mode": "decimal", "round_to": 6}
+    },
+    "performance_expectations": {
+      "max_execution_time": 5.0,
+      "max_memory_mb": 100,
+      "complexity": "O(n^2)"
+    },
+    "metadata": {
+      "category": "performance_benchmarks",
+      "subcategory": "complex_workflow",
+      "difficulty": "hard",
+      "tags": ["benchmark", "multi_target", "complex"]
+    }
+  },
+  {
+    "name": "stress_test_large_sum",
+    "description": "Stress test with large finite sum",
+    "mathir": {
+      "expr_format": "latex",
+      "symbols": [{"name": "k", "domain": "N"}],
+      "targets": [
+        {
+          "type": "sum",
+          "term": "\\frac{1}{k}",
+          "idx": "k",
+          "start": "1",
+          "end": "10000"
+        }
+      ],
+      "output": {"mode": "decimal", "round_to": 8}
+    },
+    "performance_expectations": {
+      "max_execution_time": 10.0,
+      "max_memory_mb": 200,
+      "complexity": "O(n)"
+    },
+    "metadata": {
+      "category": "performance_benchmarks",
+      "subcategory": "stress_test",
+      "difficulty": "hard",
+      "tags": ["benchmark", "stress", "large_computation"]
+    }
+  },
+  {
+    "name": "memory_intensive_matrix",
+    "description": "Memory-intensive matrix operations",
+    "mathir": {
+      "expr_format": "latex",
+      "definitions": {
+        "matrices": [
+          {
+            "name": "M",
+            "rows": 10,
+            "cols": 10,
+            "data": [
+              ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+              ["2", "3", "4", "5", "6", "7", "8", "9", "10", "1"],
+              ["3", "4", "5", "6", "7", "8", "9", "10", "1", "2"],
+              ["4", "5", "6", "7", "8", "9", "10", "1", "2", "3"],
+              ["5", "6", "7", "8", "9", "10", "1", "2", "3", "4"],
+              ["6", "7", "8", "9", "10", "1", "2", "3", "4", "5"],
+              ["7", "8", "9", "10", "1", "2", "3", "4", "5", "6"],
+              ["8", "9", "10", "1", "2", "3", "4", "5", "6", "7"],
+              ["9", "10", "1", "2", "3", "4", "5", "6", "7", "8"],
+              ["10", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+            ]
+          }
+        ]
+      },
+      "targets": [
+        {
+          "type": "matrix_determinant",
+          "matrix_name": "M"
+        },
+        {
+          "type": "matrix_inverse",
+          "matrix_name": "M"
+        }
+      ],
+      "output": {"mode": "exact"}
+    },
+    "performance_expectations": {
+      "max_execution_time": 15.0,
+      "max_memory_mb": 300,
+      "complexity": "O(n^3)"
+    },
+    "metadata": {
+      "category": "performance_benchmarks",
+      "subcategory": "memory_intensive",
+      "difficulty": "hard",
+      "tags": ["benchmark", "memory", "matrix", "large"]
+    }
+  },
+  {
+    "name": "concurrent_processing_benchmark",
+    "description": "Benchmark designed for concurrent processing validation",
+    "mathir": {
+      "expr_format": "latex",
+      "symbols": [{"name": "x", "domain": "R"}],
+      "targets": [
+        {
+          "type": "integral_def",
+          "expr": "e^{-x^2}",
+          "var": "x",
+          "limits": [0, 1],
+          "name": "gaussian_integral"
+        }
+      ],
+      "output": {"mode": "decimal", "round_to": 10}
+    },
+    "performance_expectations": {
+      "max_execution_time": 3.0,
+      "max_memory_mb": 80,
+      "complexity": "O(log n)",
+      "concurrent_safe": true
+    },
+    "metadata": {
+      "category": "performance_benchmarks",
+      "subcategory": "concurrent",
+      "difficulty": "medium",
+      "tags": ["benchmark", "concurrent", "gaussian", "integration"]
+    }
+  }
+]

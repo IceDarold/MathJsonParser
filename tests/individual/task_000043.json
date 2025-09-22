@@ -1,0 +1,37 @@
+{
+  "task_id": "task_000043",
+  "task": "Вычисли $ \\displaystyle \\int_1^2 \\left(\\dfrac{\\cos^8x+\\sin^8x-1}{\\cos^6x+\\sin^6x-1}+\\dfrac{2}{3}\\cos^2x\\sin^2x\\right)dx$.Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}],\n  \"targets\": [\n    {\n      \"type\": \"integral_def\",\n      \"expr\": \"\\\\frac{\\\\cos^8x + \\\\sin^8x - 1}{\\\\cos^6x + \\\\sin^6x - 1} + \\\\frac{2}{3}\\\\cos^2x\\\\sin^2x\",\n      \"var\": \"x\",\n      \"limits\": [1, 2],\n      \"name\": \"I\"\n    }\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 16.302331686019897,
+  "timestamp": "2025-09-22T12:01:50.737417",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R"
+      }
+    ],
+    "targets": [
+      {
+        "type": "integral_def",
+        "expr": "\\frac{\\cos^8x + \\sin^8x - 1}{\\cos^6x + \\sin^6x - 1} + \\frac{2}{3}\\cos^2x\\sin^2x",
+        "var": "x",
+        "limits": [
+          1,
+          2
+        ],
+        "name": "I"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

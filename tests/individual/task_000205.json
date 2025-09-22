@@ -1,0 +1,42 @@
+{
+  "task_id": "task_000205",
+  "task": "Вычисли $ \\displaystyle \\int_{-\\pi/2}^{\\pi/12} \\cos^32x dx$. Ответ запиши в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}],\n  \"targets\": [\n    {\"type\": \"integral_def\", \"expr\": \"\\\\cos^3(2x)\", \"var\": \"x\", \"limits\": [\"-\\\\pi/2\", \"\\\\pi/12\"], \"name\": \"I\"},\n    {\"type\": \"value\", \"name\": \"answer\", \"expr\": \"I\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 13.979932308197021,
+  "timestamp": "2025-09-22T12:39:54.973201",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R"
+      }
+    ],
+    "targets": [
+      {
+        "type": "integral_def",
+        "expr": "\\cos^3(2x)",
+        "var": "x",
+        "limits": [
+          "-\\pi/2",
+          "\\pi/12"
+        ],
+        "name": "I"
+      },
+      {
+        "type": "value",
+        "name": "answer",
+        "expr": "I"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

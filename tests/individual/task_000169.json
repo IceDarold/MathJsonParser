@@ -1,0 +1,37 @@
+{
+  "task_id": "task_000169",
+  "task": "Найдите рациональные корни многочлена: $x^5 + x^4 - 6x^3 - 14x^2 - 11x - 3$. Ответы запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой, по возрастанию.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"algebra\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}],\n  \"targets\": [\n    {\n      \"type\": \"solve_for\",\n      \"unknowns\": [\"x\"],\n      \"equations\": [\"x^5 + x^4 - 6x^3 - 14x^2 - 11x - 3\"]\n    }\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 13.775919198989868,
+  "timestamp": "2025-09-22T12:31:17.320491",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "algebra",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R"
+      }
+    ],
+    "targets": [
+      {
+        "type": "solve_for",
+        "unknowns": [
+          "x"
+        ],
+        "equations": [
+          "x^5 + x^4 - 6x^3 - 14x^2 - 11x - 3"
+        ]
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

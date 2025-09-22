@@ -1,0 +1,51 @@
+{
+  "task_id": "task_000157",
+  "task": "Колода из 36 карт хорошо перемешана. Найти вероятность, что четыре туза расположены рядом. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"probability\",\n  \"symbols\": [{\"name\": \"n\", \"domain\": \"N+\"}],\n  \"definitions\": {\n    \"distributions\": [\n      {\"name\": \"H\", \"kind\": \"uniform\", \"params\": {\"min\": 1, \"max\": 36}}\n    ]\n  },\n  \"prob_space\": {\"independence\": [[\"H\"]]},\n  \"targets\": [\n    {\"type\": \"probability\", \"event_expr\": \"4 \\\\text{ туза рядом}\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 15.651476383209229,
+  "timestamp": "2025-09-22T12:28:40.027440",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "probability",
+    "symbols": [
+      {
+        "name": "n",
+        "domain": "N+"
+      }
+    ],
+    "definitions": {
+      "distributions": [
+        {
+          "name": "H",
+          "kind": "uniform",
+          "params": {
+            "min": 1,
+            "max": 36
+          }
+        }
+      ]
+    },
+    "prob_space": {
+      "independence": [
+        [
+          "H"
+        ]
+      ]
+    },
+    "targets": [
+      {
+        "type": "probability",
+        "event_expr": "4 \\text{ туза рядом}"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

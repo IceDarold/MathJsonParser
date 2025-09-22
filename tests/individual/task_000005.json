@@ -1,0 +1,37 @@
+{
+  "task_id": "task_000005",
+  "task": "Вычисли $ \\displaystyle \\int_1^2 \\dfrac{2e^{2x}-e^x}{\\sqrt{3e^{2x}-6e^x-1}}dx$.Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}],\n  \"targets\": [\n    {\n      \"type\": \"integral_def\",\n      \"expr\": \"\\\\frac{2e^{2x} - e^x}{\\\\sqrt{3e^{2x} - 6e^x - 1}}\",\n      \"var\": \"x\",\n      \"limits\": [1, 2],\n      \"name\": \"I\"\n    }\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 14.656830310821533,
+  "timestamp": "2025-09-22T11:53:04.218655",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R"
+      }
+    ],
+    "targets": [
+      {
+        "type": "integral_def",
+        "expr": "\\frac{2e^{2x} - e^x}{\\sqrt{3e^{2x} - 6e^x - 1}}",
+        "var": "x",
+        "limits": [
+          1,
+          2
+        ],
+        "name": "I"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

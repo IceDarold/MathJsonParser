@@ -1,0 +1,43 @@
+{
+  "task_id": "task_000207",
+  "task": "Вычисли $ \\displaystyle \\lim_{x \\rightarrow \\infty} ((3x^2-x+1)/(2x^2+x+1))^{x^3/(1-x)}$. Ответ запиши в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"limit\",\n  \"targets\": [\n    {\n      \"type\": \"limit\",\n      \"expr\": \"(3*x^2 - x + 1)/(2*x^2 + x + 1)\",\n      \"var\": \"x\",\n      \"to\": \"oo\"\n    }\n  ],\n  \"transforms\": [\n    {\n      \"target\": \"expr\",\n      \"type\": \"substitution\",\n      \"subs\": {\"x\": \"1/y\"}\n    }\n  ],\n  \"conditions\": [\n    {\n      \"type\": \"inequality\",\n      \"expr\": \"y > 0\"\n    }\n  ],\n  \"targets\": [\n    {\n      \"type\": \"limit\",\n      \"expr\": \"((3*(1/y)^2 - (1/y) + 1)/(2*(1/y)^2 + (1/y) + 1))^(1/y^3 * (1 - 1/y))\",\n      \"var\": \"y\",\n      \"to\": \"0\"\n    }\n  ],\n  \"output\": {\n    \"mode\": \"decimal\",\n    \"round_to\": 3\n  },\n  \"meta\": {\n    \"lang\": \"ru\",\n    \"notes\": \"\"\n  }\n}",
+  "latency": 25.01017475128174,
+  "timestamp": "2025-09-22T12:40:34.316511",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "limit",
+    "targets": [
+      {
+        "type": "limit",
+        "expr": "((3*(1/y)^2 - (1/y) + 1)/(2*(1/y)^2 + (1/y) + 1))^(1/y^3 * (1 - 1/y))",
+        "var": "y",
+        "to": "0"
+      }
+    ],
+    "transforms": [
+      {
+        "target": "expr",
+        "type": "substitution",
+        "subs": {
+          "x": "1/y"
+        }
+      }
+    ],
+    "conditions": [
+      {
+        "type": "inequality",
+        "expr": "y > 0"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

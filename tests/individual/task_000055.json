@@ -1,0 +1,28 @@
+{
+  "task_id": "task_000055",
+  "task": "Вычисли $ \\displaystyle \\lim_{x \\rightarrow 0} (1-\\cos x \\cos 2x \\cos 3x)/(1-\\cos x)$. Ответ запиши в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"limit\",\n  \"targets\": [\n    {\n      \"type\": \"limit\",\n      \"expr\": \"(1 - \\\\cos(x) \\\\cos(2x) \\\\cos(3x)) / (1 - \\\\cos(x))\",\n      \"var\": \"x\",\n      \"to\": \"0\"\n    }\n  ],\n  \"output\": {\n    \"mode\": \"decimal\",\n    \"round_to\": 3\n  },\n  \"meta\": {\n    \"lang\": \"ru\",\n    \"notes\": \"\"\n  }\n}",
+  "latency": 13.45286750793457,
+  "timestamp": "2025-09-22T12:04:42.407782",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "limit",
+    "targets": [
+      {
+        "type": "limit",
+        "expr": "(1 - \\cos(x) \\cos(2x) \\cos(3x)) / (1 - \\cos(x))",
+        "var": "x",
+        "to": "0"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

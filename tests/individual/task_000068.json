@@ -1,0 +1,28 @@
+{
+  "task_id": "task_000068",
+  "task": "Вычисли $ \\displaystyle \\lim_{x \\rightarrow 0} (1+x^2)^{\\operatorname{ctg}^2 x}$. Ответ запиши в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"limit\",\n  \"targets\": [\n    {\n      \"type\": \"limit\",\n      \"expr\": \"(1+x^2)^{\\\\operatorname{ctg}^2 x}\",\n      \"var\": \"x\",\n      \"to\": \"0\"\n    }\n  ],\n  \"output\": {\n    \"mode\": \"decimal\",\n    \"round_to\": 3\n  },\n  \"meta\": {\n    \"lang\": \"ru\",\n    \"notes\": \"\"\n  }\n}",
+  "latency": 12.534560203552246,
+  "timestamp": "2025-09-22T12:07:33.023591",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "limit",
+    "targets": [
+      {
+        "type": "limit",
+        "expr": "(1+x^2)^{\\operatorname{ctg}^2 x}",
+        "var": "x",
+        "to": "0"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

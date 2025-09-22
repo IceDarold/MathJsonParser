@@ -1,0 +1,65 @@
+{
+  "task_id": "task_000274",
+  "task": "Найти вероятность, что две ладьи на шахматной доске не бьют друг друга. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"probability\",\n  \"symbols\": [{\"name\": \"i\", \"domain\": \"N+\"}, {\"name\": \"j\", \"domain\": \"N+\"}],\n  \"definitions\": {\n    \"distributions\": [\n      {\"name\": \"H1\", \"kind\": \"uniform\", \"params\": {\"min\": 1, \"max\": 8}},\n      {\"name\": \"H2\", \"kind\": \"uniform\", \"params\": {\"min\": 1, \"max\": 8}}\n    ]\n  },\n  \"prob_space\": {\"independence\": [[\"H1\", \"H2\"]]},\n  \"targets\": [\n    {\"type\": \"probability\", \"event_expr\": \"!((i == j) || (abs(i - j) == 1))\", \"name\": \"answer\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 20.641977548599243,
+  "timestamp": "2025-09-22T12:56:31.055017",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "probability",
+    "symbols": [
+      {
+        "name": "i",
+        "domain": "N+"
+      },
+      {
+        "name": "j",
+        "domain": "N+"
+      }
+    ],
+    "definitions": {
+      "distributions": [
+        {
+          "name": "H1",
+          "kind": "uniform",
+          "params": {
+            "min": 1,
+            "max": 8
+          }
+        },
+        {
+          "name": "H2",
+          "kind": "uniform",
+          "params": {
+            "min": 1,
+            "max": 8
+          }
+        }
+      ]
+    },
+    "prob_space": {
+      "independence": [
+        [
+          "H1",
+          "H2"
+        ]
+      ]
+    },
+    "targets": [
+      {
+        "type": "probability",
+        "event_expr": "!((i == j) || (abs(i - j) == 1))",
+        "name": "answer"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

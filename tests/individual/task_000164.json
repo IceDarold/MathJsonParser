@@ -1,0 +1,34 @@
+{
+  "task_id": "task_000164",
+  "task": "Указать предел последовательности $x_n = \\frac{(n + 1) \\sin \\frac{\\pi n}{2}}{n^2}$. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"algebra\",\n  \"symbols\": [{\"name\": \"n\", \"domain\": \"N+\"}],\n  \"targets\": [\n    {\n      \"type\": \"limit\",\n      \"expr\": \"(n + 1) \\\\sin \\\\frac{\\\\pi n}{2} / n^2\",\n      \"var\": \"n\",\n      \"to\": \"oo\"\n    }\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 13.429668188095093,
+  "timestamp": "2025-09-22T12:30:08.460751",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "algebra",
+    "symbols": [
+      {
+        "name": "n",
+        "domain": "N+"
+      }
+    ],
+    "targets": [
+      {
+        "type": "limit",
+        "expr": "(n + 1) \\sin \\frac{\\pi n}{2} / n^2",
+        "var": "n",
+        "to": "oo"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

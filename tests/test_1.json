@@ -1,0 +1,18 @@
+{
+  "expr_format": "latex",
+  "targets": [
+    {
+      "type": "value",
+      "name": "answer",
+      "expr": "6 \\cdot 7 \\cdot \\cos(120^\\circ)"
+    }
+  ],
+  "output": {
+    "mode": "decimal",
+    "round_to": 3
+  },
+  "meta": {
+    "lang": "ru",
+    "notes": "Вычисление скалярного произведения векторов."
+  }
+}

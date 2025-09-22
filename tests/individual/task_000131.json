@@ -1,0 +1,51 @@
+{
+  "task_id": "task_000131",
+  "task": "Вычисли $ \\displaystyle \\int_0^{+\\infty} \\dfrac{x^3e^{-x^2-y^2}(1-e^{-3y^2})}{y^2}dxdy.$.Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}, {\"name\": \"y\", \"domain\": \"R+\"}],\n  \"targets\": [\n    {\n      \"type\": \"integral_def\",\n      \"expr\": \"\\\\frac{x^3 e^{-x^2 - y^2} (1 - e^{-3y^2})}{y^2}\",\n      \"var\": \"x\",\n      \"limits\": [0, \"\\\\infty\"],\n      \"name\": \"I_x\"\n    },\n    {\n      \"type\": \"integral_def\",\n      \"expr\": \"I_x\",\n      \"var\": \"y\",\n      \"limits\": [0, \"\\\\infty\"],\n      \"name\": \"I\"\n    }\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 19.191928148269653,
+  "timestamp": "2025-09-22T12:22:32.874293",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R"
+      },
+      {
+        "name": "y",
+        "domain": "R+"
+      }
+    ],
+    "targets": [
+      {
+        "type": "integral_def",
+        "expr": "\\frac{x^3 e^{-x^2 - y^2} (1 - e^{-3y^2})}{y^2}",
+        "var": "x",
+        "limits": [
+          0,
+          "\\infty"
+        ],
+        "name": "I_x"
+      },
+      {
+        "type": "integral_def",
+        "expr": "I_x",
+        "var": "y",
+        "limits": [
+          0,
+          "\\infty"
+        ],
+        "name": "I"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

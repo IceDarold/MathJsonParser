@@ -1,0 +1,34 @@
+{
+  "task_id": "task_000148",
+  "task": "Вычисли $ \\displaystyle \\lim_{x \\rightarrow 1} ((1+x)/(2+x))^{(1-\\sqrt{x})/(1-x)}$. Ответ запиши в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"limit\",\n  \"targets\": [\n    {\n      \"type\": \"limit\",\n      \"expr\": \"(1+x)/(2+x)\",\n      \"var\": \"x\",\n      \"to\": \"1\"\n    }\n  ],\n  \"conditions\": [\n    {\n      \"type\": \"equation\",\n      \"expr\": \"(1-sqrt(x))/(1-x)\"\n    }\n  ],\n  \"output\": {\n    \"mode\": \"decimal\",\n    \"round_to\": 3\n  },\n  \"meta\": {\n    \"lang\": \"ru\",\n    \"notes\": \"\"\n  }\n}",
+  "latency": 14.195895671844482,
+  "timestamp": "2025-09-22T12:26:34.445758",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "limit",
+    "targets": [
+      {
+        "type": "limit",
+        "expr": "(1+x)/(2+x)",
+        "var": "x",
+        "to": "1"
+      }
+    ],
+    "conditions": [
+      {
+        "type": "equation",
+        "expr": "(1-sqrt(x))/(1-x)"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

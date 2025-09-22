@@ -1,0 +1,43 @@
+{
+  "task_id": "task_000256",
+  "task": "Вероятность потопить корабль одной торпедой 1/2. Найти вероятность потопить корабль 4 торпедами. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"probability\",\n  \"symbols\": [{\"name\": \"p\", \"domain\": \"R+\"}],\n  \"definitions\": {\n    \"distributions\": [\n      {\"name\": \"H\", \"kind\": \"bernoulli\", \"params\": {\"p\": \"1/2\"}}\n    ]\n  },\n  \"targets\": [\n    {\"type\": \"probability\", \"event_expr\": \"!H1 & !H2 & !H3 & H4 | !H1 & !H2 & H3 & H4 | !H1 & H2 & !H3 & H4 | H1 & !H2 & !H3 & H4 | !H1 & H2 & H3 & !H4 | H1 & !H2 & H3 & !H4 | !H1 & H2 & H3 & H4 | H1 & H2 & !H3 & H4 | H1 & H2 & H3 & !H4 | H1 & H2 & H3 & H4\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 24.766440629959106,
+  "timestamp": "2025-09-22T12:52:09.661493",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "probability",
+    "symbols": [
+      {
+        "name": "p",
+        "domain": "R+"
+      }
+    ],
+    "definitions": {
+      "distributions": [
+        {
+          "name": "H",
+          "kind": "bernoulli",
+          "params": {
+            "p": "1/2"
+          }
+        }
+      ]
+    },
+    "targets": [
+      {
+        "type": "probability",
+        "event_expr": "!H1 & !H2 & !H3 & H4 | !H1 & !H2 & H3 & H4 | !H1 & H2 & !H3 & H4 | H1 & !H2 & !H3 & H4 | !H1 & H2 & H3 & !H4 | H1 & !H2 & H3 & !H4 | !H1 & H2 & H3 & H4 | H1 & H2 & !H3 & H4 | H1 & H2 & H3 & !H4 | H1 & H2 & H3 & H4"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

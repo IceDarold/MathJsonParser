@@ -1,0 +1,32 @@
+{
+  "task_id": "task_000290",
+  "task": "Для произвольного числа $x$ рассмотрим сумму: $\\displaystyle Q(x) = |x| + \\left\\lfloor \\frac{x}{2} \\right\\rfloor + \\left\\lfloor \\frac{x}{3} \\right\\rfloor + \\cdots + \\left\\lfloor \\frac{x}{10000} \\right\\rfloor$. Найдите разность $Q(2023) - Q(2022)$. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}],\n  \"targets\": [\n    {\n      \"type\": \"value\",\n      \"name\": \"answer\",\n      \"expr\": \"Q(2023) - Q(2022)\"\n    }\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 11.68868350982666,
+  "timestamp": "2025-09-22T13:00:24.052221",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R"
+      }
+    ],
+    "targets": [
+      {
+        "type": "value",
+        "name": "answer",
+        "expr": "Q(2023) - Q(2022)"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

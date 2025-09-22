@@ -1,0 +1,42 @@
+{
+  "task_id": "task_000077",
+  "task": "Вычисли $ \\displaystyle \\int_{-1}^8 \\sqrt[3]{x} dx$. Ответ запиши в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}],\n  \"targets\": [\n    {\"type\": \"integral_def\", \"expr\": \"\\\\sqrt[3]{x}\", \"var\": \"x\", \"limits\": [\"-1\", \"8\"], \"name\": \"I\"},\n    {\"type\": \"value\", \"name\": \"answer\", \"expr\": \"I\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 13.458722114562988,
+  "timestamp": "2025-09-22T12:09:54.830782",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R"
+      }
+    ],
+    "targets": [
+      {
+        "type": "integral_def",
+        "expr": "\\sqrt[3]{x}",
+        "var": "x",
+        "limits": [
+          "-1",
+          "8"
+        ],
+        "name": "I"
+      },
+      {
+        "type": "value",
+        "name": "answer",
+        "expr": "I"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "task_id": "task_000080",
+  "task": "Вычислить несобственный интеграл: $\\displaystyle \\int_{-\\infty}^{+\\infty} \\frac{dx}{1+x^2}$. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}],\n  \"targets\": [\n    {\"type\": \"integral_def\", \"expr\": \"1/(1+x^2)\", \"var\": \"x\", \"limits\": [\"-\\\\infty\", \"+\\\\infty\"], \"name\": \"I\"},\n    {\"type\": \"value\", \"name\": \"answer\", \"expr\": \"I\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 13.799925088882446,
+  "timestamp": "2025-09-22T12:10:35.254661",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R"
+      }
+    ],
+    "targets": [
+      {
+        "type": "integral_def",
+        "expr": "1/(1+x^2)",
+        "var": "x",
+        "limits": [
+          "-\\infty",
+          "+\\infty"
+        ],
+        "name": "I"
+      },
+      {
+        "type": "value",
+        "name": "answer",
+        "expr": "I"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "task_id": "task_000033",
+  "task": "Из букв А, А, М, М наугад составляют слово. Найти вероятность получить \"МАМА\". Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"probability\",\n  \"symbols\": [{\"name\": \"A\", \"domain\": \"R\"}, {\"name\": \"M\", \"domain\": \"R\"}],\n  \"definitions\": {\n    \"distributions\": [\n      {\"name\": \"H\", \"kind\": \"multinomial\", \"params\": {\"n\": 4, \"p\": [1/4, 1/4, 1/4, 1/4]}}\n    ]\n  },\n  \"targets\": [\n    {\"type\": \"probability\", \"event_expr\": \"AAMMAA\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 16.84683394432068,
+  "timestamp": "2025-09-22T11:59:33.833046",
+  "status": "success"
+}

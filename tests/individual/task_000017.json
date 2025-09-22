@@ -1,0 +1,37 @@
+{
+  "task_id": "task_000017",
+  "task": "Решите уравнение $2 \\sin \\frac{\\pi x}{2} - 2 \\cos \\pi x = x^5 + 10x - 54$. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"solve_for\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R\"}],\n  \"targets\": [\n    {\"type\": \"solve_for\", \"unknowns\": [\"x\"], \"equations\": [\"2 \\\\sin \\\\frac{\\\\pi x}{2} - 2 \\\\cos \\\\pi x = x^5 + 10x - 54\"]}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 13.875540494918823,
+  "timestamp": "2025-09-22T11:55:46.183031",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "solve_for",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R"
+      }
+    ],
+    "targets": [
+      {
+        "type": "solve_for",
+        "unknowns": [
+          "x"
+        ],
+        "equations": [
+          "2 \\sin \\frac{\\pi x}{2} - 2 \\cos \\pi x = x^5 + 10x - 54"
+        ]
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

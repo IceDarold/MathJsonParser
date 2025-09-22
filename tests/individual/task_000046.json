@@ -1,0 +1,37 @@
+{
+  "task_id": "task_000046",
+  "task": "Пусть $a$ — положительный корень уравнения $x^{2017} - x - 1 = 0$, а $b$ — положительный корень уравнения $y^{4034} - y = 3a$. Найдите десятый знак после запятой числа $|a - b|$. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"algebra\",\n  \"symbols\": [\n    {\"name\": \"a\", \"domain\": \"R+\"}, \n    {\"name\": \"b\", \"domain\": \"R+\"}\n  ],\n  \"targets\": [\n    {\n      \"type\": \"value\",\n      \"name\": \"answer\",\n      \"expr\": \"round(abs(a - b), 3)\"\n    }\n  ],\n  \"output\": {\n    \"mode\": \"decimal\",\n    \"round_to\": 3\n  },\n  \"meta\": {\n    \"lang\": \"ru\",\n    \"notes\": \"Значения a и b не могут быть точно найдены без использования численных методов, поэтому ответ округлен.\"\n  }\n}",
+  "latency": 16.45234441757202,
+  "timestamp": "2025-09-22T12:02:35.002727",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "algebra",
+    "symbols": [
+      {
+        "name": "a",
+        "domain": "R+"
+      },
+      {
+        "name": "b",
+        "domain": "R+"
+      }
+    ],
+    "targets": [
+      {
+        "type": "value",
+        "name": "answer",
+        "expr": "round(abs(a - b), 3)"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": "Значения a и b не могут быть точно найдены без использования численных методов, поэтому ответ округлен."
+    }
+  }
+}

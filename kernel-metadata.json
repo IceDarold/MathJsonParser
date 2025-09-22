@@ -1,16 +1,14 @@
 {
-  "id": "artemkonukhov/math-ir",
-  "title": "Math Ir",
-  "code_file": "math_pipeline.ipynb",
+  "id": "artemkonukhov/math-ir-json",
+  "title": "Math Ir Json",
+  "code_file": "kaggle_math_processor.ipynb",
   "language": "python",
   "kernel_type": "notebook",
   "is_private": "true",
   "enable_gpu": "true",
   "enable_tpu": "false",
-  "enable_internet": "false",
-  "dataset_sources": [
-    "artemkonukhov/aic-2025-math"
-  ],
+  "enable_internet": "true",
+  "dataset_sources": ["artemkonukhov/aic-2025-math"],
   "competition_sources": [],
   "kernel_sources": [],
   "model_sources": []

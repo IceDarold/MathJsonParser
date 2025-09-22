@@ -1,0 +1,115 @@
+{
+  "task_id": "task_000335",
+  "task": "Двенадцать букв $ A,B,C,D,E,F,G,H,I,J,K,L $ случайным образом разбиваются на шесть пар. Две буквы в каждой паре ставятся рядом в алфавитном порядке, образуя шестибуквенные слова, и эти шесть слов перечисляются в алфавитном порядке. Например, $ AB, CJ,DG,EK,FL,HI. $ Вероятность того, что последнее слово в спмске содержит $ G, $ равна $ \\dfrac{m}{n}, $ где $m $ и $ n - $взаимно простые положительные целые числа. Найди $ m+n.$Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"probability\",\n  \"symbols\": [\n    {\"name\": \"A\", \"domain\": \"R\"},\n    {\"name\": \"B\", \"domain\": \"R\"},\n    {\"name\": \"C\", \"domain\": \"R\"},\n    {\"name\": \"D\", \"domain\": \"R\"},\n    {\"name\": \"E\", \"domain\": \"R\"},\n    {\"name\": \"F\", \"domain\": \"R\"},\n    {\"name\": \"G\", \"domain\": \"R\"},\n    {\"name\": \"H\", \"domain\": \"R\"},\n    {\"name\": \"I\", \"domain\": \"R\"},\n    {\"name\": \"J\", \"domain\": \"R\"},\n    {\"name\": \"K\", \"domain\": \"R\"},\n    {\"name\": \"L\", \"domain\": \"R\"}\n  ],\n  \"definitions\": {\n    \"distributions\": [\n      {\"name\": \"H1\", \"kind\": \"permutation\", \"params\": {\"size\": 12}}\n    ]\n  },\n  \"prob_space\": {\"independence\": [[\"A\", \"B\"], [\"C\", \"D\"], [\"E\", \"F\"], [\"G\", \"H\"], [\"I\", \"J\"], [\"K\", \"L\"]]},\n  \"targets\": [\n    {\"type\": \"probability\", \"event_expr\": \"G in last_word\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 29.971529483795166,
+  "timestamp": "2025-09-22T13:10:50.295879",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "probability",
+    "symbols": [
+      {
+        "name": "A",
+        "domain": "R"
+      },
+      {
+        "name": "B",
+        "domain": "R"
+      },
+      {
+        "name": "C",
+        "domain": "R"
+      },
+      {
+        "name": "D",
+        "domain": "R"
+      },
+      {
+        "name": "E",
+        "domain": "R"
+      },
+      {
+        "name": "F",
+        "domain": "R"
+      },
+      {
+        "name": "G",
+        "domain": "R"
+      },
+      {
+        "name": "H",
+        "domain": "R"
+      },
+      {
+        "name": "I",
+        "domain": "R"
+      },
+      {
+        "name": "J",
+        "domain": "R"
+      },
+      {
+        "name": "K",
+        "domain": "R"
+      },
+      {
+        "name": "L",
+        "domain": "R"
+      }
+    ],
+    "definitions": {
+      "distributions": [
+        {
+          "name": "H1",
+          "kind": "permutation",
+          "params": {
+            "size": 12
+          }
+        }
+      ]
+    },
+    "prob_space": {
+      "independence": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "C",
+          "D"
+        ],
+        [
+          "E",
+          "F"
+        ],
+        [
+          "G",
+          "H"
+        ],
+        [
+          "I",
+          "J"
+        ],
+        [
+          "K",
+          "L"
+        ]
+      ]
+    },
+    "targets": [
+      {
+        "type": "probability",
+        "event_expr": "G in last_word"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

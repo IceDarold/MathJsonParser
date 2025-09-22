@@ -1,0 +1,28 @@
+{
+  "task_id": "task_000293",
+  "task": "Вычисли $ \\displaystyle \\lim_{x \\rightarrow 0}(\\operatorname{tg}x-\\operatorname{sin}x)/\\operatorname{sin}^3x$. Ответ запиши в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"limit\",\n  \"targets\": [\n    {\n      \"type\": \"limit\",\n      \"expr\": \"\\\\frac{\\\\tan(x) - \\\\sin(x)}{\\\\sin^3(x)}\",\n      \"var\": \"x\",\n      \"to\": \"0\"\n    }\n  ],\n  \"output\": {\n    \"mode\": \"decimal\",\n    \"round_to\": 3\n  },\n  \"meta\": {\n    \"lang\": \"ru\",\n    \"notes\": \"\"\n  }\n}",
+  "latency": 12.563695192337036,
+  "timestamp": "2025-09-22T13:01:01.320348",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "limit",
+    "targets": [
+      {
+        "type": "limit",
+        "expr": "\\frac{\\tan(x) - \\sin(x)}{\\sin^3(x)}",
+        "var": "x",
+        "to": "0"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "task_id": "task_000280",
+  "task": "Вычислить несобственный интеграл: $\\displaystyle \\int_{2}^{+\\infty} \\frac{2}{x^3} dx$. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"symbols\": [{\"name\": \"x\", \"domain\": \"R+\"}],\n  \"targets\": [\n    {\"type\": \"integral_def\", \"expr\": \"2/x^3\", \"var\": \"x\", \"limits\": [2, \"oo\"], \"name\": \"I\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 11.600388526916504,
+  "timestamp": "2025-09-22T12:58:07.452673",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "symbols": [
+      {
+        "name": "x",
+        "domain": "R+"
+      }
+    ],
+    "targets": [
+      {
+        "type": "integral_def",
+        "expr": "2/x^3",
+        "var": "x",
+        "limits": [
+          2,
+          "oo"
+        ],
+        "name": "I"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "task_id": "task_000221",
+  "task": "Найти вероятность, что 2 случайные точки в круге радиуса R окажутся во вписанном квадрате. Ответ запишите в виде десятичной дроби, округлив по правилам математического округления до 3 знаков после запятой.",
+  "response": "{\n  \"expr_format\": \"latex\",\n  \"task_type\": \"probability\",\n  \"symbols\": [{\"name\": \"R\", \"domain\": \"R+\"}],\n  \"definitions\": {\n    \"distributions\": [],\n    \"geometry\": [\n      {\"id\": \"C\", \"kind\": \"circle\", \"equation\": \"x^2 + y^2 = R^2\"},\n      {\"id\": \"Q\", \"kind\": \"square\", \"equation\": \"x^2 + y^2 <= R^2\", \"params\": {\"side_length\": \"R*sqrt(2)\"}}\n    ]\n  },\n  \"targets\": [\n    {\"type\": \"probability\", \"event_expr\": \"H1 & H2\", \"name\": \"P\"}\n  ],\n  \"output\": {\"mode\": \"decimal\", \"round_to\": 3},\n  \"meta\": {\"lang\": \"ru\", \"notes\": \"\"}\n}",
+  "latency": 19.011900663375854,
+  "timestamp": "2025-09-22T12:43:51.138056",
+  "status": "success",
+  "parsed_json": {
+    "expr_format": "latex",
+    "task_type": "probability",
+    "symbols": [
+      {
+        "name": "R",
+        "domain": "R+"
+      }
+    ],
+    "definitions": {
+      "distributions": [],
+      "geometry": [
+        {
+          "id": "C",
+          "kind": "circle",
+          "equation": "x^2 + y^2 = R^2"
+        },
+        {
+          "id": "Q",
+          "kind": "square",
+          "equation": "x^2 + y^2 <= R^2",
+          "params": {
+            "side_length": "R*sqrt(2)"
+          }
+        }
+      ]
+    },
+    "targets": [
+      {
+        "type": "probability",
+        "event_expr": "H1 & H2",
+        "name": "P"
+      }
+    ],
+    "output": {
+      "mode": "decimal",
+      "round_to": 3
+    },
+    "meta": {
+      "lang": "ru",
+      "notes": ""
+    }
+  }
+}
