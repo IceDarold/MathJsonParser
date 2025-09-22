@@ -9,4 +9,12 @@ pydantic
 python-json-logger
 pyyaml
 pytest
+pytest-xdist
+pytest-cov
+pytest-timeout
+pytest-benchmark
 sympy
+python-dotenv
+psutil
+numpy
+scipy
